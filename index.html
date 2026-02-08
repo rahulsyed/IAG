@@ -1830,7 +1830,7 @@
                     
                     <div style="background: var(--dark); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
                         <h6 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.1rem;">📱 Zelle</h6>
-                        <p style="margin-bottom: 0.5rem; font-size: 1.3rem;"><strong>treasurer@myiag.org</strong></p>
+                        <p style="margin-bottom: 0.5rem; font-size: 1.3rem;"><strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="20545245415355524552604d594941470e4f5247">[email&#160;protected]</a></strong></p>
                         <p style="font-size: 0.9rem; color: #ccc; margin-top: 0.8rem;">Please include your name in the payment note</p>
                     </div>
                     
@@ -1907,25 +1907,36 @@
                             Single event (Open OR Mixed): $40 | Family only: $25 | Two events: $60 | All three: $80
                         </p>
                         
+                        <!-- Notice about closed categories -->
+                        <div style="background: linear-gradient(135deg, #FF9933 0%, #FF6B6B 100%); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border: 2px solid #FF9933;">
+                            <h4 style="color: white; margin-bottom: 0.75rem; font-size: 1.1rem;">🎉 Overwhelming Response!</h4>
+                            <p style="color: white; font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.5rem;">
+                                <strong>Thank you for the amazing response!</strong> All categories are now <strong>CLOSED</strong> except <strong>Open 4.0</strong> which has only a few spots remaining.
+                            </p>
+                            <p style="color: white; font-size: 0.9rem; line-height: 1.6;">
+                                📞 For waitlist or other categories, please contact the organizers directly.
+                            </p>
+                        </div>
+                        
                         <div style="background: var(--light); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
                             <h4 style="color: var(--secondary); margin-bottom: 1rem;">Open Divisions (Optional - Choose ONE if participating - All Genders Welcome)</h4>
                             <div class="checkbox-group">
-                                <div class="checkbox-item">
-                                    <input type="radio" id="event-open3" name="openCategory" value="Open 3.0">
-                                    <label for="event-open3">
-                                        <strong>Open 3.0</strong> - Level 3.0 players
+                                <div class="checkbox-item" style="opacity: 0.5; pointer-events: none;">
+                                    <input type="radio" id="event-open3" name="openCategory" value="Open 3.0" disabled>
+                                    <label for="event-open3" style="text-decoration: line-through;">
+                                        <strong>Open 3.0</strong> - Level 3.0 players <span style="color: #FF6B6B; font-weight: 600;">(CLOSED)</span>
                                     </label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="radio" id="event-open35" name="openCategory" value="Open 3.5">
-                                    <label for="event-open35">
-                                        <strong>Open 3.5</strong> - Level 3.5 players
+                                <div class="checkbox-item" style="opacity: 0.5; pointer-events: none;">
+                                    <input type="radio" id="event-open35" name="openCategory" value="Open 3.5" disabled>
+                                    <label for="event-open35" style="text-decoration: line-through;">
+                                        <strong>Open 3.5</strong> - Level 3.5 players <span style="color: #FF6B6B; font-weight: 600;">(CLOSED)</span>
                                     </label>
                                 </div>
-                                <div class="checkbox-item">
+                                <div class="checkbox-item" style="border: 2px solid var(--success); padding: 0.75rem; border-radius: 6px; background: rgba(6, 214, 160, 0.1);">
                                     <input type="radio" id="event-open4" name="openCategory" value="Open 4.0">
                                     <label for="event-open4">
-                                        <strong>Open 4.0</strong> - Level 4.0 and above
+                                        <strong>Open 4.0</strong> - Level 4.0 and above <span style="color: var(--success); font-weight: 600;">✨ FEW SPOTS LEFT!</span>
                                     </label>
                                 </div>
                             </div>
@@ -1938,37 +1949,37 @@
                             </div>
                         </div>
 
-                        <div style="background: var(--light); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <div style="background: var(--light); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; opacity: 0.5;">
                             <h4 style="color: var(--primary); margin-bottom: 1rem;">Mixed Doubles - Competitive</h4>
                             <div class="checkbox-group">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="event-mixed" name="mixedCategory" value="Mixed Doubles Competitive">
-                                    <label for="event-mixed">
-                                        <strong>Mixed Doubles (Competitive)</strong> - Competitive play for serious players
+                                <div class="checkbox-item" style="pointer-events: none;">
+                                    <input type="checkbox" id="event-mixed" name="mixedCategory" value="Mixed Doubles Competitive" disabled>
+                                    <label for="event-mixed" style="text-decoration: line-through;">
+                                        <strong>Mixed Doubles (Competitive)</strong> - Competitive play for serious players <span style="color: #FF6B6B; font-weight: 600;">(CLOSED)</span>
                                     </label>
                                 </div>
                             </div>
                             <div id="mixedPartner" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
                                 <label style="color: var(--white); font-weight: 600; margin-bottom: 0.5rem; display: block;">Partner Name <span class="required">*</span></label>
-                                <input type="text" name="mixedPartnerName" id="mixedPartnerNameInput" placeholder="Enter partner's full name" style="width: 100%; padding: 0.8rem; background: var(--dark); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: var(--white);">
+                                <input type="text" name="mixedPartnerName" id="mixedPartnerNameInput" placeholder="Enter partner's full name" style="width: 100%; padding: 0.8rem; background: var(--dark); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: var(--white);" disabled>
                             </div>
                         </div>
 
-                        <div style="background: var(--light); padding: 1.5rem; border-radius: 8px;">
+                        <div style="background: var(--light); padding: 1.5rem; border-radius: 8px; opacity: 0.5;">
                             <h4 style="color: var(--success); margin-bottom: 1rem;">Family Event - For Fun</h4>
                             <div class="checkbox-group">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="event-family" name="familyCategory" value="Family Social">
-                                    <label for="event-family">
-                                        <strong>Family (Social)</strong> - $25 per player | Fun, recreational play for families
+                                <div class="checkbox-item" style="pointer-events: none;">
+                                    <input type="checkbox" id="event-family" name="familyCategory" value="Family Social" disabled>
+                                    <label for="event-family" style="text-decoration: line-through;">
+                                        <strong>Family (Social)</strong> - $25 per player | Fun, recreational play for families <span style="color: #FF6B6B; font-weight: 600;">(CLOSED)</span>
                                     </label>
                                 </div>
                             </div>
                             <div id="familyPartner" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
                                 <label style="color: var(--white); font-weight: 600; margin-bottom: 0.5rem; display: block;">Partner Name <span class="required">*</span></label>
-                                <input type="text" name="familyPartnerName" id="familyPartnerNameInput" placeholder="Enter partner's full name" style="width: 100%; padding: 0.8rem; background: var(--dark); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: var(--white);">
+                                <input type="text" name="familyPartnerName" id="familyPartnerNameInput" placeholder="Enter partner's full name" style="width: 100%; padding: 0.8rem; background: var(--dark); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: var(--white);" disabled>
                             </div>
-                            <p style="font-size: 0.85rem; color: #06D6A0; margin-top: 1rem; font-style: italic;">
+                            <p style="font-size: 0.85rem; color: #06D6A0; margin-top: 1rem; font-style: italic; opacity: 0.7;">
                                 💡 Special Discount: If your family is playing 4 or more events total, contact organizers for special pricing!
                             </p>
                         </div>
@@ -2064,7 +2075,7 @@
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Wait for DOM to be fully loaded
         // Global showTab function for onclick handlers
         function showTab(tabName) {
@@ -2395,10 +2406,7 @@
         });
 
         backToTopButton.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
         
         }); // End DOMContentLoaded
