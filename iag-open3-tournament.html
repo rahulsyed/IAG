@@ -506,6 +506,64 @@ header .meta span { margin: 0 10px; color: var(--accent); }
 }
 .info-item strong { color: var(--accent2); margin-left: 4px; }
 
+/* ---- Schedule responsive layout ---- */
+.sched-mobile { display: none; }
+.sched-desktop { display: block; }
+
+@media (max-width: 600px) {
+  .sched-desktop { display: none; }
+  .sched-mobile { display: flex; flex-direction: column; gap: 10px; }
+  .sched-slot {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .sched-time {
+    background: var(--surface);
+    padding: 8px 14px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--accent2);
+    border-bottom: 1px solid var(--border);
+    letter-spacing: 1px;
+  }
+  .sched-courts { display: flex; flex-direction: column; }
+  .sched-court {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .sched-court:last-child { border-bottom: none; }
+  .court-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--accent);
+    background: rgba(0,230,255,0.1);
+    border: 1px solid rgba(0,230,255,0.2);
+    border-radius: 4px;
+    padding: 2px 7px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .court-label.c2 {
+    color: var(--accent2);
+    background: rgba(247,201,72,0.1);
+    border-color: rgba(247,201,72,0.25);
+  }
+  .court-match {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+}
+
 @media (max-width: 600px) {
   .knockout-mode-selector { grid-template-columns: 1fr; }
   .bracket-col { min-width: 140px; }
@@ -706,12 +764,15 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
   </div>
 
   <div class="section-title">Court Schedule</div>
+
+  <!-- Desktop table -->
+  <div class="sched-desktop">
   <table class="schedule-table">
     <thead>
       <tr>
         <th>Time</th>
-        <th>Court 1</th>
-        <th>Court 2</th>
+        <th>🏟 Court 1</th>
+        <th>🏟 Court 2</th>
       </tr>
     </thead>
     <tbody>
@@ -747,6 +808,53 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
       </tr>
     </tbody>
   </table>
+  </div>
+
+  <!-- Mobile cards (one per time slot) -->
+  <div class="sched-mobile">
+    <div class="sched-slot">
+      <div class="sched-time">8:00 PM</div>
+      <div class="sched-courts">
+        <div class="sched-court"><span class="court-label">Court 1</span><span class="court-match">Nirmala &amp; Kavya <span class="vs">vs</span> Gayathri &amp; Maheshwari</span></div>
+        <div class="sched-court"><span class="court-label c2">Court 2</span><span class="court-match">Suganandini &amp; Ridhyanyaa <span class="vs">vs</span> Melfi &amp; Deeksha</span></div>
+      </div>
+    </div>
+    <div class="sched-slot">
+      <div class="sched-time">8:15 PM</div>
+      <div class="sched-courts">
+        <div class="sched-court"><span class="court-label">Court 1</span><span class="court-match">Suganandini &amp; Ridhyanyaa <span class="vs">vs</span> Nirmala &amp; Kavya</span></div>
+        <div class="sched-court"><span class="court-label c2">Court 2</span><span class="court-match">Divya &amp; Ramya <span class="vs">vs</span> Gayathri &amp; Maheshwari</span></div>
+      </div>
+    </div>
+    <div class="sched-slot">
+      <div class="sched-time">8:30 PM</div>
+      <div class="sched-courts">
+        <div class="sched-court"><span class="court-label">Court 1</span><span class="court-match">Nirmala &amp; Kavya <span class="vs">vs</span> Melfi &amp; Deeksha</span></div>
+        <div class="sched-court"><span class="court-label c2">Court 2</span><span class="court-match">Sofi &amp; Priya <span class="vs">vs</span> Gayathri &amp; Maheshwari</span></div>
+      </div>
+    </div>
+    <div class="sched-slot">
+      <div class="sched-time">8:45 PM</div>
+      <div class="sched-courts">
+        <div class="sched-court"><span class="court-label">Court 1</span><span class="court-match">Sofi &amp; Priya <span class="vs">vs</span> Nirmala &amp; Kavya</span></div>
+        <div class="sched-court"><span class="court-label c2">Court 2</span><span class="court-match">Divya &amp; Ramya <span class="vs">vs</span> Suganandini &amp; Ridhyanyaa</span></div>
+      </div>
+    </div>
+    <div class="sched-slot">
+      <div class="sched-time">9:00 PM</div>
+      <div class="sched-courts">
+        <div class="sched-court"><span class="court-label">Court 1</span><span class="court-match">Melfi &amp; Deeksha <span class="vs">vs</span> Gayathri &amp; Maheshwari</span></div>
+        <div class="sched-court"><span class="court-label c2">Court 2</span><span class="court-match">Sofi &amp; Priya <span class="vs">vs</span> Divya &amp; Ramya</span></div>
+      </div>
+    </div>
+    <div class="sched-slot">
+      <div class="sched-time">9:15 PM</div>
+      <div class="sched-courts">
+        <div class="sched-court"><span class="court-label">Court 1</span><span class="court-match">Sofi &amp; Priya <span class="vs">vs</span> Suganandini &amp; Ridhyanyaa</span></div>
+        <div class="sched-court"><span class="court-label c2">Court 2</span><span class="court-match">Divya &amp; Ramya <span class="vs">vs</span> Melfi &amp; Deeksha</span></div>
+      </div>
+    </div>
+  </div>
 
 
 </div>
