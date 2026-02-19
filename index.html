@@ -1475,6 +1475,68 @@
             .card { padding: 0.85rem; }
         }
 
+        /* ---- Index Schedule responsive ---- */
+        .idx-sched-mobile { display: none; }
+        .idx-sched-desktop { display: block; }
+
+        @media (max-width: 600px) {
+            .idx-sched-desktop { display: none; }
+            .idx-sched-mobile { display: flex; flex-direction: column; gap: 10px; margin-bottom: 2rem; }
+            .idx-slot {
+                background: var(--light);
+                border-radius: 10px;
+                overflow: hidden;
+                border: 1px solid rgba(255,153,51,0.15);
+            }
+            .idx-slot-time {
+                background: var(--navy);
+                padding: 8px 14px;
+                font-weight: 700;
+                font-size: 1rem;
+                color: var(--primary);
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+                letter-spacing: 0.5px;
+            }
+            .idx-slot-court {
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                padding: 10px 14px;
+                border-bottom: 1px solid rgba(255,255,255,0.04);
+            }
+            .idx-slot-court:last-child { border-bottom: none; }
+            .idx-court-badge {
+                font-size: 0.7rem;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                padding: 2px 8px;
+                border-radius: 4px;
+                white-space: nowrap;
+                flex-shrink: 0;
+                margin-top: 2px;
+            }
+            .idx-court-badge.c1 {
+                background: rgba(255,153,51,0.15);
+                color: var(--primary);
+                border: 1px solid rgba(255,153,51,0.3);
+            }
+            .idx-court-badge.c2 {
+                background: rgba(6,214,160,0.12);
+                color: var(--success);
+                border: 1px solid rgba(6,214,160,0.25);
+            }
+            .idx-match {
+                font-size: 0.88rem;
+                color: var(--white);
+                line-height: 1.5;
+            }
+            .idx-vs {
+                color: #888;
+                font-size: 0.78rem;
+                margin: 0 3px;
+            }
+        }
+
         /* ---- Schedule Category Buttons ---- */
         .sched-cat-btn {
             padding: 9px 18px;
@@ -1663,13 +1725,15 @@
                     </div>
 
                     <h4 style="color:var(--primary);margin-bottom:1rem;font-size:1.1rem;">📋 Court Schedule — Feb 27</h4>
-                    <div style="overflow-x:auto;">
+
+                    <!-- Desktop table -->
+                    <div class="idx-sched-desktop">
                     <table class="schedule-table" style="margin-bottom:2rem;">
                         <thead>
                             <tr>
                                 <th>Time</th>
-                                <th>Court 1</th>
-                                <th>Court 2</th>
+                                <th>🏟 Court 1</th>
+                                <th>🏟 Court 2</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1681,6 +1745,40 @@
                             <tr><td style="white-space:nowrap;font-weight:700;color:var(--primary)">9:15 PM</td><td>Sofi &amp; Priya vs Suganandini &amp; Ridhyanyaa</td><td>Divya &amp; Ramya vs Melfi &amp; Deeksha</td></tr>
                         </tbody>
                     </table>
+                    </div>
+
+                    <!-- Mobile cards -->
+                    <div class="idx-sched-mobile">
+                        <div class="idx-slot">
+                            <div class="idx-slot-time">8:00 PM</div>
+                            <div class="idx-slot-court"><span class="idx-court-badge c1">Court 1</span><span class="idx-match">Nirmala &amp; Kavya <span class="idx-vs">vs</span> Gayathri &amp; Maheshwari</span></div>
+                            <div class="idx-slot-court"><span class="idx-court-badge c2">Court 2</span><span class="idx-match">Suganandini &amp; Ridhyanyaa <span class="idx-vs">vs</span> Melfi &amp; Deeksha</span></div>
+                        </div>
+                        <div class="idx-slot">
+                            <div class="idx-slot-time">8:15 PM</div>
+                            <div class="idx-slot-court"><span class="idx-court-badge c1">Court 1</span><span class="idx-match">Suganandini &amp; Ridhyanyaa <span class="idx-vs">vs</span> Nirmala &amp; Kavya</span></div>
+                            <div class="idx-slot-court"><span class="idx-court-badge c2">Court 2</span><span class="idx-match">Divya &amp; Ramya <span class="idx-vs">vs</span> Gayathri &amp; Maheshwari</span></div>
+                        </div>
+                        <div class="idx-slot">
+                            <div class="idx-slot-time">8:30 PM</div>
+                            <div class="idx-slot-court"><span class="idx-court-badge c1">Court 1</span><span class="idx-match">Nirmala &amp; Kavya <span class="idx-vs">vs</span> Melfi &amp; Deeksha</span></div>
+                            <div class="idx-slot-court"><span class="idx-court-badge c2">Court 2</span><span class="idx-match">Sofi &amp; Priya <span class="idx-vs">vs</span> Gayathri &amp; Maheshwari</span></div>
+                        </div>
+                        <div class="idx-slot">
+                            <div class="idx-slot-time">8:45 PM</div>
+                            <div class="idx-slot-court"><span class="idx-court-badge c1">Court 1</span><span class="idx-match">Sofi &amp; Priya <span class="idx-vs">vs</span> Nirmala &amp; Kavya</span></div>
+                            <div class="idx-slot-court"><span class="idx-court-badge c2">Court 2</span><span class="idx-match">Divya &amp; Ramya <span class="idx-vs">vs</span> Suganandini &amp; Ridhyanyaa</span></div>
+                        </div>
+                        <div class="idx-slot">
+                            <div class="idx-slot-time">9:00 PM</div>
+                            <div class="idx-slot-court"><span class="idx-court-badge c1">Court 1</span><span class="idx-match">Melfi &amp; Deeksha <span class="idx-vs">vs</span> Gayathri &amp; Maheshwari</span></div>
+                            <div class="idx-slot-court"><span class="idx-court-badge c2">Court 2</span><span class="idx-match">Sofi &amp; Priya <span class="idx-vs">vs</span> Divya &amp; Ramya</span></div>
+                        </div>
+                        <div class="idx-slot">
+                            <div class="idx-slot-time">9:15 PM</div>
+                            <div class="idx-slot-court"><span class="idx-court-badge c1">Court 1</span><span class="idx-match">Sofi &amp; Priya <span class="idx-vs">vs</span> Suganandini &amp; Ridhyanyaa</span></div>
+                            <div class="idx-slot-court"><span class="idx-court-badge c2">Court 2</span><span class="idx-match">Divya &amp; Ramya <span class="idx-vs">vs</span> Melfi &amp; Deeksha</span></div>
+                        </div>
                     </div>
 
                     <h4 style="color:var(--primary);margin-bottom:1rem;font-size:1.1rem;">👥 Teams</h4>
