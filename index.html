@@ -1475,68 +1475,6 @@
             .card { padding: 0.85rem; }
         }
 
-        /* ---- Index Schedule responsive ---- */
-        .idx-sched-mobile { display: none; }
-        .idx-sched-desktop { display: block; }
-
-        @media (max-width: 600px) {
-            .idx-sched-desktop { display: none; }
-            .idx-sched-mobile { display: flex; flex-direction: column; gap: 10px; margin-bottom: 2rem; }
-            .idx-slot {
-                background: var(--light);
-                border-radius: 10px;
-                overflow: hidden;
-                border: 1px solid rgba(255,153,51,0.15);
-            }
-            .idx-slot-time {
-                background: var(--navy);
-                padding: 8px 14px;
-                font-weight: 700;
-                font-size: 1rem;
-                color: var(--primary);
-                border-bottom: 1px solid rgba(255,255,255,0.06);
-                letter-spacing: 0.5px;
-            }
-            .idx-slot-court {
-                display: flex;
-                align-items: flex-start;
-                gap: 10px;
-                padding: 10px 14px;
-                border-bottom: 1px solid rgba(255,255,255,0.04);
-            }
-            .idx-slot-court:last-child { border-bottom: none; }
-            .idx-court-badge {
-                font-size: 0.7rem;
-                font-weight: 700;
-                letter-spacing: 0.5px;
-                padding: 2px 8px;
-                border-radius: 4px;
-                white-space: nowrap;
-                flex-shrink: 0;
-                margin-top: 2px;
-            }
-            .idx-court-badge.c1 {
-                background: rgba(255,153,51,0.15);
-                color: var(--primary);
-                border: 1px solid rgba(255,153,51,0.3);
-            }
-            .idx-court-badge.c2 {
-                background: rgba(6,214,160,0.12);
-                color: var(--success);
-                border: 1px solid rgba(6,214,160,0.25);
-            }
-            .idx-match {
-                font-size: 0.88rem;
-                color: var(--white);
-                line-height: 1.5;
-            }
-            .idx-vs {
-                color: #888;
-                font-size: 0.78rem;
-                margin: 0 3px;
-            }
-        }
-
         /* ---- Schedule Category Buttons ---- */
         .sched-cat-btn {
             padding: 9px 18px;
@@ -1711,7 +1649,7 @@
                     <button onclick="showSchedule('open35')" id="sched-btn-open35" class="sched-cat-btn">Open 3.5 — Level 3.5</button>
                     <button onclick="showSchedule('open4')" id="sched-btn-open4" class="sched-cat-btn">Open 4 — Level 4.0+</button>
                     <button onclick="showSchedule('mixed')" id="sched-btn-mixed" class="sched-cat-btn">Mixed Doubles</button>
-                    <button onclick="showSchedule('family')" id="sched-btn-family" class="sched-cat-btn">Family Social</button>
+                    <button onclick="showSchedule('family')" id="sched-btn-family" class="sched-cat-btn">Social Division</button>
                 </div>
 
                 <!-- Open 3 Schedule -->
@@ -1725,15 +1663,13 @@
                     </div>
 
                     <h4 style="color:var(--primary);margin-bottom:1rem;font-size:1.1rem;">📋 Court Schedule — Feb 27</h4>
-
-                    <!-- Desktop table -->
-                    <div class="idx-sched-desktop">
+                    <div style="overflow-x:auto;">
                     <table class="schedule-table" style="margin-bottom:2rem;">
                         <thead>
                             <tr>
                                 <th>Time</th>
-                                <th>🏟 Court 1</th>
-                                <th>🏟 Court 2</th>
+                                <th>Court 1</th>
+                                <th>Court 2</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1745,40 +1681,6 @@
                             <tr><td style="white-space:nowrap;font-weight:700;color:var(--primary)">9:15 PM</td><td>Sofi &amp; Priya vs Suganandini &amp; Ridhyanyaa</td><td>Divya &amp; Ramya vs Melfi &amp; Deeksha</td></tr>
                         </tbody>
                     </table>
-                    </div>
-
-                    <!-- Mobile cards -->
-                    <div class="idx-sched-mobile">
-                        <div class="idx-slot">
-                            <div class="idx-slot-time">8:00 PM</div>
-                            <div class="idx-slot-court"><span class="idx-court-badge c1">Court 1</span><span class="idx-match">Nirmala &amp; Kavya <span class="idx-vs">vs</span> Gayathri &amp; Maheshwari</span></div>
-                            <div class="idx-slot-court"><span class="idx-court-badge c2">Court 2</span><span class="idx-match">Suganandini &amp; Ridhyanyaa <span class="idx-vs">vs</span> Melfi &amp; Deeksha</span></div>
-                        </div>
-                        <div class="idx-slot">
-                            <div class="idx-slot-time">8:15 PM</div>
-                            <div class="idx-slot-court"><span class="idx-court-badge c1">Court 1</span><span class="idx-match">Suganandini &amp; Ridhyanyaa <span class="idx-vs">vs</span> Nirmala &amp; Kavya</span></div>
-                            <div class="idx-slot-court"><span class="idx-court-badge c2">Court 2</span><span class="idx-match">Divya &amp; Ramya <span class="idx-vs">vs</span> Gayathri &amp; Maheshwari</span></div>
-                        </div>
-                        <div class="idx-slot">
-                            <div class="idx-slot-time">8:30 PM</div>
-                            <div class="idx-slot-court"><span class="idx-court-badge c1">Court 1</span><span class="idx-match">Nirmala &amp; Kavya <span class="idx-vs">vs</span> Melfi &amp; Deeksha</span></div>
-                            <div class="idx-slot-court"><span class="idx-court-badge c2">Court 2</span><span class="idx-match">Sofi &amp; Priya <span class="idx-vs">vs</span> Gayathri &amp; Maheshwari</span></div>
-                        </div>
-                        <div class="idx-slot">
-                            <div class="idx-slot-time">8:45 PM</div>
-                            <div class="idx-slot-court"><span class="idx-court-badge c1">Court 1</span><span class="idx-match">Sofi &amp; Priya <span class="idx-vs">vs</span> Nirmala &amp; Kavya</span></div>
-                            <div class="idx-slot-court"><span class="idx-court-badge c2">Court 2</span><span class="idx-match">Divya &amp; Ramya <span class="idx-vs">vs</span> Suganandini &amp; Ridhyanyaa</span></div>
-                        </div>
-                        <div class="idx-slot">
-                            <div class="idx-slot-time">9:00 PM</div>
-                            <div class="idx-slot-court"><span class="idx-court-badge c1">Court 1</span><span class="idx-match">Melfi &amp; Deeksha <span class="idx-vs">vs</span> Gayathri &amp; Maheshwari</span></div>
-                            <div class="idx-slot-court"><span class="idx-court-badge c2">Court 2</span><span class="idx-match">Sofi &amp; Priya <span class="idx-vs">vs</span> Divya &amp; Ramya</span></div>
-                        </div>
-                        <div class="idx-slot">
-                            <div class="idx-slot-time">9:15 PM</div>
-                            <div class="idx-slot-court"><span class="idx-court-badge c1">Court 1</span><span class="idx-match">Sofi &amp; Priya <span class="idx-vs">vs</span> Suganandini &amp; Ridhyanyaa</span></div>
-                            <div class="idx-slot-court"><span class="idx-court-badge c2">Court 2</span><span class="idx-match">Divya &amp; Ramya <span class="idx-vs">vs</span> Melfi &amp; Deeksha</span></div>
-                        </div>
                     </div>
 
                     <h4 style="color:var(--primary);margin-bottom:1rem;font-size:1.1rem;">👥 Teams</h4>
@@ -1801,35 +1703,186 @@
 
                 <!-- Coming Soon panels for other categories -->
                 <div id="sched-open35" class="sched-content" style="display:none;">
-                    <div class="coming-soon-box">
-                        <div style="font-size:3rem;margin-bottom:1rem;">⏳</div>
-                        <h3 style="color:var(--primary);font-size:1.6rem;margin-bottom:0.5rem;">Schedule Coming Soon</h3>
-                        <p style="color:#ccc;">Open 3.5 schedule will be published closer to the tournament.</p>
-                        <p style="color:var(--secondary);font-weight:700;margin-top:0.5rem;">Check back on February 26th, 2026</p>
+                    <div style="background:rgba(255,124,42,0.08);border-left:4px solid #ff7c2a;border-radius:8px;padding:1rem 1.5rem;margin-bottom:1.5rem;display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+                        <span>📅 <strong>Feb 28, 2026</strong></span>
+                        <span>🕗 <strong>Start:</strong> 9:00 AM</span>
+                        <span>🔚 <strong>End:</strong> ~10:30 AM</span>
+                        <span>⏱ <strong>15 min/match</strong></span>
+                        <span>🏟 <strong>6 Courts</strong></span>
+                        <span>👥 <strong>16 Teams · 4 Groups</strong></span>
+                    </div>
+                    <h4 style="color:#ff7c2a;margin-bottom:1rem;font-size:1.1rem;">📋 Schedule — 4 Groups Round Robin</h4>
+                    <div style="overflow-x:auto;">
+                    <table class="schedule-table" style="margin-bottom:1.5rem;">
+                        <thead><tr><th>Time</th><th>Court</th><th>Group</th><th>Match</th></tr></thead>
+                        <tbody>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:00 AM</td><td>1</td><td>Grp 1</td><td>Durbha Murthy &amp; Rajanikanth vs Vivek &amp; Rajiv</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:00 AM</td><td>2</td><td>Grp 1</td><td>Vanith &amp; Prabakar vs Lisa &amp; April</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:00 AM</td><td>3</td><td>Grp 2</td><td>Welborn &amp; Francis vs Varun &amp; Jeremy</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:00 AM</td><td>4</td><td>Grp 2</td><td>Shari &amp; Roz vs Thiru &amp; Vamshi</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:00 AM</td><td>5</td><td>Grp 3</td><td>Uma &amp; Shankar vs Moksh &amp; Suraj</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:00 AM</td><td>6</td><td>Grp 3</td><td>Adarsh &amp; Sunil vs Venkat &amp; Immanuel</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:15 AM</td><td>1</td><td>Grp 1</td><td>Durbha Murthy &amp; Rajanikanth vs Vanith &amp; Prabakar</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:15 AM</td><td>2</td><td>Grp 1</td><td>Vivek &amp; Rajiv vs Lisa &amp; April</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:15 AM</td><td>3</td><td>Grp 2</td><td>Welborn &amp; Francis vs Shari &amp; Roz</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:15 AM</td><td>4</td><td>Grp 2</td><td>Varun &amp; Jeremy vs Thiru &amp; Vamshi</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:15 AM</td><td>5</td><td>Grp 3</td><td>Uma &amp; Shankar vs Adarsh &amp; Sunil</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:15 AM</td><td>6</td><td>Grp 3</td><td>Moksh &amp; Suraj vs Venkat &amp; Immanuel</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:30 AM</td><td>1</td><td>Grp 1</td><td>Durbha Murthy &amp; Rajanikanth vs Lisa &amp; April</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:30 AM</td><td>2</td><td>Grp 1</td><td>Vivek &amp; Rajiv vs Vanith &amp; Prabakar</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:30 AM</td><td>3</td><td>Grp 2</td><td>Welborn &amp; Francis vs Thiru &amp; Vamshi</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:30 AM</td><td>4</td><td>Grp 2</td><td>Varun &amp; Jeremy vs Shari &amp; Roz</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:30 AM</td><td>5</td><td>Grp 3</td><td>Uma &amp; Shankar vs Venkat &amp; Immanuel</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:30 AM</td><td>6</td><td>Grp 3</td><td>Moksh &amp; Suraj vs Adarsh &amp; Sunil</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:45 AM</td><td>1</td><td>Grp 4</td><td>Xavier &amp; David vs Anish &amp; Mandy</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">9:45 AM</td><td>2</td><td>Grp 4</td><td>Kenny &amp; Daniel vs Sreeni NK &amp; Chokalingam</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">10:00 AM</td><td>1</td><td>Grp 4</td><td>Xavier &amp; David vs Kenny &amp; Daniel</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">10:00 AM</td><td>2</td><td>Grp 4</td><td>Anish &amp; Mandy vs Sreeni NK &amp; Chokalingam</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">10:15 AM</td><td>1</td><td>Grp 4</td><td>Xavier &amp; David vs Sreeni NK &amp; Chokalingam</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#ff7c2a">10:15 AM</td><td>2</td><td>Grp 4</td><td>Anish &amp; Mandy vs Kenny &amp; Daniel</td></tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    <div style="text-align:center;">
+                        <a href="iag-open35-tournament.html" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#ff7c2a,#d05a00);color:#000;font-weight:700;padding:14px 32px;border-radius:8px;text-decoration:none;font-size:1.05rem;letter-spacing:0.5px;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                            🏆 Open 3.5 Live Scores &amp; Standings →
+                        </a>
                     </div>
                 </div>
                 <div id="sched-open4" class="sched-content" style="display:none;">
-                    <div class="coming-soon-box">
-                        <div style="font-size:3rem;margin-bottom:1rem;">⏳</div>
-                        <h3 style="color:var(--primary);font-size:1.6rem;margin-bottom:0.5rem;">Schedule Coming Soon</h3>
-                        <p style="color:#ccc;">Open 4.0+ schedule will be published closer to the tournament.</p>
-                        <p style="color:var(--secondary);font-weight:700;margin-top:0.5rem;">Check back on February 26th, 2026</p>
+                    <div style="background:rgba(168,85,247,0.08);border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.5rem;margin-bottom:1.5rem;display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+                        <span>📅 <strong>Feb 28, 2026</strong></span>
+                        <span>🕗 <strong>Start:</strong> 10:00 AM</span>
+                        <span>🔚 <strong>End:</strong> ~11:30 AM</span>
+                        <span>⏱ <strong>15 min/match</strong></span>
+                        <span>🏟 <strong>6 Courts</strong></span>
+                        <span>👥 <strong>16 Teams · 4 Groups</strong></span>
+                    </div>
+                    <h4 style="color:#a855f7;margin-bottom:1rem;font-size:1.1rem;">📋 Schedule — 4 Groups Round Robin</h4>
+                    <div style="overflow-x:auto;">
+                    <table class="schedule-table" style="margin-bottom:1.5rem;">
+                        <thead><tr><th>Time</th><th>Court</th><th>Group</th><th>Match</th></tr></thead>
+                        <tbody>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:00 AM</td><td>1</td><td>Grp 1</td><td>Tony &amp; Cole vs PJ &amp; Syed</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:00 AM</td><td>2</td><td>Grp 1</td><td>Suresh &amp; Rajesh vs LD &amp; Nathan</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:00 AM</td><td>3</td><td>Grp 2</td><td>Andrew Jacob &amp; Mark vs Carlos &amp; Carlos</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:00 AM</td><td>4</td><td>Grp 2</td><td>Andrew Stafford &amp; Stephen vs Mason &amp; Shane</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:00 AM</td><td>5</td><td>Grp 3</td><td>Maulik &amp; Addy vs Dwayne &amp; Luk</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:00 AM</td><td>6</td><td>Grp 3</td><td>Vinod &amp; Senthil vs Arun &amp; Elango</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:15 AM</td><td>1</td><td>Grp 1</td><td>Tony &amp; Cole vs Suresh &amp; Rajesh</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:15 AM</td><td>2</td><td>Grp 1</td><td>PJ &amp; Syed vs LD &amp; Nathan</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:15 AM</td><td>3</td><td>Grp 2</td><td>Andrew Jacob &amp; Mark vs Andrew Stafford &amp; Stephen</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:15 AM</td><td>4</td><td>Grp 2</td><td>Carlos &amp; Carlos vs Mason &amp; Shane</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:15 AM</td><td>5</td><td>Grp 3</td><td>Maulik &amp; Addy vs Vinod &amp; Senthil</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:15 AM</td><td>6</td><td>Grp 3</td><td>Dwayne &amp; Luk vs Arun &amp; Elango</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:30 AM</td><td>1</td><td>Grp 1</td><td>Tony &amp; Cole vs LD &amp; Nathan</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:30 AM</td><td>2</td><td>Grp 1</td><td>PJ &amp; Syed vs Suresh &amp; Rajesh</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:30 AM</td><td>3</td><td>Grp 2</td><td>Andrew Jacob &amp; Mark vs Mason &amp; Shane</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:30 AM</td><td>4</td><td>Grp 2</td><td>Carlos &amp; Carlos vs Andrew Stafford &amp; Stephen</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:30 AM</td><td>5</td><td>Grp 3</td><td>Maulik &amp; Addy vs Arun &amp; Elango</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:30 AM</td><td>6</td><td>Grp 3</td><td>Dwayne &amp; Luk vs Vinod &amp; Senthil</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:45 AM</td><td>3 ★</td><td>Grp 4</td><td>Abhishek &amp; Philip vs Raj &amp; David</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">10:45 AM</td><td>4 ★</td><td>Grp 4</td><td>Dylan &amp; Kason vs Jared &amp; Doug</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">11:00 AM</td><td>3 ★</td><td>Grp 4</td><td>Abhishek &amp; Philip vs Dylan &amp; Kason</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">11:00 AM</td><td>4 ★</td><td>Grp 4</td><td>Raj &amp; David vs Jared &amp; Doug</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">11:15 AM</td><td>3 ★</td><td>Grp 4</td><td>Abhishek &amp; Philip vs Jared &amp; Doug</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#a855f7">11:15 AM</td><td>4 ★</td><td>Grp 4</td><td>Raj &amp; David vs Dylan &amp; Kason</td></tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    <p style="color:#888;font-size:12px;margin-bottom:1rem;">★ Courts 3 &amp; 4 used from 10:45 AM onwards (courts 1 &amp; 2 free for Mixed)</p>
+                    <div style="text-align:center;">
+                        <a href="iag-open4-tournament.html" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff;font-weight:700;padding:14px 32px;border-radius:8px;text-decoration:none;font-size:1.05rem;letter-spacing:0.5px;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                            🏆 Open 4.0 Live Scores &amp; Standings →
+                        </a>
                     </div>
                 </div>
                 <div id="sched-mixed" class="sched-content" style="display:none;">
-                    <div class="coming-soon-box">
-                        <div style="font-size:3rem;margin-bottom:1rem;">⏳</div>
-                        <h3 style="color:var(--primary);font-size:1.6rem;margin-bottom:0.5rem;">Schedule Coming Soon</h3>
-                        <p style="color:#ccc;">Mixed Doubles schedule will be published closer to the tournament.</p>
-                        <p style="color:var(--secondary);font-weight:700;margin-top:0.5rem;">Check back on February 26th, 2026</p>
+                    <div style="background:rgba(0,212,200,0.08);border-left:4px solid #00d4c8;border-radius:8px;padding:1rem 1.5rem;margin-bottom:1.5rem;display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+                        <span>📅 <strong>Feb 28, 2026</strong></span>
+                        <span>🕗 <strong>Start:</strong> 1:45 PM</span>
+                        <span>🔚 <strong>End:</strong> ~3:15 PM</span>
+                        <span>⏱ <strong>15 min/match</strong></span>
+                        <span>🏟 <strong>6 Courts</strong></span>
+                        <span>👥 <strong>14 Teams · 3 Rounds</strong></span>
+                    </div>
+                    <h4 style="color:#00d4c8;margin-bottom:1rem;font-size:1.1rem;">📋 Schedule — 3 Rounds League Play</h4>
+                    <p style="color:#888;font-size:12px;margin-bottom:1rem;">🏆 Knockout: R16 (1 set) → QF (1 set) → SF (Best of 3) → Final (Best of 3) &nbsp;|&nbsp; ⭐ Seeds 1 &amp; 2 get R16 BYE</p>
+                    <div style="overflow-x:auto;">
+                    <table class="schedule-table" style="margin-bottom:1.5rem;">
+                        <thead><tr><th>Time</th><th>Court</th><th>Round</th><th>Match</th></tr></thead>
+                        <tbody>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">1:45 PM</td><td>1</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R1</span></td><td>Cam &amp; Rae vs Rohit &amp; Shivani</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">1:45 PM</td><td>2</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R1</span></td><td>Shari &amp; Dwayne vs Vinod &amp; Nandhini</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">1:45 PM</td><td>3</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R1</span></td><td>Keath &amp; Caitlyn vs Nathan &amp; Esther</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">1:45 PM</td><td>4</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R1</span></td><td>Aiden &amp; Grace vs Raj &amp; Nalini</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">1:45 PM</td><td>5</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R1</span></td><td>Guru &amp; Lynn vs Shawn &amp; Tom</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">1:45 PM</td><td>6</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R1</span></td><td>Welborn &amp; Ericka vs PJ &amp; Marabeth</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">2:00 PM</td><td>1</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R1</span></td><td>Welborn &amp; Ericka vs Andrew Jacob &amp; Lydia</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">2:15 PM</td><td>1</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R2</span></td><td>Shawn &amp; Tom vs Keath &amp; Caitlyn</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">2:15 PM</td><td>2</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R2</span></td><td>Andrew Jacob &amp; Lydia vs Cam &amp; Rae</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">2:15 PM</td><td>3</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R2</span></td><td>Shari &amp; Dwayne vs Welborn &amp; Ericka</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">2:15 PM</td><td>4</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R2</span></td><td>PJ &amp; Marabeth vs Nathan &amp; Esther</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">2:15 PM</td><td>5</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R2</span></td><td>Raj &amp; Nalini vs Guru &amp; Lynn</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">2:15 PM</td><td>6</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R2</span></td><td>Vinod &amp; Nandhini vs Aiden &amp; Grace</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">2:30 PM</td><td>1</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R2</span></td><td>Rohit &amp; Shivani vs Welborn &amp; Ericka</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">2:45 PM</td><td>1</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R3</span></td><td>Cam &amp; Rae vs Shari &amp; Dwayne</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">2:45 PM</td><td>2</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R3</span></td><td>Nathan &amp; Esther vs Rohit &amp; Shivani</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">2:45 PM</td><td>3</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R3</span></td><td>Guru &amp; Lynn vs Vinod &amp; Nandhini</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">2:45 PM</td><td>4</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R3</span></td><td>Welborn &amp; Ericka vs Andrew Jacob &amp; Lydia</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">2:45 PM</td><td>5</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R3</span></td><td>Keath &amp; Caitlyn vs PJ &amp; Marabeth</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">2:45 PM</td><td>6</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R3</span></td><td>Welborn &amp; Ericka vs Aiden &amp; Grace</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#00d4c8">3:00 PM</td><td>1</td><td><span style="background:rgba(0,212,200,0.12);border:1px solid rgba(0,212,200,0.25);color:#00d4c8;font-family:'Rajdhani',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;">R3</span></td><td>Shawn &amp; Tom vs Raj &amp; Nalini</td></tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    <div style="text-align:center;">
+                        <a href="iag-mixed-tournament.html" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#00d4c8,#008c88);color:#000;font-weight:700;padding:14px 32px;border-radius:8px;text-decoration:none;font-size:1.05rem;letter-spacing:0.5px;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                            🏆 Mixed Doubles Live Scores &amp; Standings →
+                        </a>
                     </div>
                 </div>
                 <div id="sched-family" class="sched-content" style="display:none;">
-                    <div class="coming-soon-box">
-                        <div style="font-size:3rem;margin-bottom:1rem;">⏳</div>
-                        <h3 style="color:var(--primary);font-size:1.6rem;margin-bottom:0.5rem;">Schedule Coming Soon</h3>
-                        <p style="color:#ccc;">Family Social schedule will be published closer to the tournament.</p>
-                        <p style="color:var(--secondary);font-weight:700;margin-top:0.5rem;">Check back on February 26th, 2026</p>
+                    <div style="background:rgba(57,255,132,0.08);border-left:4px solid #39ff84;border-radius:8px;padding:1rem 1.5rem;margin-bottom:1.5rem;display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+                        <span>📅 <strong>Feb 28, 2026</strong></span>
+                        <span>🕗 <strong>Start:</strong> 1:45 PM</span>
+                        <span>🔚 <strong>End:</strong> ~3:30 PM</span>
+                        <span>⏱ <strong>15 min/match</strong></span>
+                        <span>🏟 <strong>Courts 3, 4, 5, 6</strong></span>
+                        <span>👥 <strong>10 Teams · 2 Groups</strong></span>
+                    </div>
+                    <h4 style="color:#39ff84;margin-bottom:1rem;font-size:1.1rem;">📋 Schedule — 2 Groups Round Robin</h4>
+                    <div style="overflow-x:auto;">
+                    <table class="schedule-table" style="margin-bottom:1.5rem;">
+                        <thead><tr><th>Time</th><th>Court</th><th>Group</th><th>Match</th></tr></thead>
+                        <tbody>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">1:45 PM</td><td>3</td><td>Grp 1</td><td>Karthik &amp; Shailee vs Syed &amp; Sofi</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">1:45 PM</td><td>4</td><td>Grp 1</td><td>Thiru &amp; Gayathri vs Kenny &amp; Amanda</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">1:45 PM</td><td>5</td><td>Grp 2</td><td>Mandy &amp; Honey vs Suresh &amp; Nirmala</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">1:45 PM</td><td>6</td><td>Grp 2</td><td>Elango &amp; Ramya vs Arun &amp; Divya</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">2:00 PM</td><td>3</td><td>Grp 1</td><td>Karthik &amp; Shailee vs Thiru &amp; Gayathri</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">2:00 PM</td><td>4</td><td>Grp 1</td><td>Syed &amp; Sofi vs Kenny &amp; Amanda</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">2:00 PM</td><td>5</td><td>Grp 2</td><td>Mandy &amp; Honey vs Elango &amp; Ramya</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">2:00 PM</td><td>6</td><td>Grp 2</td><td>Suresh &amp; Nirmala vs Arun &amp; Divya</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">2:15 PM</td><td>3</td><td>Grp 1</td><td>Karthik &amp; Shailee vs Kenny &amp; Amanda</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">2:15 PM</td><td>4</td><td>Grp 1</td><td>Syed &amp; Sofi vs Thiru &amp; Gayathri</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">2:15 PM</td><td>5</td><td>Grp 2</td><td>Mandy &amp; Honey vs Arun &amp; Divya</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">2:15 PM</td><td>6</td><td>Grp 2</td><td>Suresh &amp; Nirmala vs Elango &amp; Ramya</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">2:30 PM</td><td>3</td><td>Grp 1</td><td>Karthik &amp; Shailee vs Andrew Stafford</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">2:30 PM</td><td>4</td><td>Grp 2</td><td>Mandy &amp; Honey vs Abhishek &amp; Aaryesh</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">2:45 PM</td><td>3</td><td>Grp 1</td><td>Syed &amp; Sofi vs Andrew Stafford</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">2:45 PM</td><td>4</td><td>Grp 2</td><td>Suresh &amp; Nirmala vs Abhishek &amp; Aaryesh</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">3:00 PM</td><td>3</td><td>Grp 1</td><td>Thiru &amp; Gayathri vs Andrew Stafford</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">3:00 PM</td><td>4</td><td>Grp 2</td><td>Elango &amp; Ramya vs Abhishek &amp; Aaryesh</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">3:15 PM</td><td>3</td><td>Grp 1</td><td>Kenny &amp; Amanda vs Andrew Stafford</td></tr>
+                            <tr><td style="white-space:nowrap;font-weight:700;color:#39ff84">3:15 PM</td><td>4</td><td>Grp 2</td><td>Arun &amp; Divya vs Abhishek &amp; Aaryesh</td></tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    <div style="text-align:center;">
+                        <a href="iag-social-tournament.html" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#39ff84,#00cc5a);color:#000;font-weight:700;padding:14px 32px;border-radius:8px;text-decoration:none;font-size:1.05rem;letter-spacing:0.5px;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                            🏆 Social Live Scores &amp; Standings →
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1852,44 +1905,48 @@
                     <div class="scores-nav-icon">🏓</div>
                     <div class="scores-nav-info">
                         <h3>Open 3 — Level 3.0</h3>
-                        <p>6 teams · League + Knockout · Feb 27, 8:00–9:30 PM</p>
+                        <p>6 teams · League + Knockout · 📅 Feb 27, 8:00–9:30 PM (Evening)</p>
                     </div>
                     <div class="scores-nav-arrow">→</div>
                 </a>
 
                 <!-- Others — coming soon -->
-                <div class="scores-nav-card scores-soon">
-                    <div class="scores-nav-badge scores-badge-soon">🔜 SOON</div>
+                <a href="iag-open35-tournament.html" target="_blank" class="scores-nav-card scores-live" style="border-color:rgba(255,124,42,0.4);background:rgba(255,124,42,0.08);">
+                    <div class="scores-nav-badge" style="color:#ff7c2a;">🟢 LIVE</div>
                     <div class="scores-nav-icon">🏓</div>
                     <div class="scores-nav-info">
                         <h3>Open 3.5 — Level 3.5</h3>
-                        <p>Scores will be available on tournament day</p>
+                        <p>16 teams · 4 Groups · R16→QF→SF→Final · 9:00 AM · Feb 28</p>
                     </div>
-                </div>
-                <div class="scores-nav-card scores-soon">
-                    <div class="scores-nav-badge scores-badge-soon">🔜 SOON</div>
+                    <div class="scores-nav-arrow" style="color:#ff7c2a;">→</div>
+                </a>
+                <a href="iag-open4-tournament.html" target="_blank" class="scores-nav-card scores-live" style="border-color:rgba(168,85,247,0.4);background:rgba(168,85,247,0.08);">
+                    <div class="scores-nav-badge" style="color:#a855f7;">🟢 LIVE</div>
                     <div class="scores-nav-icon">🏓</div>
                     <div class="scores-nav-info">
-                        <h3>Open 4 — Level 4.0+</h3>
-                        <p>Scores will be available on tournament day</p>
+                        <h3>Open 4.0 — Level 4.0+</h3>
+                        <p>16 teams · 4 Groups · R16→QF→SF→Final · 10:00 AM · Feb 28</p>
                     </div>
-                </div>
-                <div class="scores-nav-card scores-soon">
-                    <div class="scores-nav-badge scores-badge-soon">🔜 SOON</div>
+                    <div class="scores-nav-arrow" style="color:#a855f7;">→</div>
+                </a>
+                <a href="iag-mixed-tournament.html" target="_blank" class="scores-nav-card scores-live" style="border-color:rgba(0,212,200,0.4);background:rgba(0,212,200,0.08);">
+                    <div class="scores-nav-badge" style="color:#00d4c8;">🟢 LIVE</div>
                     <div class="scores-nav-icon">🤝</div>
                     <div class="scores-nav-info">
                         <h3>Mixed Doubles</h3>
-                        <p>Scores will be available on tournament day</p>
+                        <p>14 teams · 3 Rounds League · R16→QF→SF→Final · 1:45 PM Feb 28</p>
                     </div>
-                </div>
-                <div class="scores-nav-card scores-soon">
-                    <div class="scores-nav-badge scores-badge-soon">🔜 SOON</div>
-                    <div class="scores-nav-icon">👨‍👩‍👧</div>
+                    <div class="scores-nav-arrow" style="color:#00d4c8;">→</div>
+                </a>
+                <a href="iag-social-tournament.html" target="_blank" class="scores-nav-card scores-live" style="border-color:rgba(57,255,132,0.4);background:rgba(57,255,132,0.08);">
+                    <div class="scores-nav-badge" style="color:#39ff84;">🟢 LIVE</div>
+                    <div class="scores-nav-icon">🎉</div>
                     <div class="scores-nav-info">
-                        <h3>Family Social</h3>
-                        <p>Scores will be available on tournament day</p>
+                        <h3>Social Division</h3>
+                        <p>10 teams · 2 Groups · QF/SF→Final · 1:45 PM · Feb 28</p>
                     </div>
-                </div>
+                    <div class="scores-nav-arrow" style="color:#39ff84;">→</div>
+                </a>
             </div>
         </div>
 

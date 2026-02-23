@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IAG Pickleball — Open 3.5 Tournament</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Exo+2:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #050a14; --surface: #0d1826; --card: #111e30;
+  --border: rgba(255,124,42,0.18); --accent: #ff7c2a; --accent2: #f7c948;
+  --accent3: #ff4d6d; --green: #39ff84; --text: #e8f4f8; --muted: #5e7a8f;
+  --gold: #f7c948; --silver: #c0cfd8; --bronze: #cd7f32;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; min-height: 100vh; overflow-x: hidden; }
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background-image: linear-gradient(rgba(255,124,42,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,124,42,0.03) 1px,transparent 1px);
+  background-size: 40px 40px; pointer-events: none; z-index: 0;
+}
+.wrapper { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 20px 16px 60px; }
+header { text-align: center; padding: 40px 0 30px; border-bottom: 1px solid var(--border); margin-bottom: 36px; }
+header .badge {
+  display: inline-block; background: linear-gradient(135deg,rgba(255,124,42,0.15),rgba(255,124,42,0.05));
+  border: 1px solid var(--accent); color: var(--accent); font-family: 'Rajdhani',sans-serif;
+  font-size: 12px; letter-spacing: 3px; text-transform: uppercase; padding: 5px 16px; border-radius: 2px; margin-bottom: 14px;
+}
+header h1 {
+  font-family: 'Rajdhani', sans-serif; font-size: clamp(28px,5vw,52px); font-weight: 700;
+  letter-spacing: 2px; line-height: 1.1;
+  background: linear-gradient(135deg,#fff 0%,var(--accent) 60%,var(--accent2) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+header .meta { margin-top: 10px; color: var(--muted); font-size: 14px; letter-spacing: 1px; }
+header .meta span { margin: 0 10px; color: var(--accent); }
+.back-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); text-decoration: none; font-family: 'Rajdhani', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; opacity: 0.8; transition: opacity 0.2s; }
+.back-btn:hover { opacity: 1; }
+
+/* Tabs */
+.tabs { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 4px; margin-bottom: 28px; }
+.tab-btn { flex: 1; padding: 10px 8px; background: transparent; border: none; color: var(--muted); font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 1px; cursor: pointer; border-radius: 4px; transition: all 0.2s; text-transform: uppercase; }
+.tab-btn.active { background: linear-gradient(135deg,rgba(255,124,42,0.2),rgba(255,124,42,0.08)); color: var(--accent); border: 1px solid rgba(255,124,42,0.35); }
+.tab-btn:hover:not(.active) { color: var(--text); background: rgba(255,255,255,0.04); }
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+/* Section title */
+.section-title {
+  font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--accent);
+  margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+}
+.section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg,var(--accent),transparent); opacity: 0.3; }
+
+/* Groups grid */
+.groups-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 16px; margin-bottom: 28px; }
+.group-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.group-card .group-header { background: rgba(255,124,42,0.1); padding: 10px 16px; font-family: 'Rajdhani', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--border); }
+.group-card .team-entry { padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 14px; display: flex; align-items: center; gap: 8px; }
+.group-card .team-entry:last-child { border-bottom: none; }
+.team-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; opacity: 0.6; }
+
+/* Schedule table */
+.schedule-table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; font-size: 14px; }
+.schedule-table th { background: rgba(255,124,42,0.1); padding: 12px 14px; text-align: left; font-family: 'Rajdhani', sans-serif; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--border); }
+.schedule-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--text); }
+.schedule-table tr:last-child td { border-bottom: none; }
+.schedule-table tr:hover td { background: rgba(255,124,42,0.04); }
+.time-cell { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 15px; color: var(--accent2); white-space: nowrap; }
+.court-cell { font-family: 'Rajdhani', sans-serif; font-weight: 700; color: var(--accent); white-space: nowrap; }
+.grp-badge { display: inline-block; background: rgba(255,124,42,0.12); border: 1px solid rgba(255,124,42,0.25); color: var(--accent); font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1px; padding: 2px 8px; border-radius: 3px; }
+.vs { color: var(--muted); font-size: 12px; }
+
+/* Standings */
+.standings-table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.standings-table th { background: rgba(255,124,42,0.1); padding: 11px 14px; text-align: center; font-family: 'Rajdhani', sans-serif; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--border); }
+.standings-table th:first-child, .standings-table th:nth-child(2), .standings-table th:nth-child(3) { text-align: left; }
+.standings-table td { padding: 10px 14px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 14px; }
+.standings-table td:first-child, .standings-table td:nth-child(2), .standings-table td:nth-child(3) { text-align: left; }
+.standings-table tr:last-child td { border-bottom: none; }
+.standings-table tr:hover td { background: rgba(255,124,42,0.03); }
+.rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 14px; }
+.rank-1 { background: rgba(247,201,72,0.2); color: var(--gold); border: 1px solid var(--gold); }
+.rank-2 { background: rgba(192,207,216,0.2); color: var(--silver); border: 1px solid var(--silver); }
+.rank-3 { background: rgba(205,127,50,0.2); color: var(--bronze); border: 1px solid var(--bronze); }
+.rank-n { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid rgba(255,255,255,0.1); }
+.win-count { color: var(--green); font-weight: 600; }
+.loss-count { color: var(--accent3); }
+.pts { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 16px; color: var(--accent2); }
+.grp-label { font-size: 11px; color: var(--accent); font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; }
+.editable-score { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: var(--text); width: 40px; text-align: center; border-radius: 4px; padding: 2px 4px; font-family: 'Exo 2', sans-serif; font-size: 14px; }
+.editable-score:focus { outline: none; border-color: var(--accent); }
+.score-display { display: none; }
+body:not(.organiser-mode) .editable-score { display: none !important; }
+body:not(.organiser-mode) .score-separator { display: none !important; }
+body:not(.organiser-mode) .score-display { display: inline !important; }
+body:not(.organiser-mode) .org-only { display: none !important; }
+body.organiser-mode .score-display { display: none !important; }
+body.organiser-mode .org-only { display: flex !important; }
+
+/* Knockout */
+.knockout-mode-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+.ko-option { background: var(--card); border: 2px solid var(--border); border-radius: 10px; padding: 20px; cursor: pointer; transition: all 0.25s; text-align: center; position: relative; overflow: hidden; }
+.ko-option.selected { border-color: var(--accent); background: rgba(255,124,42,0.06); }
+.ko-option:hover { border-color: rgba(255,124,42,0.4); }
+.ko-option .ko-icon { font-size: 28px; margin-bottom: 8px; }
+.ko-option h3 { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
+.ko-option.selected h3 { color: var(--accent); }
+.ko-option p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.ko-selected-badge { position: absolute; top: 10px; right: 10px; background: var(--accent); color: #000; font-size: 10px; font-family: 'Rajdhani', sans-serif; font-weight: 700; letter-spacing: 1px; padding: 2px 8px; border-radius: 2px; display: none; }
+.ko-option.selected .ko-selected-badge { display: block; }
+body:not(.organiser-mode) .ko-option { pointer-events: none; opacity: 0.85; }
+body:not(.organiser-mode) #ko-format-label { display: none; }
+
+/* Bracket */
+.bracket-container { margin-top: 24px; }
+.bracket-round-label { font-family: 'Rajdhani', sans-serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; text-align: center; }
+.bracket-flow { display: flex; gap: 0; align-items: center; overflow-x: auto; padding-bottom: 10px; }
+.bracket-col { display: flex; flex-direction: column; gap: 16px; min-width: 200px; flex-shrink: 0; }
+.bracket-col-title { text-align: center; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; padding-bottom: 8px; border-bottom: 1px solid var(--border); margin-bottom: 4px; }
+.bracket-connector { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 40px; flex-shrink: 0; }
+.connector-line { width: 2px; background: linear-gradient(180deg,transparent,var(--accent),transparent); opacity: 0.3; flex: 1; }
+.connector-arrow { color: var(--accent); font-size: 18px; opacity: 0.5; }
+.match-slot { background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: border-color 0.2s; }
+.match-slot:hover { border-color: rgba(255,124,42,0.35); }
+.match-slot .slot-header { background: rgba(255,124,42,0.07); padding: 4px 10px; font-family: 'Rajdhani', sans-serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); }
+.match-slot .team-row { display: flex; align-items: center; padding: 9px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.match-slot .team-row:last-child { border-bottom: none; }
+.seed-badge { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-family: 'Rajdhani', sans-serif; font-weight: 700; margin-right: 8px; flex-shrink: 0; }
+.seed-1 { background: rgba(247,201,72,0.15); color: var(--gold); border: 1px solid var(--gold); }
+.seed-2 { background: rgba(192,207,216,0.15); color: var(--silver); border: 1px solid var(--silver); }
+.seed-3 { background: rgba(205,127,50,0.15); color: var(--bronze); border: 1px solid var(--bronze); }
+.seed-4 { background: rgba(57,255,132,0.1); color: var(--green); border: 1px solid rgba(57,255,132,0.4); }
+.team-slot-name { flex: 1; font-size: 13px; font-weight: 600; }
+.tbd { color: var(--muted); font-style: italic; font-weight: 400; }
+.winner-slot { background: linear-gradient(135deg,rgba(247,201,72,0.1),rgba(247,201,72,0.05)); border: 1px solid rgba(247,201,72,0.3); border-radius: 8px; padding: 20px; text-align: center; }
+.winner-slot .trophy { font-size: 32px; margin-bottom: 8px; }
+.winner-slot h3 { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; color: var(--gold); letter-spacing: 1px; }
+.winner-slot p { color: var(--muted); font-size: 13px; margin-top: 4px; }
+
+/* Btn */
+.btn { padding: 10px 24px; border-radius: 4px; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; border: none; transition: all 0.2s; }
+.btn-primary { background: linear-gradient(135deg,var(--accent),#d05a00); color: #000; }
+.btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Info bar */
+.info-bar { display: flex; gap: 20px; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 12px 18px; margin-bottom: 24px; font-size: 13px; color: var(--muted); }
+.info-item strong { color: var(--accent2); margin-left: 4px; }
+
+/* Org bar + PIN */
+.org-bar { display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin-bottom: 16px; }
+.org-status { font-family: 'Rajdhani', sans-serif; font-size: 13px; letter-spacing: 1px; color: var(--muted); }
+.org-status.active { color: var(--green); }
+.org-btn { display: flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 4px; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--muted); transition: all 0.2s; }
+.org-btn:hover { border-color: var(--accent); color: var(--accent); }
+.org-btn.unlocked { border-color: var(--green); color: var(--green); }
+.pin-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(6px); z-index: 1000; align-items: center; justify-content: center; }
+.pin-overlay.show { display: flex; }
+.pin-modal { background: var(--card); border: 1px solid rgba(255,124,42,0.25); border-radius: 12px; padding: 36px 32px; width: 100%; max-width: 380px; text-align: center; box-shadow: 0 0 60px rgba(255,124,42,0.1); animation: modalIn 0.25s ease; }
+@keyframes modalIn { from{opacity:0;transform:scale(0.92) translateY(10px)}to{opacity:1;transform:none} }
+.pin-modal .pin-icon { font-size: 36px; margin-bottom: 12px; }
+.pin-modal h2 { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 2px; margin-bottom: 6px; }
+.pin-modal p { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+.pin-input { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; color: var(--text); font-family: 'Rajdhani', sans-serif; font-size: 20px; letter-spacing: 6px; text-align: center; margin-bottom: 8px; outline: none; transition: border-color 0.2s; }
+.pin-input:focus { border-color: var(--accent); }
+.pin-input.error { border-color: var(--accent3); animation: shake 0.3s ease; }
+@keyframes shake { 0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)} }
+.pin-error { font-size: 12px; color: var(--accent3); min-height: 18px; margin-bottom: 16px; }
+.pin-actions { display: flex; gap: 10px; }
+.pin-actions button { flex: 1; }
+
+/* Group tabs for standings/results */
+.grp-tabs { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
+.grp-tab { padding: 6px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 1px; cursor: pointer; color: var(--muted); transition: all 0.2s; }
+.grp-tab.active { background: rgba(255,124,42,0.15); border-color: var(--accent); color: var(--accent); }
+
+/* Mobile */
+@media (max-width: 600px) {
+  .knockout-mode-selector { grid-template-columns: 1fr; }
+  .bracket-col { min-width: 140px; }
+  .tabs { flex-wrap: nowrap; overflow-x: auto; gap: 2px; padding: 3px; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { font-size: 12px; padding: 8px 8px; white-space: nowrap; flex-shrink: 0; flex: 0 0 auto; }
+  .wrapper { padding: 12px 10px 50px; }
+  header { padding: 20px 0 16px; margin-bottom: 20px; }
+  header h1 { font-size: clamp(22px,7vw,36px); }
+  header .meta { font-size: 12px; }
+  header .meta span { margin: 0 5px; }
+  .info-bar { gap: 10px; padding: 10px 12px; font-size: 12px; }
+  .section-title { font-size: 16px; margin-bottom: 10px; }
+  .schedule-table, .standings-table { font-size: 12px; display: block; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+  .schedule-table th, .schedule-table td { padding: 8px 10px; }
+  .standings-table th, .standings-table td { padding: 8px 8px; font-size: 12px; }
+  .time-cell { font-size: 12px; }
+  .bracket-flow { flex-direction: column; gap: 12px; }
+  .bracket-connector { flex-direction: row; height: 30px; width: 100%; }
+  .connector-line { height: 2px; width: 100%; flex: 1; background: linear-gradient(90deg,transparent,var(--accent),transparent); }
+  .connector-arrow { transform: rotate(90deg); }
+  .bracket-col { min-width: 100%; }
+  .ko-option { padding: 14px; }
+  .ko-option .ko-icon { font-size: 22px; }
+  .ko-option h3 { font-size: 15px; }
+  .ko-option p { font-size: 12px; }
+  .org-bar { margin-bottom: 10px; }
+  .pin-modal { padding: 28px 20px; margin: 16px; }
+  .editable-score { width: 36px; font-size: 13px; }
+  .match-slot .team-row { padding: 8px 10px; }
+  .team-slot-name { font-size: 12px; }
+  .seed-badge { width: 18px; height: 18px; font-size: 9px; }
+  .groups-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .group-card .team-entry { font-size: 12px; padding: 8px 12px; }
+  .grp-tab { font-size: 12px; padding: 5px 12px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+<div class="pin-overlay" id="pin-overlay">
+  <div class="pin-modal">
+    <div class="pin-icon">🔐</div>
+    <h2>ORGANISER ACCESS</h2>
+    <p>Enter your PIN to unlock score editing</p>
+    <input class="pin-input" id="pin-input" type="password" maxlength="8" placeholder="••••" onkeydown="if(event.key==='Enter')checkPin()" />
+    <div class="pin-error" id="pin-error"></div>
+    <div class="pin-actions">
+      <button class="btn btn-ghost" onclick="closePin()">Cancel</button>
+      <button class="btn btn-primary" onclick="checkPin()">Unlock</button>
+    </div>
+  </div>
+</div>
+
+<a href="index.html" class="back-btn">← Back to Tournament Hub</a>
+
+<header>
+  <div class="badge">🏓 IAG Pickleball 2026</div>
+  <h1>OPEN 3.5 DIVISION</h1>
+  <div class="meta">
+    <span>🕗 9:00 AM Start</span>
+    <span>🏟 6 Courts</span>
+    <span>👥 16 Teams · 4 Groups</span>
+    <span>📅 Feb 27, 2026</span>
+  </div>
+</header>
+
+<div class="org-bar">
+  <span class="org-status" id="org-status">👁 View Only</span>
+  <button class="org-btn" id="org-btn" onclick="toggleOrg()">🔒 Organiser Login</button>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="groups" onclick="switchTab('groups',event)">👥 Groups</button>
+  <button class="tab-btn" data-tab="schedule" onclick="switchTab('schedule',event)">📋 Schedule</button>
+  <button class="tab-btn" data-tab="results" onclick="switchTab('results',event)">📊 Standings</button>
+  <button class="tab-btn" data-tab="knockout" onclick="switchTab('knockout',event)">⚡ Knockout</button>
+</div>
+
+<!-- GROUPS TAB -->
+<div id="tab-groups" class="tab-content active">
+  <div class="section-title">Group Draw</div>
+  <div class="groups-grid" id="groups-grid"></div>
+</div>
+
+<!-- SCHEDULE TAB -->
+<div id="tab-schedule" class="tab-content">
+  <div class="info-bar">
+    <div>🕗 Start: <strong>9:00 AM</strong></div>
+    <div>🔚 End: <strong>~10:30 AM</strong></div>
+    <div>⏱ Per Match: <strong>15 min</strong></div>
+    <div>🏟 Courts: <strong>6</strong></div>
+    <div>👥 Teams: <strong>16</strong></div>
+    <div>🎯 Matches: <strong>24</strong></div>
+  </div>
+
+  <div class="grp-tabs" id="sched-grp-tabs">
+    <button class="grp-tab active" onclick="filterSchedule('all',this)">All Matches</button>
+    <button class="grp-tab" onclick="filterSchedule('Group 1',this)">Group 1</button>
+    <button class="grp-tab" onclick="filterSchedule('Group 2',this)">Group 2</button>
+    <button class="grp-tab" onclick="filterSchedule('Group 3',this)">Group 3</button>
+    <button class="grp-tab" onclick="filterSchedule('Group 4',this)">Group 4</button>
+  </div>
+
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+  <table class="schedule-table">
+    <thead><tr><th>Time</th><th>Court</th><th>Group</th><th>Match</th><th>Score</th></tr></thead>
+    <tbody id="schedule-body"></tbody>
+  </table>
+  </div>
+</div>
+
+<!-- RESULTS TAB -->
+<div id="tab-results" class="tab-content">
+  <div class="section-title" id="results-section-title">Results & Standings</div>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:16px;" id="results-subtitle">Live standings update as scores are entered.</p>
+
+  <div class="grp-tabs">
+    <button class="grp-tab active" onclick="showStandingsGroup('overall',this)" id="tab-overall-btn">🏆 Overall Ranking</button>
+    <button class="grp-tab" onclick="showStandingsGroup('all',this)">All Groups</button>
+    <button class="grp-tab" onclick="showStandingsGroup('Group 1',this)">Group 1</button>
+    <button class="grp-tab" onclick="showStandingsGroup('Group 2',this)">Group 2</button>
+    <button class="grp-tab" onclick="showStandingsGroup('Group 3',this)">Group 3</button>
+    <button class="grp-tab" onclick="showStandingsGroup('Group 4',this)">Group 4</button>
+  </div>
+  <p style="font-size:12px;color:var(--muted);margin-bottom:12px;" id="standings-hint">📊 <strong style="color:var(--accent)">Overall Ranking</strong> = all 16 teams ranked by: Wins → Points Diff → Games Won ratio. R16 seeding draws from this table.</p>
+  <div id="standings-container"></div>
+
+  <div class="org-only" style="margin-top:16px;text-align:right">
+    <button class="btn btn-primary" onclick="switchTab('knockout',event)">Generate Knockout ⚡</button>
+  </div>
+</div>
+
+<!-- KNOCKOUT TAB -->
+<div id="tab-knockout" class="tab-content">
+  <div class="section-title">Knockout Draw</div>
+
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
+    <div style="padding:5px 14px;background:rgba(255,77,109,0.1);border:1px solid rgba(255,77,109,0.3);border-radius:20px;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:#ff4d6d;">🎯 R16: 1 Set</div>
+    <div style="padding:5px 14px;background:rgba(255,77,109,0.1);border:1px solid rgba(255,77,109,0.3);border-radius:20px;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:#ff4d6d;">🎯 QF: 1 Set</div>
+    <div style="padding:5px 14px;background:rgba(247,201,72,0.1);border:1px solid rgba(247,201,72,0.3);border-radius:20px;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:var(--gold);">🏆 SF: Best of 3</div>
+    <div style="padding:5px 14px;background:rgba(247,201,72,0.1);border:1px solid rgba(247,201,72,0.3);border-radius:20px;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:var(--gold);">🏆 Final: Best of 3</div>
+  </div>
+
+  <!-- SIDE 1 -->
+  <div style="margin-bottom:28px;">
+    <div style="font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;color:#ff7c2a;text-transform:uppercase;margin-bottom:10px;">Side 1 — Seeds 1, 3, 5, 7</div>
+    <div style="display:flex;gap:0;align-items:stretch;overflow-x:auto;padding-bottom:10px;">
+      <div style="display:flex;flex-direction:column;flex-shrink:0;">
+        <div style="text-align:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 6px;border-bottom:1px solid var(--border);margin-bottom:8px;color:var(--muted);">ROUND OF 16</div>
+        <div style="display:flex;flex-direction:column;gap:10px;min-width:185px;padding:0 6px;">
+          <div class="match-slot"><div class="slot-header">M1 — Seed 1 vs 16</div><div class="team-row"><div class="seed-badge seed-1">1</div><div class="team-slot-name" id="r16-s1-t1">—</div></div><div class="team-row"><div class="seed-badge rank-n">16</div><div class="team-slot-name" id="r16-s1-t2">—</div></div></div>
+          <div class="match-slot"><div class="slot-header">M2 — Seed 7 vs 10</div><div class="team-row"><div class="seed-badge rank-n">7</div><div class="team-slot-name" id="r16-s1-t3">—</div></div><div class="team-row"><div class="seed-badge rank-n">10</div><div class="team-slot-name" id="r16-s1-t4">—</div></div></div>
+          <div class="match-slot"><div class="slot-header">M3 — Seed 5 vs 12</div><div class="team-row"><div class="seed-badge rank-n">5</div><div class="team-slot-name" id="r16-s1-t5">—</div></div><div class="team-row"><div class="seed-badge rank-n">12</div><div class="team-slot-name" id="r16-s1-t6">—</div></div></div>
+          <div class="match-slot"><div class="slot-header">M4 — Seed 3 vs 14</div><div class="team-row"><div class="seed-badge seed-3">3</div><div class="team-slot-name" id="r16-s1-t7">—</div></div><div class="team-row"><div class="seed-badge rank-n">14</div><div class="team-slot-name" id="r16-s1-t8">—</div></div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:26px;flex-shrink:0;"><div style="width:2px;background:linear-gradient(180deg,transparent,#ff7c2a,transparent);opacity:0.25;flex:1;"></div><div style="color:#ff7c2a;font-size:14px;opacity:0.4;">›</div><div style="width:2px;background:linear-gradient(180deg,transparent,#ff7c2a,transparent);opacity:0.25;flex:1;"></div></div>
+      <div style="display:flex;flex-direction:column;flex-shrink:0;">
+        <div style="text-align:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 6px;border-bottom:1px solid var(--border);margin-bottom:8px;color:var(--muted);">QUARTER-FINALS</div>
+        <div style="display:flex;flex-direction:column;gap:10px;min-width:185px;padding:0 6px;justify-content:space-around;flex:1;">
+          <div class="match-slot"><div class="slot-header">QF1 — M1W vs M2W</div><div class="team-row"><div class="seed-badge seed-1">Q</div><div class="team-slot-name tbd" id="qf-s1-t1">M1 Winner</div></div><div class="team-row"><div class="seed-badge rank-n">Q</div><div class="team-slot-name tbd" id="qf-s1-t2">M2 Winner</div></div></div>
+          <div class="match-slot"><div class="slot-header">QF2 — M3W vs M4W</div><div class="team-row"><div class="seed-badge rank-n">Q</div><div class="team-slot-name tbd" id="qf-s1-t3">M3 Winner</div></div><div class="team-row"><div class="seed-badge seed-3">Q</div><div class="team-slot-name tbd" id="qf-s1-t4">M4 Winner</div></div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:26px;flex-shrink:0;"><div style="width:2px;background:linear-gradient(180deg,transparent,#ff7c2a,transparent);opacity:0.25;flex:1;"></div><div style="color:#ff7c2a;font-size:14px;opacity:0.4;">›</div><div style="width:2px;background:linear-gradient(180deg,transparent,#ff7c2a,transparent);opacity:0.25;flex:1;"></div></div>
+      <div style="display:flex;flex-direction:column;flex-shrink:0;">
+        <div style="text-align:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 6px;border-bottom:1px solid rgba(247,201,72,0.35);margin-bottom:8px;color:var(--gold);">SF 1 ★ BEST OF 3</div>
+        <div style="display:flex;flex-direction:column;min-width:185px;padding:0 6px;justify-content:center;flex:1;">
+          <div class="match-slot" style="border-color:rgba(247,201,72,0.3);"><div class="slot-header" style="background:rgba(247,201,72,0.08);color:var(--gold);">SF1 — QF1W vs QF2W</div><div class="team-row"><div class="seed-badge seed-1">SF</div><div class="team-slot-name tbd" id="sf1-t1">QF1 Winner</div></div><div class="team-row"><div class="seed-badge seed-2">SF</div><div class="team-slot-name tbd" id="sf1-t2">QF2 Winner</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDE 2 -->
+  <div style="margin-bottom:28px;">
+    <div style="font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;color:#ff7c2a;text-transform:uppercase;margin-bottom:10px;">Side 2 — Seeds 2, 4, 6, 8</div>
+    <div style="display:flex;gap:0;align-items:stretch;overflow-x:auto;padding-bottom:10px;">
+      <div style="display:flex;flex-direction:column;flex-shrink:0;">
+        <div style="text-align:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 6px;border-bottom:1px solid var(--border);margin-bottom:8px;color:var(--muted);">ROUND OF 16</div>
+        <div style="display:flex;flex-direction:column;gap:10px;min-width:185px;padding:0 6px;">
+          <div class="match-slot"><div class="slot-header">M5 — Seed 2 vs 15</div><div class="team-row"><div class="seed-badge seed-2">2</div><div class="team-slot-name" id="r16-s2-t1">—</div></div><div class="team-row"><div class="seed-badge rank-n">15</div><div class="team-slot-name" id="r16-s2-t2">—</div></div></div>
+          <div class="match-slot"><div class="slot-header">M6 — Seed 8 vs 9</div><div class="team-row"><div class="seed-badge rank-n">8</div><div class="team-slot-name" id="r16-s2-t3">—</div></div><div class="team-row"><div class="seed-badge rank-n">9</div><div class="team-slot-name" id="r16-s2-t4">—</div></div></div>
+          <div class="match-slot"><div class="slot-header">M7 — Seed 6 vs 11</div><div class="team-row"><div class="seed-badge rank-n">6</div><div class="team-slot-name" id="r16-s2-t5">—</div></div><div class="team-row"><div class="seed-badge rank-n">11</div><div class="team-slot-name" id="r16-s2-t6">—</div></div></div>
+          <div class="match-slot"><div class="slot-header">M8 — Seed 4 vs 13</div><div class="team-row"><div class="seed-badge seed-4">4</div><div class="team-slot-name" id="r16-s2-t7">—</div></div><div class="team-row"><div class="seed-badge rank-n">13</div><div class="team-slot-name" id="r16-s2-t8">—</div></div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:26px;flex-shrink:0;"><div style="width:2px;background:linear-gradient(180deg,transparent,#ff7c2a,transparent);opacity:0.25;flex:1;"></div><div style="color:#ff7c2a;font-size:14px;opacity:0.4;">›</div><div style="width:2px;background:linear-gradient(180deg,transparent,#ff7c2a,transparent);opacity:0.25;flex:1;"></div></div>
+      <div style="display:flex;flex-direction:column;flex-shrink:0;">
+        <div style="text-align:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 6px;border-bottom:1px solid var(--border);margin-bottom:8px;color:var(--muted);">QUARTER-FINALS</div>
+        <div style="display:flex;flex-direction:column;gap:10px;min-width:185px;padding:0 6px;justify-content:space-around;flex:1;">
+          <div class="match-slot"><div class="slot-header">QF3 — M5W vs M6W</div><div class="team-row"><div class="seed-badge seed-2">Q</div><div class="team-slot-name tbd" id="qf-s2-t1">M5 Winner</div></div><div class="team-row"><div class="seed-badge rank-n">Q</div><div class="team-slot-name tbd" id="qf-s2-t2">M6 Winner</div></div></div>
+          <div class="match-slot"><div class="slot-header">QF4 — M7W vs M8W</div><div class="team-row"><div class="seed-badge rank-n">Q</div><div class="team-slot-name tbd" id="qf-s2-t3">M7 Winner</div></div><div class="team-row"><div class="seed-badge seed-4">Q</div><div class="team-slot-name tbd" id="qf-s2-t4">M8 Winner</div></div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:26px;flex-shrink:0;"><div style="width:2px;background:linear-gradient(180deg,transparent,#ff7c2a,transparent);opacity:0.25;flex:1;"></div><div style="color:#ff7c2a;font-size:14px;opacity:0.4;">›</div><div style="width:2px;background:linear-gradient(180deg,transparent,#ff7c2a,transparent);opacity:0.25;flex:1;"></div></div>
+      <div style="display:flex;flex-direction:column;flex-shrink:0;">
+        <div style="text-align:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 6px;border-bottom:1px solid rgba(247,201,72,0.35);margin-bottom:8px;color:var(--gold);">SF 2 ★ BEST OF 3</div>
+        <div style="display:flex;flex-direction:column;min-width:185px;padding:0 6px;justify-content:center;flex:1;">
+          <div class="match-slot" style="border-color:rgba(247,201,72,0.3);"><div class="slot-header" style="background:rgba(247,201,72,0.08);color:var(--gold);">SF2 — QF3W vs QF4W</div><div class="team-row"><div class="seed-badge seed-1">SF</div><div class="team-slot-name tbd" id="sf2-t1">QF3 Winner</div></div><div class="team-row"><div class="seed-badge seed-2">SF</div><div class="team-slot-name tbd" id="sf2-t2">QF4 Winner</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grand Final -->
+  <div style="max-width:480px;margin:0 auto;">
+    <div style="font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:12px;text-transform:uppercase;text-align:center;">🏆 Grand Final — Best of 3</div>
+    <div class="match-slot" style="border-color:rgba(247,201,72,0.4);">
+      <div class="slot-header" style="background:rgba(247,201,72,0.12);color:var(--gold);font-size:12px;">SF1 Winner vs SF2 Winner</div>
+      <div class="team-row"><div class="seed-badge seed-1">🏆</div><div class="team-slot-name tbd" id="final-t1">SF1 Winner</div></div>
+      <div class="team-row"><div class="seed-badge seed-2">🏆</div><div class="team-slot-name tbd" id="final-t2">SF2 Winner</div></div>
+    </div>
+    <div style="margin-top:16px;background:linear-gradient(135deg,rgba(247,201,72,0.1),rgba(247,201,72,0.05));border:1px solid rgba(247,201,72,0.3);border-radius:8px;padding:20px;text-align:center;">
+      <div style="font-size:32px;margin-bottom:8px;">🏆</div>
+      <h3 style="font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:1px;">CHAMPION</h3>
+      <p id="ko1-champion" style="color:var(--muted);font-size:13px;margin-top:4px;">TBD</p>
+    </div>
+  </div>
+
+</div>
+
+</div><!-- wrapper -->
+<script>
+const GROUPS = {
+  'Group 1': ['Durbha Murthy & Rajanikanth','Vivek & Rajiv','Vanith & Prabakar','Lisa & April'],
+  'Group 2': ['Welborn & Francis','Varun & Jeremy','Shari & Roz','Thiru & Vamshi'],
+  'Group 3': ['Uma & Shankar','Moksh & Suraj','Adarsh & Sunil','Venkat & Immanuel'],
+  'Group 4': ['Xavier & David','Anish & Mandy','Kenny & Daniel','Sreeni NK & Chokalingam']
+};
+
+const SCHEDULE = [
+  {time:'9:00 AM',court:1,group:'Group 1',t1:'Durbha Murthy & Rajanikanth',t2:'Vivek & Rajiv'},
+  {time:'9:00 AM',court:2,group:'Group 1',t1:'Vanith & Prabakar',t2:'Lisa & April'},
+  {time:'9:00 AM',court:3,group:'Group 2',t1:'Welborn & Francis',t2:'Varun & Jeremy'},
+  {time:'9:00 AM',court:4,group:'Group 2',t1:'Shari & Roz',t2:'Thiru & Vamshi'},
+  {time:'9:00 AM',court:5,group:'Group 3',t1:'Uma & Shankar',t2:'Moksh & Suraj'},
+  {time:'9:00 AM',court:6,group:'Group 3',t1:'Adarsh & Sunil',t2:'Venkat & Immanuel'},
+  {time:'9:15 AM',court:1,group:'Group 1',t1:'Durbha Murthy & Rajanikanth',t2:'Vanith & Prabakar'},
+  {time:'9:15 AM',court:2,group:'Group 1',t1:'Vivek & Rajiv',t2:'Lisa & April'},
+  {time:'9:15 AM',court:3,group:'Group 2',t1:'Welborn & Francis',t2:'Shari & Roz'},
+  {time:'9:15 AM',court:4,group:'Group 2',t1:'Varun & Jeremy',t2:'Thiru & Vamshi'},
+  {time:'9:15 AM',court:5,group:'Group 3',t1:'Uma & Shankar',t2:'Adarsh & Sunil'},
+  {time:'9:15 AM',court:6,group:'Group 3',t1:'Moksh & Suraj',t2:'Venkat & Immanuel'},
+  {time:'9:30 AM',court:1,group:'Group 1',t1:'Durbha Murthy & Rajanikanth',t2:'Lisa & April'},
+  {time:'9:30 AM',court:2,group:'Group 1',t1:'Vivek & Rajiv',t2:'Vanith & Prabakar'},
+  {time:'9:30 AM',court:3,group:'Group 2',t1:'Welborn & Francis',t2:'Thiru & Vamshi'},
+  {time:'9:30 AM',court:4,group:'Group 2',t1:'Varun & Jeremy',t2:'Shari & Roz'},
+  {time:'9:30 AM',court:5,group:'Group 3',t1:'Uma & Shankar',t2:'Venkat & Immanuel'},
+  {time:'9:30 AM',court:6,group:'Group 3',t1:'Moksh & Suraj',t2:'Adarsh & Sunil'},
+  {time:'9:45 AM',court:1,group:'Group 4',t1:'Xavier & David',t2:'Anish & Mandy'},
+  {time:'9:45 AM',court:2,group:'Group 4',t1:'Kenny & Daniel',t2:'Sreeni NK & Chokalingam'},
+  {time:'10:00 AM',court:1,group:'Group 4',t1:'Xavier & David',t2:'Kenny & Daniel'},
+  {time:'10:00 AM',court:2,group:'Group 4',t1:'Anish & Mandy',t2:'Sreeni NK & Chokalingam'},
+  {time:'10:15 AM',court:1,group:'Group 4',t1:'Xavier & David',t2:'Sreeni NK & Chokalingam'},
+  {time:'10:15 AM',court:2,group:'Group 4',t1:'Anish & Mandy',t2:'Kenny & Daniel'}
+];
+
+let scores = {};
+let currentSchedFilter = 'all';
+
+function mKey(m) { return `${m.group}|${m.t1}|${m.t2}`; }
+
+// Build groups tab
+function buildGroups() {
+  const grid = document.getElementById('groups-grid');
+  grid.innerHTML = Object.entries(GROUPS).map(([grp,teams]) => `
+    <div class="group-card">
+      <div class="group-header">${grp}</div>
+      ${teams.map(t=>`<div class="team-entry"><div class="team-dot"></div>${t}</div>`).join('')}
+    </div>`).join('');
+}
+
+// Build schedule table
+function buildSchedule(filter) {
+  const tbody = document.getElementById('schedule-body');
+  const rows = filter === 'all' ? SCHEDULE : SCHEDULE.filter(m=>m.group===filter);
+  const isOrg = document.body.classList.contains('organiser-mode');
+  tbody.innerHTML = rows.map((m,i) => {
+    const key = mKey(m);
+    const s = scores[key] || {s1:'',s2:''};
+    const winner = getWinner(s.s1,s.s2,m.t1,m.t2);
+    const scoreDisplay = (s.s1!==''&&s.s2!=='') ? `<span style="font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--accent2)">${s.s1}:${s.s2}</span>` : `<span style="color:var(--muted)">—</span>`;
+    const winnerDisp = winner !== '—' ? `<span style="color:var(--green);font-size:12px">✓ ${winner}</span>` : `<span style="color:var(--muted)">—</span>`;
+    return `<tr>
+      <td class="time-cell">${m.time}</td>
+      <td class="court-cell">C${m.court}</td>
+      <td><span class="grp-badge">${m.group}</span></td>
+      <td class="match-cell">${m.t1} <span class="vs">vs</span> ${m.t2}</td>
+      <td style="white-space:nowrap">
+        <span class="score-display">${scoreDisplay} ${winnerDisp}</span>
+        <input class="editable-score" type="number" min="0" max="99" placeholder="–" value="${s.s1}" onchange="updateScore('${key}',1,this.value)" />
+        <span class="score-separator" style="background:none;border:none;width:auto;padding:0 4px;color:var(--muted)">:</span>
+        <input class="editable-score" type="number" min="0" max="99" placeholder="–" value="${s.s2}" onchange="updateScore('${key}',2,this.value)" />
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function filterSchedule(filter, el) {
+  currentSchedFilter = filter;
+  document.querySelectorAll('#sched-grp-tabs .grp-tab').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  buildSchedule(filter);
+}
+
+function getWinner(s1,s2,t1,t2) {
+  if(s1===''||s2===''||s1===undefined||s2===undefined) return '—';
+  const n1=parseInt(s1),n2=parseInt(s2);
+  if(isNaN(n1)||isNaN(n2)) return '—';
+  if(n1>n2) return t1; if(n2>n1) return t2; return 'Draw';
+}
+
+function updateScore(key,pos,val) {
+  if(!scores[key]) scores[key]={s1:'',s2:''};
+  if(pos===1) scores[key].s1=val; else scores[key].s2=val;
+  buildSchedule(currentSchedFilter);
+  buildStandings(currentStandingsFilter);
+}
+
+// Compute standings per group
+function computeStandings() {
+  const stats = {};
+  Object.entries(GROUPS).forEach(([grp,teams]) => {
+    stats[grp] = {};
+    teams.forEach(t => stats[grp][t]={w:0,l:0,d:0,pf:0,pa:0,pts:0,group:grp});
+  });
+  SCHEDULE.forEach(m => {
+    const s = scores[mKey(m)];
+    if(!s||s.s1===''||s.s2==='') return;
+    const n1=parseInt(s.s1),n2=parseInt(s.s2);
+    if(isNaN(n1)||isNaN(n2)) return;
+    const g = m.group;
+    if(!stats[g]||!stats[g][m.t1]) return;
+    stats[g][m.t1].pf+=n1; stats[g][m.t1].pa+=n2;
+    stats[g][m.t2].pf+=n2; stats[g][m.t2].pa+=n1;
+    if(n1>n2){stats[g][m.t1].w++;stats[g][m.t1].pts+=2;stats[g][m.t2].l++;}
+    else if(n2>n1){stats[g][m.t2].w++;stats[g][m.t2].pts+=2;stats[g][m.t1].l++;}
+    else{stats[g][m.t1].d++;stats[g][m.t1].pts++;stats[g][m.t2].d++;stats[g][m.t2].pts++;}
+  });
+  return stats;
+}
+
+
+// ---- STANDINGS ENGINE ----
+let currentStandingsFilter = 'overall';
+
+function buildStandings(filter) {
+  const stats = computeStandings();
+  const container = document.getElementById('standings-container');
+  const hint = document.getElementById('standings-hint');
+
+  if (filter === 'overall') {
+    // Flat list of all 16 teams sorted overall
+    const allTeams = Object.values(GROUPS).flat();
+    const ranked = allTeams.map(t => {
+      let s = null, grp = null;
+      Object.entries(stats).forEach(([g, gs]) => { if (gs[t]) { s = gs[t]; grp = g; }});
+      return { name: t, grp, w: s?s.w:0, l: s?s.l:0, pf: s?s.pf:0, pa: s?s.pa:0, pts: s?s.pts:0 };
+    }).sort((a,b) => {
+      if (b.w !== a.w) return b.w - a.w;           // 1. Most wins
+      const da = a.pf - a.pa, db = b.pf - b.pa;
+      if (db !== da) return db - da;               // 2. Points diff
+      const ra = a.pf + a.pa > 0 ? a.pf/(a.pf+a.pa) : 0;
+      const rb = b.pf + b.pa > 0 ? b.pf/(b.pf+b.pa) : 0;
+      return rb - ra;                              // 3. Dominance ratio
+    });
+
+    if (hint) hint.style.display = 'block';
+    container.innerHTML = `
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table class="standings-table">
+        <thead><tr>
+          <th>#</th><th>Team</th><th style="text-align:center">Grp</th>
+          <th>W</th><th>L</th><th>PF</th><th>PA</th><th>Diff</th>
+          <th title="Dominance = PF/(PF+PA)×100">Dom%</th><th>Pts</th>
+        </tr></thead>
+        <tbody>
+        ${ranked.map((t,i) => {
+          const diff = t.pf - t.pa;
+          const dc = diff > 0 ? 'var(--green)' : diff < 0 ? 'var(--accent3)' : 'var(--muted)';
+          const dom = (t.pf + t.pa) > 0 ? Math.round(t.pf/(t.pf+t.pa)*100) : 0;
+          const seed = i + 1;
+          const seedBadge = seed <= 4 ? `<span style="font-size:10px;background:rgba(247,201,72,0.15);color:var(--gold);border:1px solid var(--gold);padding:1px 5px;border-radius:3px;margin-left:4px;font-family:'Rajdhani',sans-serif;font-weight:700;">#${seed}</span>` : seed <= 8 ? `<span style="font-size:10px;background:rgba(57,255,132,0.1);color:var(--green);border:1px solid rgba(57,255,132,0.4);padding:1px 5px;border-radius:3px;margin-left:4px;font-family:'Rajdhani',sans-serif;font-weight:700;">#${seed}</span>` : '';
+          const rc = i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'rank-n';
+          const grpShort = t.grp ? t.grp.replace('Group ','G') : '?';
+          return `<tr>
+            <td><span class="rank-badge ${rc}">${seed}</span></td>
+            <td style="font-weight:600;min-width:120px">${t.name}${seedBadge}</td>
+            <td style="text-align:center"><span style="font-family:'Rajdhani',sans-serif;font-size:11px;color:var(--accent);font-weight:700;">${grpShort}</span></td>
+            <td class="win-count">${t.w}</td><td class="loss-count">${t.l}</td>
+            <td>${t.pf}</td><td style="color:var(--muted)">${t.pa}</td>
+            <td style="font-weight:700;color:${dc}">${t.w+t.l>0?(diff>0?'+'+diff:diff):'—'}</td>
+            <td style="font-weight:700;color:${dom>=60?'var(--green)':dom>=50?'var(--accent2)':'var(--muted)'}">${t.w+t.l>0?dom+'%':'—'}</td>
+            <td class="pts">${t.pts}</td>
+          </tr>`;
+        }).join('')}
+        </tbody>
+      </table></div>`;
+
+    updateKOSeedings(ranked);
+
+  } else if (filter === 'all') {
+    if (hint) hint.style.display = 'none';
+    container.innerHTML = Object.keys(GROUPS).map(grp => {
+      const teams = Object.entries(stats[grp]).sort((a,b) => {
+        if (b[1].w !== a[1].w) return b[1].w - a[1].w;
+        const da = a[1].pf-a[1].pa, db = b[1].pf-b[1].pa;
+        if (db !== da) return db - da;
+        const ra = a[1].pf+a[1].pa>0?a[1].pf/(a[1].pf+a[1].pa):0;
+        const rb = b[1].pf+b[1].pa>0?b[1].pf/(b[1].pf+b[1].pa):0;
+        return rb - ra;
+      });
+      return `<div style="margin-bottom:24px;">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">${grp}</div>
+        <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+        <table class="standings-table">
+          <thead><tr><th>#</th><th>Team</th><th>W</th><th>L</th><th>PF</th><th>PA</th><th>Diff</th><th>Dom%</th><th>Pts</th></tr></thead>
+          <tbody>${teams.map(([t,s],i) => {
+            const diff = s.pf-s.pa;
+            const dc = diff>0?'var(--green)':diff<0?'var(--accent3)':'var(--muted)';
+            const dom = (s.pf+s.pa)>0?Math.round(s.pf/(s.pf+s.pa)*100):0;
+            const rc = i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'rank-n';
+            return `<tr>
+              <td><span class="rank-badge ${rc}">${i+1}</span></td>
+              <td style="font-weight:600">${t}</td>
+              <td class="win-count">${s.w}</td><td class="loss-count">${s.l}</td>
+              <td>${s.pf}</td><td style="color:var(--muted)">${s.pa}</td>
+              <td style="font-weight:700;color:${dc}">${s.w+s.l>0?(diff>0?'+'+diff:diff):'—'}</td>
+              <td style="font-weight:700;color:${dom>=60?'var(--green)':dom>=50?'var(--accent2)':'var(--muted)'}">${s.w+s.l>0?dom+'%':'—'}</td>
+              <td class="pts">${s.pts}</td>
+            </tr>`;
+          }).join('')}</tbody>
+        </table></div></div>`;
+    }).join('');
+
+  } else {
+    // Single group
+    if (hint) hint.style.display = 'none';
+    const teams = Object.entries(stats[filter]||{}).sort((a,b) => {
+      if (b[1].w !== a[1].w) return b[1].w - a[1].w;
+      const da = a[1].pf-a[1].pa, db = b[1].pf-b[1].pa;
+      if (db !== da) return db - da;
+      const ra = a[1].pf+a[1].pa>0?a[1].pf/(a[1].pf+a[1].pa):0;
+      const rb = b[1].pf+b[1].pa>0?b[1].pf/(b[1].pf+b[1].pa):0;
+      return rb - ra;
+    });
+    container.innerHTML = `<div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table class="standings-table">
+        <thead><tr><th>#</th><th>Team</th><th>W</th><th>L</th><th>PF</th><th>PA</th><th>Diff</th><th>Dom%</th><th>Pts</th></tr></thead>
+        <tbody>${teams.map(([t,s],i) => {
+          const diff = s.pf-s.pa;
+          const dc = diff>0?'var(--green)':diff<0?'var(--accent3)':'var(--muted)';
+          const dom = (s.pf+s.pa)>0?Math.round(s.pf/(s.pf+s.pa)*100):0;
+          const rc = i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'rank-n';
+          return `<tr>
+            <td><span class="rank-badge ${rc}">${i+1}</span></td>
+            <td style="font-weight:600">${t}</td>
+            <td class="win-count">${s.w}</td><td class="loss-count">${s.l}</td>
+            <td>${s.pf}</td><td style="color:var(--muted)">${s.pa}</td>
+            <td style="font-weight:700;color:${dc}">${s.w+s.l>0?(diff>0?'+'+diff:diff):'—'}</td>
+            <td style="font-weight:700;color:${dom>=60?'var(--green)':dom>=50?'var(--accent2)':'var(--muted)'}">${s.w+s.l>0?dom+'%':'—'}</td>
+            <td class="pts">${s.pts}</td>
+          </tr>`;
+        }).join('')}</tbody>
+      </table></div>`;
+  }
+}
+
+function showStandingsGroup(filter, el) {
+  currentStandingsFilter = filter;
+  document.querySelectorAll('#tab-results .grp-tab').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  buildStandings(filter);
+}
+
+function updateKOSeedings(ranked) {
+  // ranked is array of {name, w, pf, pa, ...} sorted #1 to #16
+  const seed = (n) => ranked[n-1] ? ranked[n-1].name : ('Seed ' + n);
+  const set = (id, v) => { const e = document.getElementById(id); if(e) { e.textContent = v; e.classList.toggle('tbd', v.startsWith('Seed')); }};
+  set('r16-s1-t1',seed(1));  set('r16-s1-t2',seed(16));
+  set('r16-s1-t3',seed(7));  set('r16-s1-t4',seed(10));
+  set('r16-s1-t5',seed(5));  set('r16-s1-t6',seed(12));
+  set('r16-s1-t7',seed(3));  set('r16-s1-t8',seed(14));
+  set('r16-s2-t1',seed(2));  set('r16-s2-t2',seed(15));
+  set('r16-s2-t3',seed(8));  set('r16-s2-t4',seed(9));
+  set('r16-s2-t5',seed(6));  set('r16-s2-t6',seed(11));
+  set('r16-s2-t7',seed(4));  set('r16-s2-t8',seed(13));
+}
+
+
+// Tabs
+function switchTab(id,e) {
+  document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  const btn=e?e.target:document.querySelector(`.tab-btn[data-tab="${id}"]`);
+  if(btn) btn.classList.add('active');
+  if(id==='schedule') buildSchedule(currentSchedFilter);
+  if(id==='results') buildStandings(currentStandingsFilter);
+  if(id==='knockout') buildStandings('overall');
+}
+
+// Org / PIN
+const ORGANISER_PIN='IAG2026';
+let isOrganiser=false;
+function toggleOrg() { if(isOrganiser){lockOrg();}else{openPin();} }
+function lockOrg() {
+  isOrganiser=false; document.body.classList.remove('organiser-mode');
+  document.getElementById('org-btn').textContent='🔒 Organiser Login';
+  document.getElementById('org-btn').classList.remove('unlocked');
+  document.getElementById('org-status').textContent='👁 View Only';
+  document.getElementById('org-status').classList.remove('active');
+  buildSchedule(currentSchedFilter);
+}
+function openPin() { document.getElementById('pin-overlay').classList.add('show'); document.getElementById('pin-input').value=''; document.getElementById('pin-error').textContent=''; setTimeout(()=>document.getElementById('pin-input').focus(),100); }
+function closePin() { document.getElementById('pin-overlay').classList.remove('show'); }
+function checkPin() {
+  const val=document.getElementById('pin-input').value.trim();
+  if(val===ORGANISER_PIN) {
+    isOrganiser=true; document.body.classList.add('organiser-mode');
+    document.getElementById('org-btn').textContent='🔓 Lock & Exit';
+    document.getElementById('org-btn').classList.add('unlocked');
+    document.getElementById('org-status').textContent='✅ Organiser Mode';
+    document.getElementById('org-status').classList.add('active');
+    closePin(); buildSchedule(currentSchedFilter);
+  } else {
+    const inp=document.getElementById('pin-input');
+    inp.classList.add('error'); document.getElementById('pin-error').textContent='Incorrect PIN.';
+    inp.value=''; setTimeout(()=>inp.classList.remove('error'),500);
+  }
+}
+
+// KO mode
+let koMode=1;
+function selectKO(n) {
+  koMode=n;
+  document.getElementById('ko1').classList.toggle('selected',n===1);
+  document.getElementById('ko2').classList.toggle('selected',n===2);
+  document.getElementById('bracket-ko1').style.display=n===1?'block':'none';
+  document.getElementById('bracket-ko2').style.display=n===2?'block':'none';
+}
+
+// Init
+buildGroups();
+buildSchedule('all');
+buildStandings('overall');
+</script>
+</body>
+</html>

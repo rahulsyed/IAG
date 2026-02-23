@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IAG Pickleball — Social Division</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Exo+2:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #050a14; --surface: #0d1826; --card: #111e30;
+  --border: rgba(57,255,132,0.18); --accent: #39ff84; --accent2: #f7c948;
+  --accent3: #ff4d6d; --green: #39ff84; --text: #e8f4f8; --muted: #5e7a8f;
+  --gold: #f7c948; --silver: #c0cfd8; --bronze: #cd7f32;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; min-height: 100vh; overflow-x: hidden; }
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background-image: linear-gradient(rgba(57,255,132,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,132,0.03) 1px,transparent 1px);
+  background-size: 40px 40px; pointer-events: none; z-index: 0;
+}
+.wrapper { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 20px 16px 60px; }
+header { text-align: center; padding: 40px 0 30px; border-bottom: 1px solid var(--border); margin-bottom: 36px; }
+header .badge { display: inline-block; background: linear-gradient(135deg,rgba(57,255,132,0.15),rgba(57,255,132,0.05)); border: 1px solid var(--accent); color: var(--accent); font-family: 'Rajdhani',sans-serif; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; padding: 5px 16px; border-radius: 2px; margin-bottom: 14px; }
+header h1 { font-family: 'Rajdhani', sans-serif; font-size: clamp(28px,5vw,52px); font-weight: 700; letter-spacing: 2px; line-height: 1.1; background: linear-gradient(135deg,#fff 0%,var(--accent) 60%,var(--accent2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+header .meta { margin-top: 10px; color: var(--muted); font-size: 14px; letter-spacing: 1px; }
+header .meta span { margin: 0 10px; color: var(--accent); }
+.back-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); text-decoration: none; font-family: 'Rajdhani', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; opacity: 0.8; transition: opacity 0.2s; }
+.back-btn:hover { opacity: 1; }
+.tabs { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 4px; margin-bottom: 28px; }
+.tab-btn { flex: 1; padding: 10px 8px; background: transparent; border: none; color: var(--muted); font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 1px; cursor: pointer; border-radius: 4px; transition: all 0.2s; text-transform: uppercase; }
+.tab-btn.active { background: linear-gradient(135deg,rgba(57,255,132,0.2),rgba(57,255,132,0.08)); color: var(--accent); border: 1px solid rgba(57,255,132,0.35); }
+.tab-btn:hover:not(.active) { color: var(--text); background: rgba(255,255,255,0.04); }
+.tab-content { display: none; } .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none} }
+.section-title { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg,var(--accent),transparent); opacity: 0.3; }
+.groups-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 16px; margin-bottom: 28px; }
+.group-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.group-card .group-header { background: rgba(57,255,132,0.1); padding: 10px 16px; font-family: 'Rajdhani', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--border); }
+.group-card .team-entry { padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 14px; display: flex; align-items: center; gap: 8px; }
+.group-card .team-entry:last-child { border-bottom: none; }
+.team-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; opacity: 0.6; }
+.schedule-table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; font-size: 14px; }
+.schedule-table th { background: rgba(57,255,132,0.1); padding: 12px 14px; text-align: left; font-family: 'Rajdhani', sans-serif; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--border); }
+.schedule-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--text); }
+.schedule-table tr:last-child td { border-bottom: none; }
+.schedule-table tr:hover td { background: rgba(57,255,132,0.04); }
+.time-cell { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 15px; color: var(--accent2); white-space: nowrap; }
+.court-cell { font-family: 'Rajdhani', sans-serif; font-weight: 700; color: var(--accent); white-space: nowrap; }
+.grp-badge { display: inline-block; background: rgba(57,255,132,0.12); border: 1px solid rgba(57,255,132,0.25); color: var(--accent); font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1px; padding: 2px 8px; border-radius: 3px; }
+.vs { color: var(--muted); font-size: 12px; }
+.standings-table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.standings-table th { background: rgba(57,255,132,0.1); padding: 11px 14px; text-align: center; font-family: 'Rajdhani', sans-serif; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--border); }
+.standings-table th:first-child, .standings-table th:nth-child(2), .standings-table th:nth-child(3) { text-align: left; }
+.standings-table td { padding: 10px 14px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 14px; }
+.standings-table td:first-child, .standings-table td:nth-child(2), .standings-table td:nth-child(3) { text-align: left; }
+.standings-table tr:last-child td { border-bottom: none; }
+.standings-table tr:hover td { background: rgba(57,255,132,0.03); }
+.rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 14px; }
+.rank-1 { background: rgba(247,201,72,0.2); color: var(--gold); border: 1px solid var(--gold); }
+.rank-2 { background: rgba(192,207,216,0.2); color: var(--silver); border: 1px solid var(--silver); }
+.rank-3 { background: rgba(205,127,50,0.2); color: var(--bronze); border: 1px solid var(--bronze); }
+.rank-n { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid rgba(255,255,255,0.1); }
+.win-count { color: var(--green); font-weight: 600; }
+.loss-count { color: var(--accent3); }
+.pts { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 16px; color: var(--accent2); }
+.editable-score { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: var(--text); width: 40px; text-align: center; border-radius: 4px; padding: 2px 4px; font-family: 'Exo 2', sans-serif; font-size: 14px; }
+.editable-score:focus { outline: none; border-color: var(--accent); }
+.score-display { display: none; }
+body:not(.organiser-mode) .editable-score { display: none !important; }
+body:not(.organiser-mode) .score-separator { display: none !important; }
+body:not(.organiser-mode) .score-display { display: inline !important; }
+body:not(.organiser-mode) .org-only { display: none !important; }
+body.organiser-mode .score-display { display: none !important; }
+body.organiser-mode .org-only { display: flex !important; }
+.btn { padding: 10px 24px; border-radius: 4px; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; border: none; transition: all 0.2s; }
+.btn-primary { background: linear-gradient(135deg,var(--accent),#00cc5a); color: #000; }
+.btn-primary:hover { opacity: 0.85; }
+.btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.info-bar { display: flex; gap: 20px; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 12px 18px; margin-bottom: 24px; font-size: 13px; color: var(--muted); }
+.info-item strong { color: var(--accent2); }
+.org-bar { display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin-bottom: 16px; }
+.org-status { font-family: 'Rajdhani', sans-serif; font-size: 13px; letter-spacing: 1px; color: var(--muted); }
+.org-status.active { color: var(--green); }
+.org-btn { display: flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 4px; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--muted); transition: all 0.2s; }
+.org-btn:hover { border-color: var(--accent); color: var(--accent); }
+.org-btn.unlocked { border-color: var(--green); color: var(--green); }
+.pin-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(6px); z-index: 1000; align-items: center; justify-content: center; }
+.pin-overlay.show { display: flex; }
+.pin-modal { background: var(--card); border: 1px solid rgba(57,255,132,0.25); border-radius: 12px; padding: 36px 32px; width: 100%; max-width: 380px; text-align: center; box-shadow: 0 0 60px rgba(57,255,132,0.1); }
+.pin-modal .pin-icon { font-size: 36px; margin-bottom: 12px; }
+.pin-modal h2 { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 2px; margin-bottom: 6px; }
+.pin-modal p { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+.pin-input { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; color: var(--text); font-family: 'Rajdhani', sans-serif; font-size: 20px; letter-spacing: 6px; text-align: center; margin-bottom: 8px; outline: none; }
+.pin-input:focus { border-color: var(--accent); }
+.pin-input.error { border-color: var(--accent3); animation: shake 0.3s ease; }
+@keyframes shake { 0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)} }
+.pin-error { font-size: 12px; color: var(--accent3); min-height: 18px; margin-bottom: 16px; }
+.pin-actions { display: flex; gap: 10px; }
+.pin-actions button { flex: 1; }
+.grp-tabs { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
+.grp-tab { padding: 6px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 1px; cursor: pointer; color: var(--muted); transition: all 0.2s; }
+.grp-tab.active { background: rgba(57,255,132,0.15); border-color: var(--accent); color: var(--accent); }
+/* Final */
+.final-card { background: linear-gradient(135deg,rgba(247,201,72,0.1),rgba(57,255,132,0.05)); border: 1px solid rgba(247,201,72,0.3); border-radius: 10px; padding: 24px; text-align: center; }
+.final-card h3 { font-family: 'Rajdhani',sans-serif; font-size: 20px; color: var(--gold); letter-spacing: 2px; margin-bottom: 12px; }
+.final-matchup { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+.final-team { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-size: 15px; font-weight: 600; min-width: 140px; }
+.final-vs { font-family: 'Rajdhani',sans-serif; font-size: 22px; color: var(--muted); }
+.winner-badge { display: inline-block; background: rgba(247,201,72,0.15); border: 1px solid rgba(247,201,72,0.4); color: var(--gold); font-family: 'Rajdhani',sans-serif; font-size: 16px; font-weight: 700; padding: 8px 24px; border-radius: 6px; }
+@media (max-width: 600px) {
+  .tabs { flex-wrap: nowrap; overflow-x: auto; gap: 2px; padding: 3px; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { font-size: 12px; padding: 8px 8px; white-space: nowrap; flex-shrink: 0; flex: 0 0 auto; }
+  .wrapper { padding: 12px 10px 50px; }
+  header { padding: 20px 0 16px; margin-bottom: 20px; }
+  header h1 { font-size: clamp(22px,7vw,36px); }
+  header .meta { font-size: 12px; }
+  header .meta span { margin: 0 5px; }
+  .info-bar { gap: 10px; padding: 10px 12px; font-size: 12px; }
+  .section-title { font-size: 16px; }
+  .schedule-table, .standings-table { font-size: 12px; display: block; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+  .schedule-table th, .schedule-table td { padding: 8px 10px; }
+  .standings-table th, .standings-table td { padding: 8px 8px; font-size: 12px; }
+  .time-cell { font-size: 12px; }
+  .groups-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .group-card .team-entry { font-size: 12px; padding: 8px 12px; }
+  .pin-modal { padding: 28px 20px; margin: 16px; }
+  .editable-score { width: 36px; font-size: 13px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+<div class="pin-overlay" id="pin-overlay">
+  <div class="pin-modal">
+    <div class="pin-icon">🔐</div>
+    <h2>ORGANISER ACCESS</h2>
+    <p>Enter PIN to unlock score editing</p>
+    <input class="pin-input" id="pin-input" type="password" maxlength="8" placeholder="••••" onkeydown="if(event.key==='Enter')checkPin()" />
+    <div class="pin-error" id="pin-error"></div>
+    <div class="pin-actions">
+      <button class="btn btn-ghost" onclick="closePin()">Cancel</button>
+      <button class="btn btn-primary" onclick="checkPin()">Unlock</button>
+    </div>
+  </div>
+</div>
+
+<a href="index.html" class="back-btn">← Back to Tournament Hub</a>
+
+<header>
+  <div class="badge">🏓 IAG Pickleball 2026</div>
+  <h1>SOCIAL DIVISION</h1>
+  <div class="meta">
+    <span>🕗 1:45 PM Start</span>
+    <span>🏟 Courts 3–6</span>
+    <span>👥 10 Teams · 2 Groups</span>
+    <span>📅 Feb 27, 2026</span>
+  </div>
+</header>
+
+<div class="org-bar">
+  <span class="org-status" id="org-status">👁 View Only</span>
+  <button class="org-btn" id="org-btn" onclick="toggleOrg()">🔒 Organiser Login</button>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="groups" onclick="switchTab('groups',event)">👥 Groups</button>
+  <button class="tab-btn" data-tab="schedule" onclick="switchTab('schedule',event)">📋 Schedule</button>
+  <button class="tab-btn" data-tab="results" onclick="switchTab('results',event)">📊 Standings</button>
+  <button class="tab-btn" data-tab="final" onclick="switchTab('final',event)">🏆 Final</button>
+</div>
+
+<!-- GROUPS -->
+<div id="tab-groups" class="tab-content active">
+  <div class="section-title">Group Draw</div>
+  <div class="groups-grid" id="groups-grid"></div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-size:13px;color:var(--muted);">
+    ℹ️ Social division is fun & inclusive! All 5 teams in each group play each other (round-robin). Top 1 team from each group advances to the Final.
+  </div>
+</div>
+
+<!-- SCHEDULE -->
+<div id="tab-schedule" class="tab-content">
+  <div class="info-bar">
+    <div>🕗 Start: <strong>1:45 PM</strong></div>
+    <div>🔚 End: <strong>~3:30 PM</strong></div>
+    <div>⏱ Per Match: <strong>15 min</strong></div>
+    <div>🏟 Courts: <strong>3, 4, 5, 6</strong></div>
+    <div>👥 Teams: <strong>10</strong></div>
+    <div>🎯 Matches: <strong>20</strong></div>
+  </div>
+  <div class="grp-tabs" id="sched-grp-tabs">
+    <button class="grp-tab active" onclick="filterSchedule('all',this)">All Matches</button>
+    <button class="grp-tab" onclick="filterSchedule('Group 1',this)">Group 1</button>
+    <button class="grp-tab" onclick="filterSchedule('Group 2',this)">Group 2</button>
+  </div>
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+  <table class="schedule-table">
+    <thead><tr><th>Time</th><th>Court</th><th>Group</th><th>Match</th><th>Score</th></tr></thead>
+    <tbody id="schedule-body"></tbody>
+  </table>
+  </div>
+</div>
+
+<!-- STANDINGS -->
+<div id="tab-results" class="tab-content">
+  <div class="section-title">Results & Standings</div>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:16px;">Standings update live as scores are entered.</p>
+  <div class="grp-tabs">
+    <button class="grp-tab active" onclick="showStandingsGroup('all',this)">All Groups</button>
+    <button class="grp-tab" onclick="showStandingsGroup('Group 1',this)">Group 1</button>
+    <button class="grp-tab" onclick="showStandingsGroup('Group 2',this)">Group 2</button>
+  </div>
+  <div id="standings-container"></div>
+</div>
+
+<!-- FINAL -->
+<div id="tab-final" class="tab-content">
+
+  <div class="section-title" id="ko-format-label">Select Knockout Format <span style="font-size:12px;color:var(--muted);font-family:'Exo 2',sans-serif;font-weight:400;letter-spacing:0">(Organiser Only)</span></div>
+
+  <div class="knockout-mode-selector">
+    <div class="ko-option selected" id="ko1" onclick="selectKO(1)">
+      <div class="ko-selected-badge">SELECTED</div>
+      <div class="ko-icon">🥇🥈🔥</div>
+      <h3>Option 1 — QF + SF + Final</h3>
+      <p>Top 2 from each group into QF cross-matches.<br>QF Winners → Semis → Grand Final.</p>
+    </div>
+    <div class="ko-option" id="ko2" onclick="selectKO(2)">
+      <div class="ko-selected-badge">SELECTED</div>
+      <div class="ko-icon">⚡ Fast Track</div>
+      <h3>Option 2 — SF + Final Only</h3>
+      <p>Group winners direct to Semis.<br>SF Winners → Grand Final.</p>
+    </div>
+  </div>
+
+  <!-- ---- BRACKET KO1: QF → SF → Final ---- -->
+  <div id="bracket-ko1" class="bracket-container">
+    <div class="section-title">Bracket — Option 1 (QF → SF → Final)</div>
+    <div class="bracket-flow">
+      <!-- QFs -->
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="bracket-col-title" style="font-family:Rajdhani,sans-serif;font-size:12px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;text-align:center;margin-bottom:8px;">QUARTER-FINALS</div>
+        <div class="bracket-col" style="justify-content:space-around;flex:1">
+          <div>
+            <div class="bracket-round-label">QF1 — G1 1st vs G2 4th</div>
+            <div class="match-slot">
+              <div class="slot-header">QF1</div>
+              <div class="team-row"><div class="seed-badge seed-1">G1</div><div class="team-slot-name" id="ko1-qf1-t1">—</div></div>
+              <div class="team-row"><div class="seed-badge rank-n">G2</div><div class="team-slot-name" id="ko1-qf1-t2">—</div></div>
+            </div>
+          </div>
+          <div style="margin-top:16px">
+            <div class="bracket-round-label">QF2 — G2 1st vs G1 4th</div>
+            <div class="match-slot">
+              <div class="slot-header">QF2</div>
+              <div class="team-row"><div class="seed-badge seed-1">G2</div><div class="team-slot-name" id="ko1-qf2-t1">—</div></div>
+              <div class="team-row"><div class="seed-badge rank-n">G1</div><div class="team-slot-name" id="ko1-qf2-t2">—</div></div>
+            </div>
+          </div>
+          <div style="margin-top:16px">
+            <div class="bracket-round-label">QF3 — G1 2nd vs G2 3rd</div>
+            <div class="match-slot">
+              <div class="slot-header">QF3</div>
+              <div class="team-row"><div class="seed-badge seed-2">G1</div><div class="team-slot-name" id="ko1-qf3-t1">—</div></div>
+              <div class="team-row"><div class="seed-badge rank-n">G2</div><div class="team-slot-name" id="ko1-qf3-t2">—</div></div>
+            </div>
+          </div>
+          <div style="margin-top:16px">
+            <div class="bracket-round-label">QF4 — G2 2nd vs G1 3rd</div>
+            <div class="match-slot">
+              <div class="slot-header">QF4</div>
+              <div class="team-row"><div class="seed-badge seed-2">G2</div><div class="team-slot-name" id="ko1-qf4-t1">—</div></div>
+              <div class="team-row"><div class="seed-badge rank-n">G1</div><div class="team-slot-name" id="ko1-qf4-t2">—</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bracket-connector"><div class="connector-line"></div><div class="connector-arrow">›</div><div class="connector-line"></div></div>
+      <!-- SFs -->
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="bracket-col-title" style="font-family:Rajdhani,sans-serif;font-size:12px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;text-align:center;margin-bottom:8px;">SEMI-FINALS</div>
+        <div class="bracket-col" style="justify-content:space-around;flex:1">
+          <div>
+            <div class="bracket-round-label">SF1 — QF1W vs QF3W</div>
+            <div class="match-slot">
+              <div class="slot-header">Semi-Final 1</div>
+              <div class="team-row"><div class="seed-badge seed-1">SF</div><div class="team-slot-name tbd">QF1 Winner</div></div>
+              <div class="team-row"><div class="seed-badge seed-3">SF</div><div class="team-slot-name tbd">QF3 Winner</div></div>
+            </div>
+          </div>
+          <div style="margin-top:24px">
+            <div class="bracket-round-label">SF2 — QF2W vs QF4W</div>
+            <div class="match-slot">
+              <div class="slot-header">Semi-Final 2</div>
+              <div class="team-row"><div class="seed-badge seed-2">SF</div><div class="team-slot-name tbd">QF2 Winner</div></div>
+              <div class="team-row"><div class="seed-badge seed-4">SF</div><div class="team-slot-name tbd">QF4 Winner</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bracket-connector"><div class="connector-line"></div><div class="connector-arrow">›</div><div class="connector-line"></div></div>
+      <!-- Final -->
+      <div style="display:flex;flex-direction:column;justify-content:center">
+        <div class="bracket-col-title" style="font-family:Rajdhani,sans-serif;font-size:12px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;text-align:center;margin-bottom:8px;">FINAL</div>
+        <div class="bracket-col" style="justify-content:center">
+          <div>
+            <div class="bracket-round-label">🏆 Grand Final</div>
+            <div class="match-slot" style="border-color:rgba(247,201,72,0.3)">
+              <div class="slot-header" style="background:rgba(247,201,72,0.1);color:var(--gold)">SF1 Winner vs SF2 Winner</div>
+              <div class="team-row"><div class="seed-badge seed-1">🏆</div><div class="team-slot-name tbd">SF1 Winner</div></div>
+              <div class="team-row"><div class="seed-badge seed-2">🏆</div><div class="team-slot-name tbd">SF2 Winner</div></div>
+            </div>
+          </div>
+          <div style="margin-top:16px">
+            <div class="winner-slot">
+              <div class="trophy">🏆</div>
+              <h3>CHAMPION</h3>
+              <p id="ko1-champion">TBD</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---- BRACKET KO2: SF → Final Only ---- -->
+  <div id="bracket-ko2" class="bracket-container" style="display:none">
+    <div class="section-title">Bracket — Option 2 (SF → Final)</div>
+    <div class="bracket-flow">
+      <!-- SFs -->
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="bracket-col-title" style="font-family:Rajdhani,sans-serif;font-size:12px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;text-align:center;margin-bottom:8px;">SEMI-FINALS</div>
+        <div class="bracket-col" style="justify-content:space-around;flex:1">
+          <div>
+            <div class="bracket-round-label">SF1 — G1 1st vs G2 2nd</div>
+            <div class="match-slot">
+              <div class="slot-header">Semi-Final 1</div>
+              <div class="team-row"><div class="seed-badge seed-1">G1</div><div class="team-slot-name" id="ko2-sf1-t1">—</div></div>
+              <div class="team-row"><div class="seed-badge seed-2">G2</div><div class="team-slot-name" id="ko2-sf1-t2">—</div></div>
+            </div>
+          </div>
+          <div style="margin-top:24px">
+            <div class="bracket-round-label">SF2 — G2 1st vs G1 2nd</div>
+            <div class="match-slot">
+              <div class="slot-header">Semi-Final 2</div>
+              <div class="team-row"><div class="seed-badge seed-1">G2</div><div class="team-slot-name" id="ko2-sf2-t1">—</div></div>
+              <div class="team-row"><div class="seed-badge seed-2">G1</div><div class="team-slot-name" id="ko2-sf2-t2">—</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bracket-connector"><div class="connector-line"></div><div class="connector-arrow">›</div><div class="connector-line"></div></div>
+      <!-- Final -->
+      <div style="display:flex;flex-direction:column;justify-content:center">
+        <div class="bracket-col-title" style="font-family:Rajdhani,sans-serif;font-size:12px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;text-align:center;margin-bottom:8px;">FINAL</div>
+        <div class="bracket-col" style="justify-content:center">
+          <div>
+            <div class="bracket-round-label">🏆 Grand Final</div>
+            <div class="match-slot" style="border-color:rgba(247,201,72,0.3)">
+              <div class="slot-header" style="background:rgba(247,201,72,0.1);color:var(--gold)">SF1 Winner vs SF2 Winner</div>
+              <div class="team-row"><div class="seed-badge seed-1">🏆</div><div class="team-slot-name tbd">SF1 Winner</div></div>
+              <div class="team-row"><div class="seed-badge seed-2">🏆</div><div class="team-slot-name tbd">SF2 Winner</div></div>
+            </div>
+          </div>
+          <div style="margin-top:16px">
+            <div class="winner-slot">
+              <div class="trophy">🏆</div>
+              <h3>CHAMPION</h3>
+              <p id="ko2-champion">TBD</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+</div><!-- wrapper -->
+
+<script>
+const GROUPS = {
+  'Group 1': ['Karthik & Shailee','Syed & Sofi','Thiru & Gayathri','Kenny & Amanda','Andrew Stafford'],
+  'Group 2': ['Mandy & Honey','Suresh & Nirmala','Elango & Ramya','Arun & Divya','Abhishek & Aaryesh']
+};
+
+const SCHEDULE = [
+  {time:'1:45 PM',court:3,group:'Group 1',t1:'Karthik & Shailee',t2:'Syed & Sofi'},
+  {time:'1:45 PM',court:4,group:'Group 1',t1:'Thiru & Gayathri',t2:'Kenny & Amanda'},
+  {time:'1:45 PM',court:5,group:'Group 2',t1:'Mandy & Honey',t2:'Suresh & Nirmala'},
+  {time:'1:45 PM',court:6,group:'Group 2',t1:'Elango & Ramya',t2:'Arun & Divya'},
+  {time:'2:00 PM',court:3,group:'Group 1',t1:'Karthik & Shailee',t2:'Thiru & Gayathri'},
+  {time:'2:00 PM',court:4,group:'Group 1',t1:'Syed & Sofi',t2:'Kenny & Amanda'},
+  {time:'2:00 PM',court:5,group:'Group 2',t1:'Mandy & Honey',t2:'Elango & Ramya'},
+  {time:'2:00 PM',court:6,group:'Group 2',t1:'Suresh & Nirmala',t2:'Arun & Divya'},
+  {time:'2:15 PM',court:3,group:'Group 1',t1:'Karthik & Shailee',t2:'Kenny & Amanda'},
+  {time:'2:15 PM',court:4,group:'Group 1',t1:'Syed & Sofi',t2:'Thiru & Gayathri'},
+  {time:'2:15 PM',court:5,group:'Group 2',t1:'Mandy & Honey',t2:'Arun & Divya'},
+  {time:'2:15 PM',court:6,group:'Group 2',t1:'Suresh & Nirmala',t2:'Elango & Ramya'},
+  {time:'2:30 PM',court:3,group:'Group 1',t1:'Karthik & Shailee',t2:'Andrew Stafford'},
+  {time:'2:30 PM',court:4,group:'Group 2',t1:'Mandy & Honey',t2:'Abhishek & Aaryesh'},
+  {time:'2:45 PM',court:3,group:'Group 1',t1:'Syed & Sofi',t2:'Andrew Stafford'},
+  {time:'2:45 PM',court:4,group:'Group 2',t1:'Suresh & Nirmala',t2:'Abhishek & Aaryesh'},
+  {time:'3:00 PM',court:3,group:'Group 1',t1:'Thiru & Gayathri',t2:'Andrew Stafford'},
+  {time:'3:00 PM',court:4,group:'Group 2',t1:'Elango & Ramya',t2:'Abhishek & Aaryesh'},
+  {time:'3:15 PM',court:3,group:'Group 1',t1:'Kenny & Amanda',t2:'Andrew Stafford'},
+  {time:'3:15 PM',court:4,group:'Group 2',t1:'Arun & Divya',t2:'Abhishek & Aaryesh'}
+];
+
+let scores={}, currentSchedFilter='all', currentStandingsFilter='all';
+function mKey(m){return `${m.group}|${m.t1}|${m.t2}`;}
+
+function buildGroups(){
+  const grid=document.getElementById('groups-grid');
+  grid.innerHTML=Object.entries(GROUPS).map(([grp,teams])=>`
+    <div class="group-card">
+      <div class="group-header">${grp}</div>
+      ${teams.map(t=>`<div class="team-entry"><div class="team-dot"></div>${t}</div>`).join('')}
+    </div>`).join('');
+}
+
+function buildSchedule(filter){
+  const tbody=document.getElementById('schedule-body');
+  const rows=filter==='all'?SCHEDULE:SCHEDULE.filter(m=>m.group===filter);
+  const isOrg=document.body.classList.contains('organiser-mode');
+  tbody.innerHTML=rows.map(m=>{
+    const key=mKey(m);const s=scores[key]||{s1:'',s2:''};
+    const winner=getWinner(s.s1,s.s2,m.t1,m.t2);
+    const sd=(s.s1!==''&&s.s2!=='')?`<span style="font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--accent2)">${s.s1}:${s.s2}</span>`:`<span style="color:var(--muted)">—</span>`;
+    const wd=winner!=='—'?`<span style="color:var(--green);font-size:12px">✓ ${winner}</span>`:`<span style="color:var(--muted)">—</span>`;
+    return `<tr>
+      <td class="time-cell">${m.time}</td>
+      <td class="court-cell">C${m.court}</td>
+      <td><span class="grp-badge">${m.group}</span></td>
+      <td>${m.t1} <span class="vs">vs</span> ${m.t2}</td>
+      <td style="white-space:nowrap">
+        <span class="score-display">${sd} ${wd}</span>
+        <input class="editable-score" type="number" min="0" max="99" placeholder="–" value="${s.s1}" onchange="updateScore('${key}',1,this.value)"/>
+        <span class="score-separator" style="background:none;border:none;width:auto;padding:0 4px;color:var(--muted)">:</span>
+        <input class="editable-score" type="number" min="0" max="99" placeholder="–" value="${s.s2}" onchange="updateScore('${key}',2,this.value)"/>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function filterSchedule(f,el){
+  currentSchedFilter=f;
+  document.querySelectorAll('#sched-grp-tabs .grp-tab').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');buildSchedule(f);
+}
+
+function getWinner(s1,s2,t1,t2){
+  if(s1===''||s2===''||s1===undefined||s2===undefined)return '—';
+  const n1=parseInt(s1),n2=parseInt(s2);if(isNaN(n1)||isNaN(n2))return '—';
+  if(n1>n2)return t1;if(n2>n1)return t2;return 'Draw';
+}
+
+function updateScore(key,pos,val){
+  if(!scores[key])scores[key]={s1:'',s2:''};
+  if(pos===1)scores[key].s1=val;else scores[key].s2=val;
+  buildSchedule(currentSchedFilter);buildStandings(currentStandingsFilter);updateFinal();
+}
+
+function computeStandings(){
+  const stats={};
+  Object.entries(GROUPS).forEach(([grp,teams])=>{stats[grp]={};teams.forEach(t=>stats[grp][t]={w:0,l:0,pf:0,pa:0,pts:0});});
+  SCHEDULE.forEach(m=>{
+    const s=scores[mKey(m)];if(!s||s.s1===''||s.s2==='')return;
+    const n1=parseInt(s.s1),n2=parseInt(s.s2);if(isNaN(n1)||isNaN(n2))return;
+    const g=m.group;if(!stats[g]||!stats[g][m.t1])return;
+    stats[g][m.t1].pf+=n1;stats[g][m.t1].pa+=n2;
+    stats[g][m.t2].pf+=n2;stats[g][m.t2].pa+=n1;
+    if(n1>n2){stats[g][m.t1].w++;stats[g][m.t1].pts+=2;stats[g][m.t2].l++;}
+    else if(n2>n1){stats[g][m.t2].w++;stats[g][m.t2].pts+=2;stats[g][m.t1].l++;}
+    else{stats[g][m.t1].pts++;stats[g][m.t2].pts++;}
+  });
+  return stats;
+}
+
+function buildStandings(filter){
+  const stats=computeStandings();
+  const container=document.getElementById('standings-container');
+  const groups=filter==='all'?Object.keys(GROUPS):[filter];
+  container.innerHTML=groups.map(grp=>{
+    const teams=Object.entries(stats[grp]).sort((a,b)=>b[1].pts-a[1].pts||(b[1].pf-b[1].pa)-(a[1].pf-a[1].pa));
+    return `<div style="margin-bottom:24px;">
+      <div style="font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">${grp}</div>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table class="standings-table">
+        <thead><tr><th>#</th><th>Team</th><th>W</th><th>L</th><th>PF</th><th>PA</th><th>Diff</th><th>Pts</th></tr></thead>
+        <tbody>${teams.map(([t,s],i)=>{
+          const rc=i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'rank-n';
+          const diff=s.pf-s.pa;const dc=diff>0?'var(--green)':diff<0?'var(--accent3)':'var(--muted)';
+          return `<tr><td><span class="rank-badge ${rc}">${i+1}</span></td><td style="font-weight:600">${t}</td>
+            <td class="win-count">${s.w}</td><td class="loss-count">${s.l}</td>
+            <td>${s.pf}</td><td style="color:var(--muted)">${s.pa}</td>
+            <td style="font-weight:700;color:${dc}">${s.w+s.l>0?(diff>0?'+'+diff:diff):'—'}</td>
+            <td class="pts">${s.pts}</td></tr>`;
+        }).join('')}</tbody>
+      </table></div></div>`;
+  }).join('');
+}
+
+function showStandingsGroup(f,el){
+  currentStandingsFilter=f;
+  document.querySelectorAll('#tab-results .grp-tab').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');buildStandings(f);
+}
+
+function updateFinal(){
+  const stats=computeStandings();
+  const g1=Object.entries(stats['Group 1']).sort((a,b)=>b[1].pts-a[1].pts||(b[1].pf-b[1].pa)-(a[1].pf-a[1].pa));
+  const g2=Object.entries(stats['Group 2']).sort((a,b)=>b[1].pts-a[1].pts||(b[1].pf-b[1].pa)-(a[1].pf-a[1].pa));
+  const w1=g1[0]?g1[0][0]:'TBD';const w2=g2[0]?g2[0][0]:'TBD';
+  document.getElementById('final-t1').innerHTML=`${w1}<br><span style="color:var(--muted);font-size:12px">Group 1 Winner</span>`;
+  document.getElementById('final-t2').innerHTML=`${w2}<br><span style="color:var(--muted);font-size:12px">Group 2 Winner</span>`;
+}
+
+function switchTab(id,e){
+  document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  const btn=e?e.target:document.querySelector(`.tab-btn[data-tab="${id}"]`);
+  if(btn)btn.classList.add('active');
+  if(id==='schedule')buildSchedule(currentSchedFilter);
+  if(id==='results')buildStandings(currentStandingsFilter);
+  if(id==='final'){buildStandings('all');updateFinal();}
+}
+
+const ORGANISER_PIN='IAG2026';let isOrganiser=false;
+function toggleOrg(){if(isOrganiser)lockOrg();else openPin();}
+function lockOrg(){isOrganiser=false;document.body.classList.remove('organiser-mode');document.getElementById('org-btn').textContent='🔒 Organiser Login';document.getElementById('org-btn').classList.remove('unlocked');document.getElementById('org-status').textContent='👁 View Only';document.getElementById('org-status').classList.remove('active');
+  buildSchedule(currentSchedFilter);}
+function openPin(){document.getElementById('pin-overlay').classList.add('show');document.getElementById('pin-input').value='';document.getElementById('pin-error').textContent='';setTimeout(()=>document.getElementById('pin-input').focus(),100);}
+function closePin(){document.getElementById('pin-overlay').classList.remove('show');}
+function checkPin(){const val=document.getElementById('pin-input').value.trim();if(val===ORGANISER_PIN){isOrganiser=true;document.body.classList.add('organiser-mode');document.getElementById('org-btn').textContent='🔓 Lock & Exit';document.getElementById('org-btn').classList.add('unlocked');document.getElementById('org-status').textContent='✅ Organiser Mode';document.getElementById('org-status').classList.add('active');closePin();buildSchedule(currentSchedFilter);}else{const inp=document.getElementById('pin-input');inp.classList.add('error');document.getElementById('pin-error').textContent='Incorrect PIN.';inp.value='';setTimeout(()=>inp.classList.remove('error'),500);}}
+
+
+
+// KO mode
+let koMode = 1;
+function selectKO(n) {
+  koMode = n;
+  document.getElementById('ko1').classList.toggle('selected', n===1);
+  document.getElementById('ko2').classList.toggle('selected', n===2);
+  document.getElementById('bracket-ko1').style.display = n===1 ? 'block' : 'none';
+  document.getElementById('bracket-ko2').style.display = n===2 ? 'block' : 'none';
+  updateKOSeedings();
+}
+
+function updateKOSeedings() {
+  const stats = computeStandings();
+  const grps = Object.keys(GROUPS);
+  if (grps.length < 2) return;
+  const ranked = (g) => Object.entries(stats[g]||{}).sort((a,b) => {
+    if(b[1].w !== a[1].w) return b[1].w - a[1].w;
+    const da=a[1].pf-a[1].pa, db=b[1].pf-b[1].pa;
+    if(db !== da) return db - da;
+    const ra=a[1].pf+a[1].pa>0?a[1].pf/(a[1].pf+a[1].pa):0;
+    const rb=b[1].pf+b[1].pa>0?b[1].pf/(b[1].pf+b[1].pa):0;
+    return rb - ra;
+  }).map(x=>x[0]);
+  const g1 = ranked(grps[0]);
+  const g2 = ranked(grps[1]);
+  const set = (id, v) => { const e=document.getElementById(id); if(e){e.textContent=v||'TBD';e.classList.toggle('tbd',!v||v==='TBD');} };
+  // KO1 QFs
+  set('ko1-qf1-t1', g1[0]); set('ko1-qf1-t2', g2[3]);
+  set('ko1-qf2-t1', g2[0]); set('ko1-qf2-t2', g1[3]);
+  set('ko1-qf3-t1', g1[1]); set('ko1-qf3-t2', g2[2]);
+  set('ko1-qf4-t1', g2[1]); set('ko1-qf4-t2', g1[2]);
+  // KO2 SFs  
+  set('ko2-sf1-t1', g1[0]); set('ko2-sf1-t2', g2[1]);
+  set('ko2-sf2-t1', g2[0]); set('ko2-sf2-t2', g1[1]);
+}
+
+
+
+function computeStats() {
+  const allStats = {};
+  Object.keys(GROUPS).forEach(g => {
+    allStats[g] = {};
+    GROUPS[g].forEach(t => allStats[g][t] = {w:0,l:0,pf:0,pa:0,pts:0});
+  });
+  SCHEDULE.forEach(m => {
+    const s = scores[m.g+'|'+m.t1+'|'+m.t2];
+    if(!s || s.s1==='' || s.s2==='') return;
+    const n1=parseInt(s.s1), n2=parseInt(s.s2);
+    if(isNaN(n1)||isNaN(n2)) return;
+    allStats[m.g][m.t1].pf+=n1; allStats[m.g][m.t1].pa+=n2;
+    allStats[m.g][m.t2].pf+=n2; allStats[m.g][m.t2].pa+=n1;
+    if(n1>n2){allStats[m.g][m.t1].w++;allStats[m.g][m.t1].pts+=2;allStats[m.g][m.t2].l++;}
+    else if(n2>n1){allStats[m.g][m.t2].w++;allStats[m.g][m.t2].pts+=2;allStats[m.g][m.t1].l++;}
+    else{allStats[m.g][m.t1].pts++;allStats[m.g][m.t2].pts++;}
+  });
+  return allStats;
+}
+
+buildGroups();buildSchedule('all');buildStandings('all');
+</script>
+</body>
+</html>
