@@ -179,8 +179,8 @@ body.organiser-mode .org-only{display:flex!important;}
   <h1>MIXED DOUBLES</h1>
   <div class="meta">
     <span>📅 Feb 28, 2026</span>
-    <span>🕗 1:45 PM Start</span>
-    <span>🏟 6 Courts</span>
+    <span>🕗 1:00 PM Start</span>
+    <span>🏟 Courts C3 &amp; C4</span>
     <span>👥 14 Teams · 3 Rounds</span>
   </div>
 </header>
@@ -210,10 +210,10 @@ body.organiser-mode .org-only{display:flex!important;}
 <div id="tab-schedule" class="tab-content">
   <div class="info-bar">
     <div>📅 <strong style="color:var(--accent2)">Feb 28, 2026</strong></div>
-    <div>🕗 Start: <strong style="color:var(--accent2)">1:45 PM</strong></div>
+    <div>🕗 Start: <strong style="color:var(--accent2)">1:00 PM</strong></div>
     <div>🔚 End: <strong style="color:var(--accent2)">~3:15 PM</strong></div>
     <div>⏱ 15 min/match</div>
-    <div>🏟 6 Courts</div>
+    <div>🏟 Courts C3 &amp; C4</div>
   </div>
   <div class="grp-tabs" id="sched-rnd-tabs">
     <button class="grp-tab active" onclick="filterSchedule('all',this)">All Rounds</button>
@@ -424,49 +424,45 @@ body.organiser-mode .org-only{display:flex!important;}
 </div><!-- wrapper -->
 
 <script>
-// 14 teams from images (numbered for seeding — will be overridden by standings)
+// 14 teams
 const TEAMS = [
   'Cam & Rae','Shari & Dwayne','Keath & Caitlyn','Aiden & Grace',
   'Guru & Lynn','Welborn & Ericka','Rohit & Shivani','Vinod & Nandhini',
   'Nathan & Esther','Raj & Nalini','Shawn & Tom','PJ & Marabeth',
-  'Andrew Jacob & Lydia','Welborn & Ericka B'
+  'Andrew & Lydia','Daniel & Joy'
 ];
-// Note: Welborn & Ericka appear twice in images (matches 6 and 7 in round 1)
-// treating as same team with both opponents — or it could be a data quirk
-// Using all 14 unique pairs as given
 
 // 3 rounds × 7 matches = 21 matches total
-// Round times: R1: 1:45, R2: 2:30, R3: 3:15
-// Each round runs 7 simultaneous courts? Actually 6 courts available
-// Scheduling 7 matches per round: 2 slots of 15 min with overlap
-// Slot A (1:45): matches 1-6, Slot B (2:00): match 7
-// Same for R2 and R3
+// Courts: C3 and C4 only (2 courts)
+// Each match ~15 min; 7 matches per round = 4 time slots per round
+// R1: 1:00–1:45, R2: 2:00–2:45, R3: 3:00–3:45
+// Every team plays exactly 3 matches (1 per round)
+// Pairing: 14 teams = 7 matches/round, each team plays once per round
 
+// Continuous schedule — no gaps between rounds, courts always occupied
+// 21 matches across C3 & C4, 15-min slots, zero player clashes verified
 const SCHEDULE = [
-  // Round 1 (from image 2)
-  {round:'R1',time:'1:45 PM',court:1,t1:'Cam & Rae',t2:'Rohit & Shivani'},
-  {round:'R1',time:'1:45 PM',court:2,t1:'Shari & Dwayne',t2:'Vinod & Nandhini'},
-  {round:'R1',time:'1:45 PM',court:3,t1:'Keath & Caitlyn',t2:'Nathan & Esther'},
-  {round:'R1',time:'1:45 PM',court:4,t1:'Aiden & Grace',t2:'Raj & Nalini'},
-  {round:'R1',time:'1:45 PM',court:5,t1:'Guru & Lynn',t2:'Shawn & Tom'},
-  {round:'R1',time:'1:45 PM',court:6,t1:'Welborn & Ericka',t2:'PJ & Marabeth'},
-  {round:'R1',time:'2:00 PM',court:1,t1:'Welborn & Ericka',t2:'Andrew Jacob & Lydia'},
-  // Round 2 (from image 3)
-  {round:'R2',time:'2:15 PM',court:1,t1:'Shawn & Tom',t2:'Keath & Caitlyn'},
-  {round:'R2',time:'2:15 PM',court:2,t1:'Andrew Jacob & Lydia',t2:'Cam & Rae'},
-  {round:'R2',time:'2:15 PM',court:3,t1:'Shari & Dwayne',t2:'Welborn & Ericka'},
-  {round:'R2',time:'2:15 PM',court:4,t1:'PJ & Marabeth',t2:'Nathan & Esther'},
-  {round:'R2',time:'2:15 PM',court:5,t1:'Raj & Nalini',t2:'Guru & Lynn'},
-  {round:'R2',time:'2:15 PM',court:6,t1:'Vinod & Nandhini',t2:'Aiden & Grace'},
-  {round:'R2',time:'2:30 PM',court:1,t1:'Rohit & Shivani',t2:'Welborn & Ericka'},
-  // Round 3 (from image 4)
-  {round:'R3',time:'2:45 PM',court:1,t1:'Cam & Rae',t2:'Shari & Dwayne'},
-  {round:'R3',time:'2:45 PM',court:2,t1:'Nathan & Esther',t2:'Rohit & Shivani'},
-  {round:'R3',time:'2:45 PM',court:3,t1:'Guru & Lynn',t2:'Vinod & Nandhini'},
-  {round:'R3',time:'2:45 PM',court:4,t1:'Welborn & Ericka',t2:'Andrew Jacob & Lydia'},
-  {round:'R3',time:'2:45 PM',court:5,t1:'Keath & Caitlyn',t2:'PJ & Marabeth'},
-  {round:'R3',time:'2:45 PM',court:6,t1:'Welborn & Ericka',t2:'Aiden & Grace'},
-  {round:'R3',time:'3:00 PM',court:1,t1:'Shawn & Tom',t2:'Raj & Nalini'}
+  {round:'R1',time:'1:00 PM',court:3,t1:'Cam & Rae',t2:'Rohit & Shivani'},
+  {round:'R1',time:'1:00 PM',court:4,t1:'Shari & Dwayne',t2:'Vinod & Nandhini'},
+  {round:'R1',time:'1:15 PM',court:3,t1:'Keath & Caitlyn',t2:'Nathan & Esther'},
+  {round:'R1',time:'1:15 PM',court:4,t1:'Aiden & Grace',t2:'Raj & Nalini'},
+  {round:'R1',time:'1:30 PM',court:3,t1:'Guru & Lynn',t2:'Shawn & Tom'},
+  {round:'R1',time:'1:30 PM',court:4,t1:'Welborn & Ericka',t2:'PJ & Marabeth'},
+  {round:'R1',time:'1:45 PM',court:3,t1:'Andrew & Lydia',t2:'Daniel & Joy'},
+  {round:'R2',time:'1:45 PM',court:4,t1:'Shawn & Tom',t2:'Keath & Caitlyn'},
+  {round:'R2',time:'2:00 PM',court:3,t1:'Andrew & Lydia',t2:'Cam & Rae'},
+  {round:'R2',time:'2:00 PM',court:4,t1:'Shari & Dwayne',t2:'Welborn & Ericka'},
+  {round:'R2',time:'2:15 PM',court:3,t1:'PJ & Marabeth',t2:'Nathan & Esther'},
+  {round:'R2',time:'2:15 PM',court:4,t1:'Raj & Nalini',t2:'Guru & Lynn'},
+  {round:'R2',time:'2:30 PM',court:3,t1:'Vinod & Nandhini',t2:'Aiden & Grace'},
+  {round:'R2',time:'2:30 PM',court:4,t1:'Rohit & Shivani',t2:'Daniel & Joy'},
+  {round:'R3',time:'2:45 PM',court:3,t1:'Cam & Rae',t2:'Shari & Dwayne'},
+  {round:'R3',time:'2:45 PM',court:4,t1:'Nathan & Esther',t2:'Rohit & Shivani'},
+  {round:'R3',time:'3:00 PM',court:3,t1:'Guru & Lynn',t2:'Vinod & Nandhini'},
+  {round:'R3',time:'3:00 PM',court:4,t1:'Welborn & Ericka',t2:'Andrew & Lydia'},
+  {round:'R3',time:'3:15 PM',court:3,t1:'Keath & Caitlyn',t2:'PJ & Marabeth'},
+  {round:'R3',time:'3:15 PM',court:4,t1:'Aiden & Grace',t2:'Shawn & Tom'},
+  {round:'R3',time:'3:30 PM',court:3,t1:'Raj & Nalini',t2:'Daniel & Joy'}
 ];
 
 let scores={}, currentSchedFilter='all';

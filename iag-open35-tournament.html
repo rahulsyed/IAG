@@ -243,7 +243,7 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
     <span>🕗 9:00 AM Start</span>
     <span>🏟 6 Courts</span>
     <span>👥 16 Teams · 4 Groups</span>
-    <span>📅 Feb 27, 2026</span>
+    <span>📅 Feb 28, 2026</span>
   </div>
 </header>
 
@@ -269,7 +269,7 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
 <div id="tab-schedule" class="tab-content">
   <div class="info-bar">
     <div>🕗 Start: <strong>9:00 AM</strong></div>
-    <div>🔚 End: <strong>~10:30 AM</strong></div>
+    <div>🔚 End: <strong>10:00 AM</strong></div>
     <div>⏱ Per Match: <strong>15 min</strong></div>
     <div>🏟 Courts: <strong>6</strong></div>
     <div>👥 Teams: <strong>16</strong></div>
@@ -413,30 +413,34 @@ const GROUPS = {
 };
 
 const SCHEDULE = [
+  // Round 1 — 9:00 AM (Courts 1-2: Group 1 | Court 3: Group 2 | Courts 4-5: Group 3 | Court 6: Group 4)
   {time:'9:00 AM',court:1,group:'Group 1',t1:'Durbha Murthy & Rajanikanth',t2:'Vivek & Rajiv'},
   {time:'9:00 AM',court:2,group:'Group 1',t1:'Vanith & Prabakar',t2:'Lisa & April'},
   {time:'9:00 AM',court:3,group:'Group 2',t1:'Welborn & Francis',t2:'Varun & Jeremy'},
-  {time:'9:00 AM',court:4,group:'Group 2',t1:'Shari & Roz',t2:'Thiru & Vamshi'},
-  {time:'9:00 AM',court:5,group:'Group 3',t1:'Uma & Shankar',t2:'Moksh & Suraj'},
-  {time:'9:00 AM',court:6,group:'Group 3',t1:'Adarsh & Sunil',t2:'Venkat & Immanuel'},
+  {time:'9:00 AM',court:4,group:'Group 3',t1:'Uma & Shankar',t2:'Moksh & Suraj'},
+  {time:'9:00 AM',court:5,group:'Group 3',t1:'Adarsh & Sunil',t2:'Venkat & Immanuel'},
+  {time:'9:00 AM',court:6,group:'Group 4',t1:'Xavier & David',t2:'Anish & Mandy'},
+  // Round 2 — 9:15 AM
   {time:'9:15 AM',court:1,group:'Group 1',t1:'Durbha Murthy & Rajanikanth',t2:'Vanith & Prabakar'},
   {time:'9:15 AM',court:2,group:'Group 1',t1:'Vivek & Rajiv',t2:'Lisa & April'},
-  {time:'9:15 AM',court:3,group:'Group 2',t1:'Welborn & Francis',t2:'Shari & Roz'},
-  {time:'9:15 AM',court:4,group:'Group 2',t1:'Varun & Jeremy',t2:'Thiru & Vamshi'},
-  {time:'9:15 AM',court:5,group:'Group 3',t1:'Uma & Shankar',t2:'Adarsh & Sunil'},
-  {time:'9:15 AM',court:6,group:'Group 3',t1:'Moksh & Suraj',t2:'Venkat & Immanuel'},
+  {time:'9:15 AM',court:3,group:'Group 2',t1:'Shari & Roz',t2:'Thiru & Vamshi'},
+  {time:'9:15 AM',court:4,group:'Group 3',t1:'Uma & Shankar',t2:'Adarsh & Sunil'},
+  {time:'9:15 AM',court:5,group:'Group 3',t1:'Moksh & Suraj',t2:'Venkat & Immanuel'},
+  {time:'9:15 AM',court:6,group:'Group 4',t1:'Kenny & Daniel',t2:'Sreeni NK & Chokalingam'},
+  // Round 3 — 9:30 AM
   {time:'9:30 AM',court:1,group:'Group 1',t1:'Durbha Murthy & Rajanikanth',t2:'Lisa & April'},
-  {time:'9:30 AM',court:2,group:'Group 1',t1:'Vivek & Rajiv',t2:'Vanith & Prabakar'},
-  {time:'9:30 AM',court:3,group:'Group 2',t1:'Welborn & Francis',t2:'Thiru & Vamshi'},
-  {time:'9:30 AM',court:4,group:'Group 2',t1:'Varun & Jeremy',t2:'Shari & Roz'},
-  {time:'9:30 AM',court:5,group:'Group 3',t1:'Uma & Shankar',t2:'Venkat & Immanuel'},
-  {time:'9:30 AM',court:6,group:'Group 3',t1:'Moksh & Suraj',t2:'Adarsh & Sunil'},
-  {time:'9:45 AM',court:1,group:'Group 4',t1:'Xavier & David',t2:'Anish & Mandy'},
-  {time:'9:45 AM',court:2,group:'Group 4',t1:'Kenny & Daniel',t2:'Sreeni NK & Chokalingam'},
-  {time:'10:00 AM',court:1,group:'Group 4',t1:'Xavier & David',t2:'Kenny & Daniel'},
-  {time:'10:00 AM',court:2,group:'Group 4',t1:'Anish & Mandy',t2:'Sreeni NK & Chokalingam'},
-  {time:'10:15 AM',court:1,group:'Group 4',t1:'Xavier & David',t2:'Sreeni NK & Chokalingam'},
-  {time:'10:15 AM',court:2,group:'Group 4',t1:'Anish & Mandy',t2:'Kenny & Daniel'}
+  {time:'9:30 AM',court:2,group:'Group 2',t1:'Welborn & Francis',t2:'Shari & Roz'},
+  {time:'9:30 AM',court:3,group:'Group 2',t1:'Varun & Jeremy',t2:'Thiru & Vamshi'},
+  {time:'9:30 AM',court:4,group:'Group 3',t1:'Uma & Shankar',t2:'Venkat & Immanuel'},
+  {time:'9:30 AM',court:5,group:'Group 4',t1:'Xavier & David',t2:'Kenny & Daniel'},
+  {time:'9:30 AM',court:6,group:'Group 4',t1:'Anish & Mandy',t2:'Sreeni NK & Chokalingam'},
+  // Round 4 — 9:45 AM
+  {time:'9:45 AM',court:1,group:'Group 1',t1:'Vivek & Rajiv',t2:'Vanith & Prabakar'},
+  {time:'9:45 AM',court:2,group:'Group 2',t1:'Welborn & Francis',t2:'Thiru & Vamshi'},
+  {time:'9:45 AM',court:3,group:'Group 2',t1:'Varun & Jeremy',t2:'Shari & Roz'},
+  {time:'9:45 AM',court:4,group:'Group 3',t1:'Moksh & Suraj',t2:'Adarsh & Sunil'},
+  {time:'9:45 AM',court:5,group:'Group 4',t1:'Xavier & David',t2:'Sreeni NK & Chokalingam'},
+  {time:'9:45 AM',court:6,group:'Group 4',t1:'Anish & Mandy',t2:'Kenny & Daniel'}
 ];
 
 let scores = {};

@@ -243,7 +243,7 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
     <span>🕗 10:00 AM Start</span>
     <span>🏟 6 Courts</span>
     <span>👥 16 Teams · 4 Groups</span>
-    <span>📅 Feb 27, 2026</span>
+    <span>📅 Feb 28, 2026</span>
   </div>
 </header>
 
@@ -268,8 +268,8 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
 <!-- SCHEDULE TAB -->
 <div id="tab-schedule" class="tab-content">
   <div class="info-bar">
-    <div>🕗 Start: <strong>9:00 AM</strong></div>
-    <div>🔚 End: <strong>~11:30 AM</strong></div>
+    <div>🕗 Start: <strong>10:00 AM</strong></div>
+    <div>🔚 End: <strong>11:00 AM</strong></div>
     <div>⏱ Per Match: <strong>15 min</strong></div>
     <div>🏟 Courts: <strong>6</strong></div>
     <div>👥 Teams: <strong>16</strong></div>
@@ -413,30 +413,34 @@ const GROUPS = {
 };
 
 const SCHEDULE = [
+  // Round 1 — 10:00 AM (Courts 1-2: Group 1 | Court 3: Group 2 | Courts 4-5: Group 3 | Court 6: Group 4)
   {time:'10:00 AM',court:1,group:'Group 1',t1:'Tony & Cole',t2:'PJ & Syed'},
   {time:'10:00 AM',court:2,group:'Group 1',t1:'Suresh & Rajesh',t2:'LD & Nathan'},
   {time:'10:00 AM',court:3,group:'Group 2',t1:'Andrew Jacob & Mark',t2:'Carlos & Carlos'},
-  {time:'10:00 AM',court:4,group:'Group 2',t1:'Andrew Stafford & Stephen',t2:'Mason & Shane'},
-  {time:'10:00 AM',court:5,group:'Group 3',t1:'Maulik & Addy',t2:'Dwayne & Luk'},
-  {time:'10:00 AM',court:6,group:'Group 3',t1:'Vinod & Senthil',t2:'Arun & Elango'},
+  {time:'10:00 AM',court:4,group:'Group 3',t1:'Maulik & Addy',t2:'Dwayne & Luk'},
+  {time:'10:00 AM',court:5,group:'Group 3',t1:'Vinod & Senthil',t2:'Arun & Elango'},
+  {time:'10:00 AM',court:6,group:'Group 4',t1:'Abhishek & Philip',t2:'Raj & David'},
+  // Round 2 — 10:15 AM
   {time:'10:15 AM',court:1,group:'Group 1',t1:'Tony & Cole',t2:'Suresh & Rajesh'},
   {time:'10:15 AM',court:2,group:'Group 1',t1:'PJ & Syed',t2:'LD & Nathan'},
-  {time:'10:15 AM',court:3,group:'Group 2',t1:'Andrew Jacob & Mark',t2:'Andrew Stafford & Stephen'},
-  {time:'10:15 AM',court:4,group:'Group 2',t1:'Carlos & Carlos',t2:'Mason & Shane'},
-  {time:'10:15 AM',court:5,group:'Group 3',t1:'Maulik & Addy',t2:'Vinod & Senthil'},
-  {time:'10:15 AM',court:6,group:'Group 3',t1:'Dwayne & Luk',t2:'Arun & Elango'},
+  {time:'10:15 AM',court:3,group:'Group 2',t1:'Andrew Stafford & Stephen',t2:'Mason & Shane'},
+  {time:'10:15 AM',court:4,group:'Group 3',t1:'Maulik & Addy',t2:'Vinod & Senthil'},
+  {time:'10:15 AM',court:5,group:'Group 3',t1:'Dwayne & Luk',t2:'Arun & Elango'},
+  {time:'10:15 AM',court:6,group:'Group 4',t1:'Dylan & Kason',t2:'Jared & Doug'},
+  // Round 3 — 10:30 AM
   {time:'10:30 AM',court:1,group:'Group 1',t1:'Tony & Cole',t2:'LD & Nathan'},
-  {time:'10:30 AM',court:2,group:'Group 1',t1:'PJ & Syed',t2:'Suresh & Rajesh'},
-  {time:'10:30 AM',court:3,group:'Group 2',t1:'Andrew Jacob & Mark',t2:'Mason & Shane'},
-  {time:'10:30 AM',court:4,group:'Group 2',t1:'Carlos & Carlos',t2:'Andrew Stafford & Stephen'},
-  {time:'10:30 AM',court:5,group:'Group 3',t1:'Maulik & Addy',t2:'Arun & Elango'},
-  {time:'10:30 AM',court:6,group:'Group 3',t1:'Dwayne & Luk',t2:'Vinod & Senthil'},
-  {time:'10:45 AM',court:3,group:'Group 4',t1:'Abhishek & Philip',t2:'Raj & David'},
-  {time:'10:45 AM',court:4,group:'Group 4',t1:'Dylan & Kason',t2:'Jared & Doug'},
-  {time:'11:00 AM',court:3,group:'Group 4',t1:'Abhishek & Philip',t2:'Dylan & Kason'},
-  {time:'11:00 AM',court:4,group:'Group 4',t1:'Raj & David',t2:'Jared & Doug'},
-  {time:'11:15 AM',court:3,group:'Group 4',t1:'Abhishek & Philip',t2:'Jared & Doug'},
-  {time:'11:15 AM',court:4,group:'Group 4',t1:'Raj & David',t2:'Dylan & Kason'}
+  {time:'10:30 AM',court:2,group:'Group 2',t1:'Andrew Jacob & Mark',t2:'Andrew Stafford & Stephen'},
+  {time:'10:30 AM',court:3,group:'Group 2',t1:'Carlos & Carlos',t2:'Mason & Shane'},
+  {time:'10:30 AM',court:4,group:'Group 3',t1:'Maulik & Addy',t2:'Arun & Elango'},
+  {time:'10:30 AM',court:5,group:'Group 4',t1:'Abhishek & Philip',t2:'Dylan & Kason'},
+  {time:'10:30 AM',court:6,group:'Group 4',t1:'Raj & David',t2:'Jared & Doug'},
+  // Round 4 — 10:45 AM
+  {time:'10:45 AM',court:1,group:'Group 1',t1:'PJ & Syed',t2:'Suresh & Rajesh'},
+  {time:'10:45 AM',court:2,group:'Group 2',t1:'Andrew Jacob & Mark',t2:'Mason & Shane'},
+  {time:'10:45 AM',court:3,group:'Group 2',t1:'Carlos & Carlos',t2:'Andrew Stafford & Stephen'},
+  {time:'10:45 AM',court:4,group:'Group 3',t1:'Dwayne & Luk',t2:'Vinod & Senthil'},
+  {time:'10:45 AM',court:5,group:'Group 4',t1:'Abhishek & Philip',t2:'Jared & Doug'},
+  {time:'10:45 AM',court:6,group:'Group 4',t1:'Raj & David',t2:'Dylan & Kason'}
 ];
 
 let scores = {};
