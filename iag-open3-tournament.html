@@ -1168,8 +1168,8 @@ let scoresRef = null;
 function initFirebase() {
   try {
     if (typeof firebase === 'undefined') {
-      console.warn('Firebase SDK not loaded, falling back to localStorage');
-      initLocalStorage();
+      console.warn('Firebase SDK not loaded');
+      initLocalStorage('SDK failed to load');
       return;
     }
     if (!firebase.apps.length) {
@@ -1178,31 +1178,38 @@ function initFirebase() {
     db = firebase.database();
     scoresRef = db.ref('open3-scores');
 
-    // Listen for real-time updates from Firebase
-    scoresRef.on('value', (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        scores = data;
-      } else {
-        scores = {};
+    updateSyncStatus('⏳ Connecting to Firebase...', 'muted');
+
+    const timeoutId = setTimeout(() => {
+      if (!firebaseReady) {
+        updateSyncStatus('⚠️ Slow – check DB Rules in Firebase Console', 'orange');
       }
+    }, 5000);
+
+    scoresRef.on('value', (snapshot) => {
+      clearTimeout(timeoutId);
+      const data = snapshot.val();
+      scores = data || {};
       firebaseReady = true;
       buildResultsTable();
       buildStandings();
       updateSyncStatus('🟢 Live – synced', 'green');
     }, (error) => {
+      clearTimeout(timeoutId);
       console.error('Firebase read error:', error);
-      updateSyncStatus('🔴 Sync error – using local', 'red');
-      initLocalStorage();
+      const msg = error.code === 'PERMISSION_DENIED'
+        ? '🔴 Permission denied – set DB Rules to test mode in Firebase Console'
+        : '🔴 Firebase error: ' + error.message;
+      updateSyncStatus(msg, 'red');
+      initLocalStorage('firebase error');
     });
   } catch(e) {
     console.error('Firebase init error:', e);
-    initLocalStorage();
+    initLocalStorage(e.message);
   }
 }
 
-function initLocalStorage() {
-  // Fallback: use localStorage if Firebase not configured
+function initLocalStorage(reason) {
   try {
     const saved = localStorage.getItem('iag-open3-scores');
     if (saved) scores = JSON.parse(saved);
@@ -1210,7 +1217,9 @@ function initLocalStorage() {
   firebaseReady = true;
   buildResultsTable();
   buildStandings();
-  updateSyncStatus('🟡 Local only (Firebase not configured)', 'orange');
+  if (!reason) {
+    updateSyncStatus('🟡 Local only – scores saved in this browser', 'orange');
+  }
 }
 
 function saveScoreToFirebase(key, scoreObj) {
@@ -1230,7 +1239,7 @@ function updateSyncStatus(msg, color) {
   const el = document.getElementById('sync-status');
   if (el) {
     el.textContent = msg;
-    el.style.color = color === 'green' ? 'var(--green)' : color === 'orange' ? 'var(--accent2)' : 'var(--accent3)';
+    el.style.color = color === 'green' ? 'var(--green)' : color === 'orange' ? 'var(--accent2)' : color === 'muted' ? 'var(--muted)' : 'var(--accent3)';
   }
 }
 
