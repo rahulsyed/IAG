@@ -743,6 +743,7 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
 <!-- Organiser Bar -->
 <div class="org-bar">
   <span class="org-status" id="org-status">👁 View Only</span>
+  <span id="sync-status" style="font-size:11px;letter-spacing:0.5px;color:var(--muted);margin:0 12px">⏳ Connecting...</span>
   <button class="org-btn" id="org-btn" onclick="toggleOrg()">🔒 Organiser Login</button>
 </div>
 
@@ -779,7 +780,7 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
       <tr>
         <td class="time-cell">8:00 PM</td>
         <td class="match-cell">Nirmala &amp; Kavya <span class="vs">vs</span> Gayathri &amp; Maheshwari</td>
-        <td class="match-cell">Suganandini &amp; Ridhyanyaa <span class="vs">vs</span> Melfi &amp; Deeksha</td>
+        <td class="match-cell">Suganandini &amp; Ridhyanyaa <span class="vs">vs</span> Nalani &amp; Deeksha</td>
       </tr>
       <tr>
         <td class="time-cell">8:15 PM</td>
@@ -788,7 +789,7 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
       </tr>
       <tr>
         <td class="time-cell">8:30 PM</td>
-        <td class="match-cell">Nirmala &amp; Kavya <span class="vs">vs</span> Melfi &amp; Deeksha</td>
+        <td class="match-cell">Nirmala &amp; Kavya <span class="vs">vs</span> Nalani &amp; Deeksha</td>
         <td class="match-cell">Sofi &amp; Priya <span class="vs">vs</span> Gayathri &amp; Maheshwari</td>
       </tr>
       <tr>
@@ -798,13 +799,13 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
       </tr>
       <tr>
         <td class="time-cell">9:00 PM</td>
-        <td class="match-cell">Melfi &amp; Deeksha <span class="vs">vs</span> Gayathri &amp; Maheshwari</td>
+        <td class="match-cell">Nalani &amp; Deeksha <span class="vs">vs</span> Gayathri &amp; Maheshwari</td>
         <td class="match-cell">Sofi &amp; Priya <span class="vs">vs</span> Divya &amp; Ramya</td>
       </tr>
       <tr>
         <td class="time-cell">9:15 PM</td>
         <td class="match-cell">Sofi &amp; Priya <span class="vs">vs</span> Suganandini &amp; Ridhyanyaa</td>
-        <td class="match-cell">Divya &amp; Ramya <span class="vs">vs</span> Melfi &amp; Deeksha</td>
+        <td class="match-cell">Divya &amp; Ramya <span class="vs">vs</span> Nalani &amp; Deeksha</td>
       </tr>
     </tbody>
   </table>
@@ -816,7 +817,7 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
       <div class="sched-time">8:00 PM</div>
       <div class="sched-courts">
         <div class="sched-court"><span class="court-label">Court 1</span><span class="court-match">Nirmala &amp; Kavya <span class="vs">vs</span> Gayathri &amp; Maheshwari</span></div>
-        <div class="sched-court"><span class="court-label c2">Court 2</span><span class="court-match">Suganandini &amp; Ridhyanyaa <span class="vs">vs</span> Melfi &amp; Deeksha</span></div>
+        <div class="sched-court"><span class="court-label c2">Court 2</span><span class="court-match">Suganandini &amp; Ridhyanyaa <span class="vs">vs</span> Nalani &amp; Deeksha</span></div>
       </div>
     </div>
     <div class="sched-slot">
@@ -829,7 +830,7 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
     <div class="sched-slot">
       <div class="sched-time">8:30 PM</div>
       <div class="sched-courts">
-        <div class="sched-court"><span class="court-label">Court 1</span><span class="court-match">Nirmala &amp; Kavya <span class="vs">vs</span> Melfi &amp; Deeksha</span></div>
+        <div class="sched-court"><span class="court-label">Court 1</span><span class="court-match">Nirmala &amp; Kavya <span class="vs">vs</span> Nalani &amp; Deeksha</span></div>
         <div class="sched-court"><span class="court-label c2">Court 2</span><span class="court-match">Sofi &amp; Priya <span class="vs">vs</span> Gayathri &amp; Maheshwari</span></div>
       </div>
     </div>
@@ -843,7 +844,7 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
     <div class="sched-slot">
       <div class="sched-time">9:00 PM</div>
       <div class="sched-courts">
-        <div class="sched-court"><span class="court-label">Court 1</span><span class="court-match">Melfi &amp; Deeksha <span class="vs">vs</span> Gayathri &amp; Maheshwari</span></div>
+        <div class="sched-court"><span class="court-label">Court 1</span><span class="court-match">Nalani &amp; Deeksha <span class="vs">vs</span> Gayathri &amp; Maheshwari</span></div>
         <div class="sched-court"><span class="court-label c2">Court 2</span><span class="court-match">Sofi &amp; Priya <span class="vs">vs</span> Divya &amp; Ramya</span></div>
       </div>
     </div>
@@ -851,7 +852,7 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
       <div class="sched-time">9:15 PM</div>
       <div class="sched-courts">
         <div class="sched-court"><span class="court-label">Court 1</span><span class="court-match">Sofi &amp; Priya <span class="vs">vs</span> Suganandini &amp; Ridhyanyaa</span></div>
-        <div class="sched-court"><span class="court-label c2">Court 2</span><span class="court-match">Divya &amp; Ramya <span class="vs">vs</span> Melfi &amp; Deeksha</span></div>
+        <div class="sched-court"><span class="court-label c2">Court 2</span><span class="court-match">Divya &amp; Ramya <span class="vs">vs</span> Nalani &amp; Deeksha</span></div>
       </div>
     </div>
   </div>
@@ -1119,6 +1120,10 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
 
 </div><!-- end wrapper -->
 
+<!-- Firebase SDK (Realtime Database) — loaded before main script -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
 <script>
 // ---- Data ----
 const TEAMS = [
@@ -1126,7 +1131,7 @@ const TEAMS = [
   'Divya & Ramya',
   'Suganandini & Ridhyanyaa',
   'Nirmala & Kavya',
-  'Melfi & Deeksha',
+  'Nalani & Deeksha',
   'Gayathri & Maheshwari'
 ];
 
@@ -1139,6 +1144,95 @@ const MATCHES = [
   { time:'9:15 PM', c1t1:0, c1t2:2, c2t1:1, c2t2:4 }
 ];
 // indices into TEAMS array (0-based)
+
+// ---- Firebase Realtime Database Integration ----
+// Using Firebase CDN — free tier, real-time sync across all devices
+const FIREBASE_CONFIG = {
+  // ⚠️ REPLACE THESE VALUES WITH YOUR OWN FIREBASE PROJECT CREDENTIALS
+  // Steps: https://console.firebase.google.com → New Project → Realtime Database → Get Config
+  apiKey: "AIzaSyBvlflZt28TrZi-nZ6-L8YV1IBqrLiIvsc",
+  authDomain: "iag-pickleball.firebaseapp.com",
+  databaseURL: "https://iag-pickleball-default-rtdb.firebaseio.com",
+  projectId: "iag-pickleball",
+  storageBucket: "iag-pickleball.firebasestorage.app",
+  messagingSenderId: "1032967317528",
+  appId: "1:1032967317528:web:8742c451537507ca37fb6d",
+  measurementId: "G-1TWT6FF8FW"
+};
+
+// Initialize Firebase
+let db = null;
+let firebaseReady = false;
+let scoresRef = null;
+
+function initFirebase() {
+  try {
+    if (typeof firebase === 'undefined') {
+      console.warn('Firebase SDK not loaded, falling back to localStorage');
+      initLocalStorage();
+      return;
+    }
+    if (!firebase.apps.length) {
+      firebase.initializeApp(FIREBASE_CONFIG);
+    }
+    db = firebase.database();
+    scoresRef = db.ref('open3-scores');
+
+    // Listen for real-time updates from Firebase
+    scoresRef.on('value', (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        scores = data;
+      } else {
+        scores = {};
+      }
+      firebaseReady = true;
+      buildResultsTable();
+      buildStandings();
+      updateSyncStatus('🟢 Live – synced', 'green');
+    }, (error) => {
+      console.error('Firebase read error:', error);
+      updateSyncStatus('🔴 Sync error – using local', 'red');
+      initLocalStorage();
+    });
+  } catch(e) {
+    console.error('Firebase init error:', e);
+    initLocalStorage();
+  }
+}
+
+function initLocalStorage() {
+  // Fallback: use localStorage if Firebase not configured
+  try {
+    const saved = localStorage.getItem('iag-open3-scores');
+    if (saved) scores = JSON.parse(saved);
+  } catch(e) {}
+  firebaseReady = true;
+  buildResultsTable();
+  buildStandings();
+  updateSyncStatus('🟡 Local only (Firebase not configured)', 'orange');
+}
+
+function saveScoreToFirebase(key, scoreObj) {
+  if (db && scoresRef) {
+    scoresRef.child(key).set(scoreObj).catch(err => {
+      console.error('Save error:', err);
+      // Fallback to localStorage
+      try { localStorage.setItem('iag-open3-scores', JSON.stringify(scores)); } catch(e) {}
+    });
+  } else {
+    // localStorage fallback
+    try { localStorage.setItem('iag-open3-scores', JSON.stringify(scores)); } catch(e) {}
+  }
+}
+
+function updateSyncStatus(msg, color) {
+  const el = document.getElementById('sync-status');
+  if (el) {
+    el.textContent = msg;
+    el.style.color = color === 'green' ? 'var(--green)' : color === 'orange' ? 'var(--accent2)' : 'var(--accent3)';
+  }
+}
 
 let scores = {};
 // scores[matchKey] = {s1, s2}
@@ -1189,6 +1283,7 @@ function updateScore(key, pos, val) {
   if (!scores[key]) scores[key] = {s1:'', s2:''};
   if (pos === 1) scores[key].s1 = val;
   else scores[key].s2 = val;
+  saveScoreToFirebase(key, scores[key]);
   buildResultsTable();
   buildStandings();
 }
@@ -1330,9 +1425,9 @@ function selectKO(n) {
   document.getElementById('bracket-ko2').style.display = n === 2 ? 'block' : 'none';
 }
 
-// Init
-buildResultsTable();
-buildStandings();
+// Init — Firebase will trigger buildResultsTable & buildStandings on first load
+// Firebase SDK is loaded before this script via the tags above the closing body
+initFirebase();
 </script>
 </body>
 </html>
