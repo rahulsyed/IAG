@@ -157,6 +157,10 @@ body.organiser-mode .org-only{display:flex!important;}
 </head>
 <body>
 <div class="wrapper">
+<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.08);">
+  <a href="index.html" class="back-btn" style="text-decoration:none;">← Tournament Hub</a>
+  <a href="player-match-finder.html" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(138,43,226,0.15);border:1px solid rgba(138,43,226,0.4);border-radius:20px;color:#b47ef5;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;text-decoration:none;letter-spacing:1px;">🔍 FIND MY MATCHES</a>
+</div>
 
 <div class="pin-overlay" id="pin-overlay">
   <div class="pin-modal">
@@ -271,21 +275,39 @@ body.organiser-mode .org-only{display:flex!important;}
             <div class="match-slot">
               <div class="slot-header">M2 — Seed 7 vs 10</div>
               <div class="team-row"><div class="seed-badge sn">7</div><div class="team-slot-name" id="r16-s1-t3">—</div></div>
-              <div class="team-row"><div class="seed-badge sn">10</div><div class="team-slot-name" id="r16-s1-t4">—</div></div>
+              <div class="team-row"><div class="seed-badge sn">10</div><div class="team-slot-name" id="r16-s1-t4">—</div>
+<div class="org-only" style="display:none;align-items:center;justify-content:center;gap:6px;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.07);">
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-r16m2-s1" onchange="updateKOScore('r16m2','s1',this.value)" />
+  <span style="color:var(--muted);font-size:12px;">:</span>
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-r16m2-s2" onchange="updateKOScore('r16m2','s2',this.value)" />
+  <span id="ko-r16m2-winner" style="font-size:11px;color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;margin-left:4px;"></span>
+</div></div>
             </div>
           </div>
           <div>
             <div class="match-slot">
               <div class="slot-header">M3 — Seed 5 vs 12</div>
               <div class="team-row"><div class="seed-badge sn">5</div><div class="team-slot-name" id="r16-s1-t5">—</div></div>
-              <div class="team-row"><div class="seed-badge sn">12</div><div class="team-slot-name" id="r16-s1-t6">—</div></div>
+              <div class="team-row"><div class="seed-badge sn">12</div><div class="team-slot-name" id="r16-s1-t6">—</div>
+<div class="org-only" style="display:none;align-items:center;justify-content:center;gap:6px;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.07);">
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-r16m3-s1" onchange="updateKOScore('r16m3','s1',this.value)" />
+  <span style="color:var(--muted);font-size:12px;">:</span>
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-r16m3-s2" onchange="updateKOScore('r16m3','s2',this.value)" />
+  <span id="ko-r16m3-winner" style="font-size:11px;color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;margin-left:4px;"></span>
+</div></div>
             </div>
           </div>
           <div>
             <div class="match-slot">
               <div class="slot-header">M4 — Seed 3 vs 14</div>
               <div class="team-row"><div class="seed-badge s3">3</div><div class="team-slot-name" id="r16-s1-t7">—</div></div>
-              <div class="team-row"><div class="seed-badge sn">14</div><div class="team-slot-name" id="r16-s1-t8">—</div></div>
+              <div class="team-row"><div class="seed-badge sn">14</div><div class="team-slot-name" id="r16-s1-t8">—</div>
+<div class="org-only" style="display:none;align-items:center;justify-content:center;gap:6px;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.07);">
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-r16m4-s1" onchange="updateKOScore('r16m4','s1',this.value)" />
+  <span style="color:var(--muted);font-size:12px;">:</span>
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-r16m4-s2" onchange="updateKOScore('r16m4','s2',this.value)" />
+  <span id="ko-r16m4-winner" style="font-size:11px;color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;margin-left:4px;"></span>
+</div></div>
             </div>
           </div>
         </div>
@@ -299,14 +321,26 @@ body.organiser-mode .org-only{display:flex!important;}
             <div class="match-slot">
               <div class="slot-header">QF 1 — M1 W vs M2 W</div>
               <div class="team-row"><div class="seed-badge s1">1</div><div class="team-slot-name tbd" id="qf-s1-t1">M1 Winner</div></div>
-              <div class="team-row"><div class="seed-badge sn">Q</div><div class="team-slot-name tbd" id="qf-s1-t2">M2 Winner</div></div>
+              <div class="team-row"><div class="seed-badge sn">Q</div><div class="team-slot-name tbd" id="qf-s1-t2">M2 Winner</div>
+<div class="org-only" style="display:none;align-items:center;justify-content:center;gap:6px;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.07);">
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-qf1-s1" onchange="updateKOScore('qf1','s1',this.value)" />
+  <span style="color:var(--muted);font-size:12px;">:</span>
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-qf1-s2" onchange="updateKOScore('qf1','s2',this.value)" />
+  <span id="ko-qf1-winner" style="font-size:11px;color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;margin-left:4px;"></span>
+</div></div>
             </div>
           </div>
           <div>
             <div class="match-slot">
               <div class="slot-header">QF 2 — M3 W vs M4 W</div>
               <div class="team-row"><div class="seed-badge sn">Q</div><div class="team-slot-name tbd" id="qf-s1-t3">M3 Winner</div></div>
-              <div class="team-row"><div class="seed-badge s3">Q</div><div class="team-slot-name tbd" id="qf-s1-t4">M4 Winner</div></div>
+              <div class="team-row"><div class="seed-badge s3">Q</div><div class="team-slot-name tbd" id="qf-s1-t4">M4 Winner</div>
+<div class="org-only" style="display:none;align-items:center;justify-content:center;gap:6px;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.07);">
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-qf2-s1" onchange="updateKOScore('qf2','s1',this.value)" />
+  <span style="color:var(--muted);font-size:12px;">:</span>
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-qf2-s2" onchange="updateKOScore('qf2','s2',this.value)" />
+  <span id="ko-qf2-winner" style="font-size:11px;color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;margin-left:4px;"></span>
+</div></div>
             </div>
           </div>
         </div>
@@ -320,7 +354,32 @@ body.organiser-mode .org-only{display:flex!important;}
             <div class="match-slot" style="border-color:rgba(247,201,72,0.25);">
               <div class="slot-header" style="color:var(--gold);background:rgba(247,201,72,0.07);">SF1 — QF1 W vs QF2 W</div>
               <div class="team-row"><div class="seed-badge s1">SF</div><div class="team-slot-name tbd" id="sf1-t1">QF1 Winner</div></div>
-              <div class="team-row"><div class="seed-badge s2">SF</div><div class="team-slot-name tbd" id="sf1-t2">QF2 Winner</div></div>
+              <div class="team-row"><div class="seed-badge s2">SF</div><div class="team-slot-name tbd" id="sf1-t2">QF2 Winner</div>
+<div class="org-only" style="display:none;flex-direction:column;gap:5px;margin-top:8px;padding-top:8px;border-top:1px solid rgba(247,201,72,0.25);">
+  <div style="font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:1.5px;color:var(--gold);text-align:center;margin-bottom:3px;text-transform:uppercase;">★ Best of 3 Sets</div>
+  <div style="display:flex;align-items:center;justify-content:center;gap:5px;">
+    <span style="font-size:10px;color:var(--muted);width:32px;text-align:right;">Set 1</span>
+    <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-sf1-s1a" onchange="updateKOScore('sf1','s1a',this.value)" style="width:38px;" />
+    <span style="color:var(--muted);font-size:11px;">:</span>
+    <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-sf1-s1b" onchange="updateKOScore('sf1','s1b',this.value)" style="width:38px;" />
+  </div>
+  <div style="display:flex;align-items:center;justify-content:center;gap:5px;">
+    <span style="font-size:10px;color:var(--muted);width:32px;text-align:right;">Set 2</span>
+    <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-sf1-s2a" onchange="updateKOScore('sf1','s2a',this.value)" style="width:38px;" />
+    <span style="color:var(--muted);font-size:11px;">:</span>
+    <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-sf1-s2b" onchange="updateKOScore('sf1','s2b',this.value)" style="width:38px;" />
+  </div>
+  <div style="display:flex;align-items:center;justify-content:center;gap:5px;" id="ko-sf1-set3row">
+    <span style="font-size:10px;color:var(--muted);width:32px;text-align:right;opacity:0.45;">Set 3</span>
+    <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-sf1-s3a" onchange="updateKOScore('sf1','s3a',this.value)" style="width:38px;opacity:0.45;" />
+    <span style="color:var(--muted);font-size:11px;opacity:0.45;">:</span>
+    <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-sf1-s3b" onchange="updateKOScore('sf1','s3b',this.value)" style="width:38px;opacity:0.45;" />
+  </div>
+  <div style="text-align:center;margin-top:4px;min-height:16px;">
+    <span id="ko-sf1-winner" style="font-size:12px;color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;"></span>
+    <span id="ko-sf1-series" style="font-size:11px;color:var(--muted);margin-left:6px;font-family:'Rajdhani',sans-serif;"></span>
+  </div>
+</div></div>
             </div>
           </div>
         </div>
@@ -348,21 +407,39 @@ body.organiser-mode .org-only{display:flex!important;}
             <div class="match-slot">
               <div class="slot-header">M6 — Seed 8 vs 9</div>
               <div class="team-row"><div class="seed-badge sn">8</div><div class="team-slot-name" id="r16-s2-t3">—</div></div>
-              <div class="team-row"><div class="seed-badge sn">9</div><div class="team-slot-name" id="r16-s2-t4">—</div></div>
+              <div class="team-row"><div class="seed-badge sn">9</div><div class="team-slot-name" id="r16-s2-t4">—</div>
+<div class="org-only" style="display:none;align-items:center;justify-content:center;gap:6px;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.07);">
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-r16m6-s1" onchange="updateKOScore('r16m6','s1',this.value)" />
+  <span style="color:var(--muted);font-size:12px;">:</span>
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-r16m6-s2" onchange="updateKOScore('r16m6','s2',this.value)" />
+  <span id="ko-r16m6-winner" style="font-size:11px;color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;margin-left:4px;"></span>
+</div></div>
             </div>
           </div>
           <div>
             <div class="match-slot">
               <div class="slot-header">M7 — Seed 6 vs 11</div>
               <div class="team-row"><div class="seed-badge sn">6</div><div class="team-slot-name" id="r16-s2-t5">—</div></div>
-              <div class="team-row"><div class="seed-badge sn">11</div><div class="team-slot-name" id="r16-s2-t6">—</div></div>
+              <div class="team-row"><div class="seed-badge sn">11</div><div class="team-slot-name" id="r16-s2-t6">—</div>
+<div class="org-only" style="display:none;align-items:center;justify-content:center;gap:6px;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.07);">
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-r16m7-s1" onchange="updateKOScore('r16m7','s1',this.value)" />
+  <span style="color:var(--muted);font-size:12px;">:</span>
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-r16m7-s2" onchange="updateKOScore('r16m7','s2',this.value)" />
+  <span id="ko-r16m7-winner" style="font-size:11px;color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;margin-left:4px;"></span>
+</div></div>
             </div>
           </div>
           <div>
             <div class="match-slot">
               <div class="slot-header">M8 — Seed 4 vs 13</div>
               <div class="team-row"><div class="seed-badge s4">4</div><div class="team-slot-name" id="r16-s2-t7">—</div></div>
-              <div class="team-row"><div class="seed-badge sn">13</div><div class="team-slot-name" id="r16-s2-t8">—</div></div>
+              <div class="team-row"><div class="seed-badge sn">13</div><div class="team-slot-name" id="r16-s2-t8">—</div>
+<div class="org-only" style="display:none;align-items:center;justify-content:center;gap:6px;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.07);">
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-r16m8-s1" onchange="updateKOScore('r16m8','s1',this.value)" />
+  <span style="color:var(--muted);font-size:12px;">:</span>
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-r16m8-s2" onchange="updateKOScore('r16m8','s2',this.value)" />
+  <span id="ko-r16m8-winner" style="font-size:11px;color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;margin-left:4px;"></span>
+</div></div>
             </div>
           </div>
         </div>
@@ -376,14 +453,26 @@ body.organiser-mode .org-only{display:flex!important;}
             <div class="match-slot">
               <div class="slot-header">QF 3 — M5 W vs M6 W</div>
               <div class="team-row"><div class="seed-badge s2">2</div><div class="team-slot-name tbd" id="qf-s2-t1">M5 Winner</div></div>
-              <div class="team-row"><div class="seed-badge sn">Q</div><div class="team-slot-name tbd" id="qf-s2-t2">M6 Winner</div></div>
+              <div class="team-row"><div class="seed-badge sn">Q</div><div class="team-slot-name tbd" id="qf-s2-t2">M6 Winner</div>
+<div class="org-only" style="display:none;align-items:center;justify-content:center;gap:6px;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.07);">
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-qf3-s1" onchange="updateKOScore('qf3','s1',this.value)" />
+  <span style="color:var(--muted);font-size:12px;">:</span>
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-qf3-s2" onchange="updateKOScore('qf3','s2',this.value)" />
+  <span id="ko-qf3-winner" style="font-size:11px;color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;margin-left:4px;"></span>
+</div></div>
             </div>
           </div>
           <div>
             <div class="match-slot">
               <div class="slot-header">QF 4 — M7 W vs M8 W</div>
               <div class="team-row"><div class="seed-badge sn">Q</div><div class="team-slot-name tbd" id="qf-s2-t3">M7 Winner</div></div>
-              <div class="team-row"><div class="seed-badge s4">Q</div><div class="team-slot-name tbd" id="qf-s2-t4">M8 Winner</div></div>
+              <div class="team-row"><div class="seed-badge s4">Q</div><div class="team-slot-name tbd" id="qf-s2-t4">M8 Winner</div>
+<div class="org-only" style="display:none;align-items:center;justify-content:center;gap:6px;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.07);">
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-qf4-s1" onchange="updateKOScore('qf4','s1',this.value)" />
+  <span style="color:var(--muted);font-size:12px;">:</span>
+  <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-qf4-s2" onchange="updateKOScore('qf4','s2',this.value)" />
+  <span id="ko-qf4-winner" style="font-size:11px;color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;margin-left:4px;"></span>
+</div></div>
             </div>
           </div>
         </div>
@@ -397,7 +486,32 @@ body.organiser-mode .org-only{display:flex!important;}
             <div class="match-slot" style="border-color:rgba(247,201,72,0.25);">
               <div class="slot-header" style="color:var(--gold);background:rgba(247,201,72,0.07);">SF2 — QF3 W vs QF4 W</div>
               <div class="team-row"><div class="seed-badge s1">SF</div><div class="team-slot-name tbd" id="sf2-t1">QF3 Winner</div></div>
-              <div class="team-row"><div class="seed-badge s2">SF</div><div class="team-slot-name tbd" id="sf2-t2">QF4 Winner</div></div>
+              <div class="team-row"><div class="seed-badge s2">SF</div><div class="team-slot-name tbd" id="sf2-t2">QF4 Winner</div>
+<div class="org-only" style="display:none;flex-direction:column;gap:5px;margin-top:8px;padding-top:8px;border-top:1px solid rgba(247,201,72,0.25);">
+  <div style="font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:1.5px;color:var(--gold);text-align:center;margin-bottom:3px;text-transform:uppercase;">★ Best of 3 Sets</div>
+  <div style="display:flex;align-items:center;justify-content:center;gap:5px;">
+    <span style="font-size:10px;color:var(--muted);width:32px;text-align:right;">Set 1</span>
+    <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-sf2-s1a" onchange="updateKOScore('sf2','s1a',this.value)" style="width:38px;" />
+    <span style="color:var(--muted);font-size:11px;">:</span>
+    <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-sf2-s1b" onchange="updateKOScore('sf2','s1b',this.value)" style="width:38px;" />
+  </div>
+  <div style="display:flex;align-items:center;justify-content:center;gap:5px;">
+    <span style="font-size:10px;color:var(--muted);width:32px;text-align:right;">Set 2</span>
+    <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-sf2-s2a" onchange="updateKOScore('sf2','s2a',this.value)" style="width:38px;" />
+    <span style="color:var(--muted);font-size:11px;">:</span>
+    <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-sf2-s2b" onchange="updateKOScore('sf2','s2b',this.value)" style="width:38px;" />
+  </div>
+  <div style="display:flex;align-items:center;justify-content:center;gap:5px;" id="ko-sf2-set3row">
+    <span style="font-size:10px;color:var(--muted);width:32px;text-align:right;opacity:0.45;">Set 3</span>
+    <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-sf2-s3a" onchange="updateKOScore('sf2','s3a',this.value)" style="width:38px;opacity:0.45;" />
+    <span style="color:var(--muted);font-size:11px;opacity:0.45;">:</span>
+    <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-sf2-s3b" onchange="updateKOScore('sf2','s3b',this.value)" style="width:38px;opacity:0.45;" />
+  </div>
+  <div style="text-align:center;margin-top:4px;min-height:16px;">
+    <span id="ko-sf2-winner" style="font-size:12px;color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;"></span>
+    <span id="ko-sf2-series" style="font-size:11px;color:var(--muted);margin-left:6px;font-family:'Rajdhani',sans-serif;"></span>
+  </div>
+</div></div>
             </div>
           </div>
         </div>
@@ -411,7 +525,32 @@ body.organiser-mode .org-only{display:flex!important;}
     <div class="match-slot" style="border-color:rgba(247,201,72,0.4);">
       <div class="slot-header" style="background:rgba(247,201,72,0.12);color:var(--gold);font-size:12px;">SF1 Winner vs SF2 Winner</div>
       <div class="team-row"><div class="seed-badge s1">🏆</div><div class="team-slot-name tbd" id="final-t1">SF1 Winner</div></div>
-      <div class="team-row"><div class="seed-badge s2">🏆</div><div class="team-slot-name tbd" id="final-t2">SF2 Winner</div></div>
+      <div class="team-row"><div class="seed-badge s2">🏆</div><div class="team-slot-name tbd" id="final-t2">SF2 Winner</div>
+<div class="org-only" style="display:none;flex-direction:column;gap:5px;margin-top:8px;padding-top:8px;border-top:1px solid rgba(247,201,72,0.25);">
+  <div style="font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:1.5px;color:var(--gold);text-align:center;margin-bottom:3px;text-transform:uppercase;">★ Best of 3 Sets</div>
+  <div style="display:flex;align-items:center;justify-content:center;gap:5px;">
+    <span style="font-size:10px;color:var(--muted);width:32px;text-align:right;">Set 1</span>
+    <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-final-s1a" onchange="updateKOScore('final','s1a',this.value)" style="width:38px;" />
+    <span style="color:var(--muted);font-size:11px;">:</span>
+    <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-final-s1b" onchange="updateKOScore('final','s1b',this.value)" style="width:38px;" />
+  </div>
+  <div style="display:flex;align-items:center;justify-content:center;gap:5px;">
+    <span style="font-size:10px;color:var(--muted);width:32px;text-align:right;">Set 2</span>
+    <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-final-s2a" onchange="updateKOScore('final','s2a',this.value)" style="width:38px;" />
+    <span style="color:var(--muted);font-size:11px;">:</span>
+    <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-final-s2b" onchange="updateKOScore('final','s2b',this.value)" style="width:38px;" />
+  </div>
+  <div style="display:flex;align-items:center;justify-content:center;gap:5px;" id="ko-final-set3row">
+    <span style="font-size:10px;color:var(--muted);width:32px;text-align:right;opacity:0.45;">Set 3</span>
+    <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-final-s3a" onchange="updateKOScore('final','s3a',this.value)" style="width:38px;opacity:0.45;" />
+    <span style="color:var(--muted);font-size:11px;opacity:0.45;">:</span>
+    <input class="editable-score" type="number" min="0" max="99" placeholder="–" id="ko-final-s3b" onchange="updateKOScore('final','s3b',this.value)" style="width:38px;opacity:0.45;" />
+  </div>
+  <div style="text-align:center;margin-top:4px;min-height:16px;">
+    <span id="ko-final-winner" style="font-size:12px;color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;"></span>
+    <span id="ko-final-series" style="font-size:11px;color:var(--muted);margin-left:6px;font-family:'Rajdhani',sans-serif;"></span>
+  </div>
+</div></div>
     </div>
     <div style="margin-top:16px;" class="winner-slot">
       <div class="trophy">🏆</div>
@@ -598,6 +737,169 @@ function checkPin(){const val=document.getElementById('pin-input').value.trim();
 
 // Init
 buildTeams();buildSchedule('all');buildStandings();
+</script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<script>
+
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyDemo-placeholder-key",
+  authDomain: "iag-pickleball.firebaseapp.com",
+  databaseURL: "https://iag-pickleball-default-rtdb.firebaseio.com",
+  projectId: "iag-pickleball"
+};
+let db = null;
+let scoresRef = null;
+function initFirebase() {
+  try {
+    if (typeof firebase === 'undefined') { db = null; return; }
+    if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
+    db = firebase.database();
+    scoresRef = db.ref('mixed-scores');
+  } catch(e) {
+    db = null;
+  }
+}
+
+// ── KO Scoring ──────────────────────────────────────────────────────────────
+let koScores = {};
+const BO3_MATCHES = {'sf1':true, 'sf2':true, 'final':true};
+
+function initKOScores() {
+  if (db) {
+    db.ref('mixed-scores-ko').on('value', snap => {
+      koScores = snap.val() || {};
+      refreshKOScores();
+    });
+  } else {
+    try { const s = localStorage.getItem('iag-mixed-scores-ko'); if(s) koScores = JSON.parse(s); } catch(e) {}
+    refreshKOScores();
+  }
+}
+
+function updateKOScore(matchId, field, val) {
+  if (!koScores[matchId]) koScores[matchId] = {};
+  koScores[matchId][field] = val;
+  if (db) {
+    db.ref('mixed-scores-ko/' + matchId).set(koScores[matchId]).catch(()=>{});
+  } else {
+    try { localStorage.setItem('iag-mixed-scores-ko', JSON.stringify(koScores)); } catch(e) {}
+  }
+  refreshKOScores();
+}
+
+// BO3 winner: first to win 2 sets
+function kowBO3(matchId, t1id, t2id) {
+  const sc = koScores[matchId] || {};
+  let w1=0, w2=0;
+  [['s1a','s1b'],['s2a','s2b'],['s3a','s3b']].forEach(([ka,kb]) => {
+    const a=parseInt(sc[ka]||''), b=parseInt(sc[kb]||'');
+    if (!isNaN(a) && !isNaN(b) && (a||b)) { if(a>b) w1++; else if(b>a) w2++; }
+  });
+  if (w1>=2) { const t=document.getElementById(t1id); return t?t.textContent.trim():null; }
+  if (w2>=2) { const t=document.getElementById(t2id); return t?t.textContent.trim():null; }
+  return null;
+}
+
+// Single-set winner
+function kowSingle(matchId, t1id, t2id) {
+  const sc = koScores[matchId] || {};
+  if (sc.s1===undefined||sc.s1===''||sc.s2===undefined||sc.s2==='') return null;
+  const n1=parseInt(sc.s1), n2=parseInt(sc.s2);
+  if (isNaN(n1)||isNaN(n2)) return null;
+  const t1=document.getElementById(t1id), t2=document.getElementById(t2id);
+  if (!t1||!t2) return null;
+  return n1>n2?t1.textContent.trim():n2>n1?t2.textContent.trim():null;
+}
+
+// Unified: BO3 or single based on match type
+function kow(matchId, t1id, t2id) {
+  return BO3_MATCHES[matchId] ? kowBO3(matchId,t1id,t2id) : kowSingle(matchId,t1id,t2id);
+}
+
+function setKO(id, val) {
+  const el = document.getElementById(id);
+  if (el && val) { el.textContent = val; el.classList.remove('tbd'); }
+}
+
+function refreshKOScores() {
+  Object.keys(koScores).forEach(matchId => {
+    const sc = koScores[matchId] || {};
+    if (BO3_MATCHES[matchId]) {
+      // Restore inputs
+      ['s1a','s1b','s2a','s2b','s3a','s3b'].forEach(f => {
+        const el=document.getElementById('ko-'+matchId+'-'+f);
+        if (el && sc[f]!==undefined && sc[f]!=='') el.value = sc[f];
+      });
+      // Compute after sets 1+2 to decide Set 3 availability
+      let w1=0, w2=0;
+      [['s1a','s1b'],['s2a','s2b']].forEach(([ka,kb]) => {
+        const a=parseInt(sc[ka]||''), b=parseInt(sc[kb]||'');
+        if (!isNaN(a)&&!isNaN(b)&&(a||b)) { if(a>b) w1++; else if(b>a) w2++; }
+      });
+      // Set 3 row: full opacity only when tied 1-1 after 2 sets
+      const s3row=document.getElementById('ko-'+matchId+'-set3row');
+      if (s3row) {
+        const need3 = w1===1 && w2===1;
+        s3row.querySelectorAll('input,span').forEach(el => el.style.opacity = need3 ? '1' : '0.3');
+      }
+      // Include set 3 in final tally
+      const a3=parseInt(sc.s3a||''), b3=parseInt(sc.s3b||'');
+      if (!isNaN(a3)&&!isNaN(b3)&&(a3||b3)) { if(a3>b3) w1++; else if(b3>a3) w2++; }
+      // Display result
+      const wEl=document.getElementById('ko-'+matchId+'-winner');
+      const serEl=document.getElementById('ko-'+matchId+'-series');
+      const t1el=document.getElementById(matchId+'-t1');
+      const t2el=document.getElementById(matchId+'-t2');
+      if (serEl) serEl.textContent = (w1+w2>0) ? w1+'–'+w2 : '';
+      if (wEl) {
+        if (w1>=2) { wEl.textContent='🏆 '+(t1el?t1el.textContent.trim():'T1'); wEl.style.color='var(--green)'; }
+        else if (w2>=2) { wEl.textContent='🏆 '+(t2el?t2el.textContent.trim():'T2'); wEl.style.color='var(--green)'; }
+        else wEl.textContent='';
+      }
+    } else {
+      // Single-set
+      const s1el=document.getElementById('ko-'+matchId+'-s1');
+      const s2el=document.getElementById('ko-'+matchId+'-s2');
+      const wEl =document.getElementById('ko-'+matchId+'-winner');
+      const t1el=document.getElementById('ko-'+matchId+'-t1');
+      const t2el=document.getElementById('ko-'+matchId+'-t2');
+      if (s1el&&sc.s1!==undefined&&sc.s1!=='') s1el.value=sc.s1;
+      if (s2el&&sc.s2!==undefined&&sc.s2!=='') s2el.value=sc.s2;
+      if (wEl&&sc.s1!==undefined&&sc.s1!==''&&sc.s2!==undefined&&sc.s2!=='') {
+        const n1=parseInt(sc.s1), n2=parseInt(sc.s2);
+        if (!isNaN(n1)&&!isNaN(n2)) {
+          if (n1>n2) { wEl.textContent='✓ '+(t1el?t1el.textContent.trim():'T1'); wEl.style.color='var(--green)'; }
+          else if (n2>n1) { wEl.textContent='✓ '+(t2el?t2el.textContent.trim():'T2'); wEl.style.color='var(--green)'; }
+          else { wEl.textContent='Draw'; wEl.style.color='var(--accent2)'; }
+        }
+      }
+    }
+  });
+  propagateKO();
+}
+
+function propagateKO() {
+  [['r16m2','r16-s1-t3','r16-s1-t4','qf-s1-t2'],
+   ['r16m3','r16-s1-t5','r16-s1-t6','qf-s1-t3'],['r16m4','r16-s1-t7','r16-s1-t8','qf-s1-t4'],
+   ['r16m6','r16-s2-t3','r16-s2-t4','qf-s2-t2'],
+   ['r16m7','r16-s2-t5','r16-s2-t6','qf-s2-t3'],['r16m8','r16-s2-t7','r16-s2-t8','qf-s2-t4'],
+  ].forEach(([m,a,b,n])=>{const w=kow(m,a,b);if(w)setKO(n,w);});
+  const qf1=kow('qf1','qf-s1-t1','qf-s1-t2');if(qf1)setKO('sf1-t1',qf1);
+  const qf2=kow('qf2','qf-s1-t3','qf-s1-t4');if(qf2)setKO('sf1-t2',qf2);
+  const qf3=kow('qf3','qf-s2-t1','qf-s2-t2');if(qf3)setKO('sf2-t1',qf3);
+  const qf4=kow('qf4','qf-s2-t3','qf-s2-t4');if(qf4)setKO('sf2-t2',qf4);
+  const sf1=kow('sf1','sf1-t1','sf1-t2');if(sf1)setKO('final-t1',sf1);
+  const sf2=kow('sf2','sf2-t1','sf2-t2');if(sf2)setKO('final-t2',sf2);
+  const fw=kow('final','final-t1','final-t2');
+  const ch=document.getElementById('ko1-champion')||document.getElementById('champion-name');
+  if(ch&&fw){ch.textContent='🏆 '+fw;ch.style.color='var(--gold)';}
+}
+
+// ── Init ──
+initFirebase();
+initKOScores();
 </script>
 </body>
 </html>

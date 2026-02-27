@@ -170,6 +170,10 @@ body.organiser-mode .m-score-static{display:none!important;}
 </head>
 <body>
 <div class="wrapper">
+<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.08);">
+  <a href="index.html" class="back-btn" style="text-decoration:none;">← Tournament Hub</a>
+  <a href="player-match-finder.html" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(138,43,226,0.15);border:1px solid rgba(138,43,226,0.4);border-radius:20px;color:#b47ef5;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;text-decoration:none;letter-spacing:1px;">🔍 FIND MY MATCHES</a>
+</div>
 
 <div class="pin-overlay" id="pin-overlay">
   <div class="pin-modal">
@@ -320,10 +324,31 @@ body.organiser-mode .m-score-static{display:none!important;}
               <div class="m-team"><div class="m-seed s-gold">1</div><div class="m-name" id="ko1-sf1-t1">1st Place</div></div>
               <div class="m-team"><div class="m-seed s-grey">Q2W</div><div class="m-name tbd" id="ko1-sf1-t2">Q2 Winner</div></div>
               <div class="m-score">
-                <span class="m-score-static" id="ko1-sf1-sd"></span>
-                <input class="m-inp" data-match="ko1-sf1" data-pos="1" type="number" min="0" max="99" placeholder="&ndash;" />
-                <span class="m-sep">:</span>
-                <input class="m-inp" data-match="ko1-sf1" data-pos="2" type="number" min="0" max="99" placeholder="&ndash;" />
+                
+<div class="bo3-wrap" style="margin-top:6px;">
+  <div style="font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;text-align:center;margin-bottom:4px;">★ Best of 3</div>
+  <div style="display:flex;flex-direction:column;gap:3px;">
+    <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
+      <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set1</span>
+      <input class="m-inp" data-match="ko1-sf1" data-set="1" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <span style="color:var(--muted);font-size:10px;">:</span>
+      <input class="m-inp" data-match="ko1-sf1" data-set="1" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+    </div>
+    <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
+      <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set2</span>
+      <input class="m-inp" data-match="ko1-sf1" data-set="2" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <span style="color:var(--muted);font-size:10px;">:</span>
+      <input class="m-inp" data-match="ko1-sf1" data-set="2" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+    </div>
+    <div style="display:flex;align-items:center;gap:4px;justify-content:center;" id="ko1-sf1-s3row">
+      <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;opacity:0.4;">Set3</span>
+      <input class="m-inp" data-match="ko1-sf1" data-set="3" data-pos="1" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+      <span style="color:var(--muted);font-size:10px;opacity:0.4;">:</span>
+      <input class="m-inp" data-match="ko1-sf1" data-set="3" data-pos="2" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+    </div>
+  </div>
+  <div id="ko1-sf1-sd" style="text-align:center;margin-top:4px;font-size:11px;font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--green);min-height:14px;"></div>
+</div>
               </div>
             </div>
           </div>
@@ -334,10 +359,31 @@ body.organiser-mode .m-score-static{display:none!important;}
               <div class="m-team"><div class="m-seed s-silver">2</div><div class="m-name" id="ko1-sf2-t1">2nd Place</div></div>
               <div class="m-team"><div class="m-seed s-grey">Q1W</div><div class="m-name tbd" id="ko1-sf2-t2">Q1 Winner</div></div>
               <div class="m-score">
-                <span class="m-score-static" id="ko1-sf2-sd"></span>
-                <input class="m-inp" data-match="ko1-sf2" data-pos="1" type="number" min="0" max="99" placeholder="&ndash;" />
-                <span class="m-sep">:</span>
-                <input class="m-inp" data-match="ko1-sf2" data-pos="2" type="number" min="0" max="99" placeholder="&ndash;" />
+                
+<div class="bo3-wrap" style="margin-top:6px;">
+  <div style="font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;text-align:center;margin-bottom:4px;">★ Best of 3</div>
+  <div style="display:flex;flex-direction:column;gap:3px;">
+    <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
+      <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set1</span>
+      <input class="m-inp" data-match="ko1-sf2" data-set="1" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <span style="color:var(--muted);font-size:10px;">:</span>
+      <input class="m-inp" data-match="ko1-sf2" data-set="1" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+    </div>
+    <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
+      <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set2</span>
+      <input class="m-inp" data-match="ko1-sf2" data-set="2" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <span style="color:var(--muted);font-size:10px;">:</span>
+      <input class="m-inp" data-match="ko1-sf2" data-set="2" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+    </div>
+    <div style="display:flex;align-items:center;gap:4px;justify-content:center;" id="ko1-sf2-s3row">
+      <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;opacity:0.4;">Set3</span>
+      <input class="m-inp" data-match="ko1-sf2" data-set="3" data-pos="1" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+      <span style="color:var(--muted);font-size:10px;opacity:0.4;">:</span>
+      <input class="m-inp" data-match="ko1-sf2" data-set="3" data-pos="2" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+    </div>
+  </div>
+  <div id="ko1-sf2-sd" style="text-align:center;margin-top:4px;font-size:11px;font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--green);min-height:14px;"></div>
+</div>
               </div>
             </div>
           </div>
@@ -354,10 +400,31 @@ body.organiser-mode .m-score-static{display:none!important;}
               <div class="m-team"><div class="m-seed s-gold">&#x1F3C6;</div><div class="m-name tbd" id="ko1-f-t1">SF1 Winner</div></div>
               <div class="m-team"><div class="m-seed s-silver">&#x1F948;</div><div class="m-name tbd" id="ko1-f-t2">SF2 Winner</div></div>
               <div class="m-score">
-                <span class="m-score-static" id="ko1-f-sd"></span>
-                <input class="m-inp" data-match="ko1-f" data-pos="1" type="number" min="0" max="99" placeholder="&ndash;" />
-                <span class="m-sep">:</span>
-                <input class="m-inp" data-match="ko1-f" data-pos="2" type="number" min="0" max="99" placeholder="&ndash;" />
+                
+<div class="bo3-wrap" style="margin-top:6px;">
+  <div style="font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;text-align:center;margin-bottom:4px;">★ Best of 3</div>
+  <div style="display:flex;flex-direction:column;gap:3px;">
+    <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
+      <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set1</span>
+      <input class="m-inp" data-match="ko1-f" data-set="1" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <span style="color:var(--muted);font-size:10px;">:</span>
+      <input class="m-inp" data-match="ko1-f" data-set="1" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+    </div>
+    <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
+      <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set2</span>
+      <input class="m-inp" data-match="ko1-f" data-set="2" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <span style="color:var(--muted);font-size:10px;">:</span>
+      <input class="m-inp" data-match="ko1-f" data-set="2" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+    </div>
+    <div style="display:flex;align-items:center;gap:4px;justify-content:center;" id="ko1-f-s3row">
+      <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;opacity:0.4;">Set3</span>
+      <input class="m-inp" data-match="ko1-f" data-set="3" data-pos="1" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+      <span style="color:var(--muted);font-size:10px;opacity:0.4;">:</span>
+      <input class="m-inp" data-match="ko1-f" data-set="3" data-pos="2" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+    </div>
+  </div>
+  <div id="ko1-f-sd" style="text-align:center;margin-top:4px;font-size:11px;font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--green);min-height:14px;"></div>
+</div>
               </div>
             </div>
             <div class="champion-card">
@@ -385,10 +452,31 @@ body.organiser-mode .m-score-static{display:none!important;}
               <div class="m-team"><div class="m-seed s-gold">1</div><div class="m-name" id="ko2-sf1-t1">1st Place</div></div>
               <div class="m-team"><div class="m-seed s-grey">4</div><div class="m-name" id="ko2-sf1-t2">4th Place</div></div>
               <div class="m-score">
-                <span class="m-score-static" id="ko2-sf1-sd"></span>
-                <input class="m-inp" data-match="ko2-sf1" data-pos="1" type="number" min="0" max="99" placeholder="&ndash;" />
-                <span class="m-sep">:</span>
-                <input class="m-inp" data-match="ko2-sf1" data-pos="2" type="number" min="0" max="99" placeholder="&ndash;" />
+                
+<div class="bo3-wrap" style="margin-top:6px;">
+  <div style="font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;text-align:center;margin-bottom:4px;">★ Best of 3</div>
+  <div style="display:flex;flex-direction:column;gap:3px;">
+    <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
+      <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set1</span>
+      <input class="m-inp" data-match="ko2-sf1" data-set="1" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <span style="color:var(--muted);font-size:10px;">:</span>
+      <input class="m-inp" data-match="ko2-sf1" data-set="1" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+    </div>
+    <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
+      <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set2</span>
+      <input class="m-inp" data-match="ko2-sf1" data-set="2" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <span style="color:var(--muted);font-size:10px;">:</span>
+      <input class="m-inp" data-match="ko2-sf1" data-set="2" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+    </div>
+    <div style="display:flex;align-items:center;gap:4px;justify-content:center;" id="ko2-sf1-s3row">
+      <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;opacity:0.4;">Set3</span>
+      <input class="m-inp" data-match="ko2-sf1" data-set="3" data-pos="1" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+      <span style="color:var(--muted);font-size:10px;opacity:0.4;">:</span>
+      <input class="m-inp" data-match="ko2-sf1" data-set="3" data-pos="2" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+    </div>
+  </div>
+  <div id="ko2-sf1-sd" style="text-align:center;margin-top:4px;font-size:11px;font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--green);min-height:14px;"></div>
+</div>
               </div>
             </div>
           </div>
@@ -399,10 +487,31 @@ body.organiser-mode .m-score-static{display:none!important;}
               <div class="m-team"><div class="m-seed s-silver">2</div><div class="m-name" id="ko2-sf2-t1">2nd Place</div></div>
               <div class="m-team"><div class="m-seed s-bronze">3</div><div class="m-name" id="ko2-sf2-t2">3rd Place</div></div>
               <div class="m-score">
-                <span class="m-score-static" id="ko2-sf2-sd"></span>
-                <input class="m-inp" data-match="ko2-sf2" data-pos="1" type="number" min="0" max="99" placeholder="&ndash;" />
-                <span class="m-sep">:</span>
-                <input class="m-inp" data-match="ko2-sf2" data-pos="2" type="number" min="0" max="99" placeholder="&ndash;" />
+                
+<div class="bo3-wrap" style="margin-top:6px;">
+  <div style="font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;text-align:center;margin-bottom:4px;">★ Best of 3</div>
+  <div style="display:flex;flex-direction:column;gap:3px;">
+    <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
+      <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set1</span>
+      <input class="m-inp" data-match="ko2-sf2" data-set="1" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <span style="color:var(--muted);font-size:10px;">:</span>
+      <input class="m-inp" data-match="ko2-sf2" data-set="1" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+    </div>
+    <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
+      <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set2</span>
+      <input class="m-inp" data-match="ko2-sf2" data-set="2" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <span style="color:var(--muted);font-size:10px;">:</span>
+      <input class="m-inp" data-match="ko2-sf2" data-set="2" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+    </div>
+    <div style="display:flex;align-items:center;gap:4px;justify-content:center;" id="ko2-sf2-s3row">
+      <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;opacity:0.4;">Set3</span>
+      <input class="m-inp" data-match="ko2-sf2" data-set="3" data-pos="1" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+      <span style="color:var(--muted);font-size:10px;opacity:0.4;">:</span>
+      <input class="m-inp" data-match="ko2-sf2" data-set="3" data-pos="2" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+    </div>
+  </div>
+  <div id="ko2-sf2-sd" style="text-align:center;margin-top:4px;font-size:11px;font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--green);min-height:14px;"></div>
+</div>
               </div>
             </div>
           </div>
@@ -419,10 +528,31 @@ body.organiser-mode .m-score-static{display:none!important;}
               <div class="m-team"><div class="m-seed s-gold">&#x1F3C6;</div><div class="m-name tbd" id="ko2-f-t1">SF1 Winner</div></div>
               <div class="m-team"><div class="m-seed s-silver">&#x1F948;</div><div class="m-name tbd" id="ko2-f-t2">SF2 Winner</div></div>
               <div class="m-score">
-                <span class="m-score-static" id="ko2-f-sd"></span>
-                <input class="m-inp" data-match="ko2-f" data-pos="1" type="number" min="0" max="99" placeholder="&ndash;" />
-                <span class="m-sep">:</span>
-                <input class="m-inp" data-match="ko2-f" data-pos="2" type="number" min="0" max="99" placeholder="&ndash;" />
+                
+<div class="bo3-wrap" style="margin-top:6px;">
+  <div style="font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;text-align:center;margin-bottom:4px;">★ Best of 3</div>
+  <div style="display:flex;flex-direction:column;gap:3px;">
+    <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
+      <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set1</span>
+      <input class="m-inp" data-match="ko2-f" data-set="1" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <span style="color:var(--muted);font-size:10px;">:</span>
+      <input class="m-inp" data-match="ko2-f" data-set="1" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+    </div>
+    <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
+      <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set2</span>
+      <input class="m-inp" data-match="ko2-f" data-set="2" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <span style="color:var(--muted);font-size:10px;">:</span>
+      <input class="m-inp" data-match="ko2-f" data-set="2" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+    </div>
+    <div style="display:flex;align-items:center;gap:4px;justify-content:center;" id="ko2-f-s3row">
+      <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;opacity:0.4;">Set3</span>
+      <input class="m-inp" data-match="ko2-f" data-set="3" data-pos="1" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+      <span style="color:var(--muted);font-size:10px;opacity:0.4;">:</span>
+      <input class="m-inp" data-match="ko2-f" data-set="3" data-pos="2" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+    </div>
+  </div>
+  <div id="ko2-f-sd" style="text-align:center;margin-top:4px;font-size:11px;font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--green);min-height:14px;"></div>
+</div>
               </div>
             </div>
             <div class="champion-card">
@@ -639,18 +769,22 @@ document.querySelectorAll(".ko-card").forEach(function(card) {
   });
 });
 
-/* ---- KO Score inputs (event delegation) ---- */
+/* ---- KO Score inputs — BO3 for SF/Final ---- */
+var BO3_MATCHES_SOC = {"ko1-sf1":true,"ko1-sf2":true,"ko1-f":true,"ko2-sf1":true,"ko2-sf2":true,"ko2-f":true};
+
 document.addEventListener("input", function(e) {
   if (!e.target.classList.contains("m-inp")) return;
   var matchId = e.target.dataset.match;
+  var set = e.target.dataset.set || "1";
   var pos = e.target.dataset.pos;
-  if (!koScores[matchId]) koScores[matchId] = {s1:"", s2:""};
-  if (pos === "1") koScores[matchId].s1 = e.target.value;
-  else koScores[matchId].s2 = e.target.value;
-  var sd = document.getElementById(matchId + "-sd");
-  if (sd && koScores[matchId].s1 !== "" && koScores[matchId].s2 !== "") {
-    sd.textContent = koScores[matchId].s1 + " : " + koScores[matchId].s2;
-    sd.classList.add("show");
+  if (!koScores[matchId]) koScores[matchId] = {};
+  if (BO3_MATCHES_SOC[matchId]) {
+    // Store as s1a/s1b, s2a/s2b, s3a/s3b
+    var field = "s" + set + (pos === "1" ? "a" : "b");
+    koScores[matchId][field] = e.target.value;
+  } else {
+    if (pos === "1") koScores[matchId].s1 = e.target.value;
+    else koScores[matchId].s2 = e.target.value;
   }
   if (koMode === 1) refreshKO1(); else refreshKO2();
 });
@@ -688,9 +822,9 @@ function updateKOSeedings() {
   }
 }
 
-function koWinner(matchId, t1id, t2id) {
-  var sc = koScores[matchId];
-  if (!sc || sc.s1 === "" || sc.s2 === "") return null;
+function koWinnerSingle(matchId, t1id, t2id) {
+  var sc = koScores[matchId] || {};
+  if (sc.s1 === undefined || sc.s1 === "" || sc.s2 === undefined || sc.s2 === "") return null;
   var n1 = parseInt(sc.s1), n2 = parseInt(sc.s2);
   if (isNaN(n1) || isNaN(n2)) return null;
   var t1 = document.getElementById(t1id), t2 = document.getElementById(t2id);
@@ -698,28 +832,119 @@ function koWinner(matchId, t1id, t2id) {
   return n1 > n2 ? t1.textContent : n2 > n1 ? t2.textContent : null;
 }
 
+function koWinnerBO3(matchId, t1id, t2id) {
+  var sc = koScores[matchId] || {};
+  var w1 = 0, w2 = 0;
+  [["s1a","s1b"],["s2a","s2b"],["s3a","s3b"]].forEach(function(pair) {
+    var a = parseInt(sc[pair[0]] || ""), b = parseInt(sc[pair[1]] || "");
+    if (!isNaN(a) && !isNaN(b) && (a || b)) { if (a > b) w1++; else if (b > a) w2++; }
+  });
+  if (w1 >= 2) { var t = document.getElementById(t1id); return t ? t.textContent.trim() : null; }
+  if (w2 >= 2) { var t = document.getElementById(t2id); return t ? t.textContent.trim() : null; }
+  return null;
+}
+
+function koWinner(matchId, t1id, t2id) {
+  return BO3_MATCHES_SOC[matchId]
+    ? koWinnerBO3(matchId, t1id, t2id)
+    : koWinnerSingle(matchId, t1id, t2id);
+}
+
+function koSeriesText(matchId) {
+  if (!BO3_MATCHES_SOC[matchId]) return "";
+  var sc = koScores[matchId] || {};
+  var w1 = 0, w2 = 0;
+  [1,2,3].forEach(function(i) {
+    var s = sc["set"+i] || {};
+    var a = parseInt(s.a || ""), b = parseInt(s.b || "");
+    if (!isNaN(a) && !isNaN(b) && (a || b)) { if (a > b) w1++; else if (b > a) w2++; }
+  });
+  return (w1 + w2 > 0) ? w1 + "–" + w2 : "";
+}
+
+function koSet3Needed(matchId) {
+  if (!BO3_MATCHES_SOC[matchId]) return false;
+  var sc = koScores[matchId] || {};
+  var w1 = 0, w2 = 0;
+  [1,2].forEach(function(i) {
+    var s = sc["set"+i] || {};
+    var a = parseInt(s.a || ""), b = parseInt(s.b || "");
+    if (!isNaN(a) && !isNaN(b) && (a || b)) { if (a > b) w1++; else if (b > a) w2++; }
+  });
+  return w1 === 1 && w2 === 1;
+}
+
+function restoreBO3Inputs(matchId) {
+  if (!BO3_MATCHES_SOC[matchId]) return;
+  var sc = koScores[matchId] || {};
+  document.querySelectorAll(".m-inp[data-match='" + matchId + "']").forEach(function(inp) {
+    var setN = inp.dataset.set, pos = inp.dataset.pos;
+    var s = sc["set"+setN] || {};
+    var val = pos === "1" ? s.a : s.b;
+    if (val !== undefined && val !== "") inp.value = val;
+  });
+  // Set 3 opacity
+  var need3 = koSet3Needed(matchId);
+  document.querySelectorAll(".m-inp[data-match='" + matchId + "'][data-set='3']").forEach(function(inp) {
+    inp.style.opacity = need3 ? "1" : "0.3";
+  });
+  // Series display
+  var sd = document.getElementById(matchId + "-sd");
+  var ser = koSeriesText(matchId);
+  if (sd && ser) { sd.textContent = ser; sd.classList.add("show"); }
+}
+
 function refreshKO1() {
+  // Restore BO3 inputs
+  ["ko1-sf1","ko1-sf2","ko1-f"].forEach(restoreBO3Inputs);
+  // Q1/Q2 → SF slots (single set)
   var q1w = koWinner("ko1-q1","ko1-q1-t1","ko1-q1-t2");
   var q2w = koWinner("ko1-q2","ko1-q2-t1","ko1-q2-t2");
   if (q1w) setText("ko1-sf2-t2", q1w);
   if (q2w) setText("ko1-sf1-t2", q2w);
+  // SF → Final (BO3)
   var sf1w = koWinner("ko1-sf1","ko1-sf1-t1","ko1-sf1-t2");
   var sf2w = koWinner("ko1-sf2","ko1-sf2-t1","ko1-sf2-t2");
   if (sf1w) setText("ko1-f-t1", sf1w);
   if (sf2w) setText("ko1-f-t2", sf2w);
+  // Series scores display for SF
+  ["ko1-sf1","ko1-sf2"].forEach(function(mid) {
+    var sd = document.getElementById(mid + "-sd");
+    var ser = koSeriesText(mid);
+    if (sd && ser) { sd.textContent = ser; sd.classList.add("show"); }
+  });
+  // Final → Champion (BO3)
   var fw = koWinner("ko1-f","ko1-f-t1","ko1-f-t2");
+  var fser = koSeriesText("ko1-f");
+  var fsd = document.getElementById("ko1-f-sd");
+  if (fsd && fser) { fsd.textContent = fser; fsd.classList.add("show"); }
   var ch = document.getElementById("ko1-champion");
-  if (ch) ch.textContent = fw || "TBD";
+  if (ch) ch.textContent = fw ? "🏆 " + fw : "TBD";
+  if (ch && fw) ch.style.color = "var(--gold)";
 }
 
 function refreshKO2() {
+  // Restore BO3 inputs
+  ["ko2-sf1","ko2-sf2","ko2-f"].forEach(restoreBO3Inputs);
+  // SF → Final (BO3)
   var sf1w = koWinner("ko2-sf1","ko2-sf1-t1","ko2-sf1-t2");
   var sf2w = koWinner("ko2-sf2","ko2-sf2-t1","ko2-sf2-t2");
   if (sf1w) setText("ko2-f-t1", sf1w);
   if (sf2w) setText("ko2-f-t2", sf2w);
+  // Series scores for SFs
+  ["ko2-sf1","ko2-sf2"].forEach(function(mid) {
+    var sd = document.getElementById(mid + "-sd");
+    var ser = koSeriesText(mid);
+    if (sd && ser) { sd.textContent = ser; sd.classList.add("show"); }
+  });
+  // Final → Champion (BO3)
   var fw = koWinner("ko2-f","ko2-f-t1","ko2-f-t2");
+  var fser = koSeriesText("ko2-f");
+  var fsd = document.getElementById("ko2-f-sd");
+  if (fsd && fser) { fsd.textContent = fser; fsd.classList.add("show"); }
   var ch = document.getElementById("ko2-champion");
-  if (ch) ch.textContent = fw || "TBD";
+  if (ch) ch.textContent = fw ? "🏆 " + fw : "TBD";
+  if (ch && fw) ch.style.color = "var(--gold)";
 }
 
 /* ---- Organiser PIN ---- */
@@ -775,6 +1000,68 @@ function checkPin() {
 buildGroups();
 buildSchedule("all");
 buildStandings("all");
+</script>
+<script>
+
+// ── BO3 upgrade for SF/Final ─────────────────────────────────────────────────
+var SOCIAL_BO3 = {'ko1-sf1':true,'ko1-sf2':true,'ko1-f':true,'ko2-sf1':true,'ko2-sf2':true,'ko2-f':true};
+
+function socialBO3Winner(matchId, t1id, t2id) {
+  var sc = koScores[matchId] || {};
+  var w1=0, w2=0;
+  [1,2,3].forEach(function(i) {
+    var s = sc['set'+i] || {};
+    var a=parseInt(s.a||''), b=parseInt(s.b||'');
+    if (!isNaN(a)&&!isNaN(b)&&(a||b)) { if(a>b)w1++; else if(b>a)w2++; }
+  });
+  if (w1>=2) { var t=document.getElementById(t1id); return t?t.textContent.trim():null; }
+  if (w2>=2) { var t=document.getElementById(t2id); return t?t.textContent.trim():null; }
+  return null;
+}
+
+// Patch koWinner to handle BO3
+var _origKW = koWinner;
+koWinner = function(matchId, t1id, t2id) {
+  if (SOCIAL_BO3[matchId]) return socialBO3Winner(matchId, t1id, t2id);
+  return _origKW(matchId, t1id, t2id);
+};
+
+// Patch input handler to support data-set for BO3 matches
+document.addEventListener('input', function(e) {
+  if (!e.target.classList.contains('m-inp')) return;
+  var matchId = e.target.dataset.match;
+  if (!SOCIAL_BO3[matchId]) return; // let original handler deal with non-BO3
+  var setN = e.target.dataset.set;
+  var pos = e.target.dataset.pos;
+  if (!koScores[matchId]) koScores[matchId] = {};
+  if (!koScores[matchId]['set'+setN]) koScores[matchId]['set'+setN] = {a:'',b:''};
+  if (pos==='1') koScores[matchId]['set'+setN].a = e.target.value;
+  else koScores[matchId]['set'+setN].b = e.target.value;
+  // Set 3 row visibility
+  var w1=0,w2=0;
+  [1,2].forEach(function(i){
+    var inps=document.querySelectorAll('[data-match="'+matchId+'"][data-set="'+i+'"]');
+    if(inps.length>=2){var a=parseInt(inps[0].value||''),b=parseInt(inps[1].value||'');if(!isNaN(a)&&!isNaN(b)&&(a||b)){if(a>b)w1++;else if(b>a)w2++;}}
+  });
+  var s3row=document.getElementById(matchId+'-s3row');
+  if(s3row){var need3=w1===1&&w2===1;s3row.querySelectorAll('input,span').forEach(function(el){el.style.opacity=need3?'1':'0.4';});}
+  // Result display
+  var w1t=0,w2t=0;
+  [1,2,3].forEach(function(i){
+    var s=koScores[matchId]['set'+i]||{};
+    var a=parseInt(s.a||''),b=parseInt(s.b||'');
+    if(!isNaN(a)&&!isNaN(b)&&(a||b)){if(a>b)w1t++;else if(b>a)w2t++;}
+  });
+  var sd=document.getElementById(matchId+'-sd');
+  var t1el=document.getElementById(matchId+'-t1'),t2el=document.getElementById(matchId+'-t2');
+  if(sd){
+    if(w1t>=2){sd.textContent='🏆 '+(t1el?t1el.textContent.trim():'T1')+' wins '+w1t+'-'+w2t;sd.style.color='var(--green)';}
+    else if(w2t>=2){sd.textContent='🏆 '+(t2el?t2el.textContent.trim():'T2')+' wins '+w2t+'-'+w1t;sd.style.color='var(--green)';}
+    else if(w1t+w2t>0){sd.textContent=w1t+'-'+w2t+' sets';sd.style.color='var(--accent2)';}
+  }
+  if (koMode===1) refreshKO1(); else refreshKO2();
+});
+
 </script>
 </body>
 </html>
