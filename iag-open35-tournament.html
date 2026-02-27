@@ -240,9 +240,9 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
   <div class="badge">🏓 IAG Pickleball 2026</div>
   <h1>OPEN 3.5 DIVISION</h1>
   <div class="meta">
-    <span>🕗 9:00 AM Start</span>
+    <span>🕗 7:30 AM Start</span>
     <span>🏟 6 Courts</span>
-    <span>👥 16 Teams · 4 Groups</span>
+    <span>👥 20 Teams · 5 Groups</span>
     <span>📅 Feb 28, 2026</span>
   </div>
 </header>
@@ -268,16 +268,17 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
 <!-- SCHEDULE TAB -->
 <div id="tab-schedule" class="tab-content">
   <div class="info-bar">
-    <div>🕗 Start: <strong>9:00 AM</strong></div>
-    <div>🔚 End: <strong>10:00 AM</strong></div>
+    <div>🕗 Start: <strong>7:30 AM</strong></div>
+    <div>🔚 End: <strong>~10:00 AM</strong></div>
     <div>⏱ Per Match: <strong>15 min</strong></div>
     <div>🏟 Courts: <strong>6</strong></div>
-    <div>👥 Teams: <strong>16</strong></div>
-    <div>🎯 Matches: <strong>24</strong></div>
+    <div>👥 Teams: <strong>20</strong></div>
+    <div>🎯 Matches: <strong>30</strong></div>
   </div>
 
   <div class="grp-tabs" id="sched-grp-tabs">
     <button class="grp-tab active" onclick="filterSchedule('all',this)">All Matches</button>
+    <button class="grp-tab" onclick="filterSchedule('Group 5',this)">Group 5</button>
     <button class="grp-tab" onclick="filterSchedule('Group 1',this)">Group 1</button>
     <button class="grp-tab" onclick="filterSchedule('Group 2',this)">Group 2</button>
     <button class="grp-tab" onclick="filterSchedule('Group 3',this)">Group 3</button>
@@ -300,12 +301,13 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
   <div class="grp-tabs">
     <button class="grp-tab active" onclick="showStandingsGroup('overall',this)" id="tab-overall-btn">🏆 Overall Ranking</button>
     <button class="grp-tab" onclick="showStandingsGroup('all',this)">All Groups</button>
+    <button class="grp-tab" onclick="showStandingsGroup('Group 5',this)">Group 5</button>
     <button class="grp-tab" onclick="showStandingsGroup('Group 1',this)">Group 1</button>
     <button class="grp-tab" onclick="showStandingsGroup('Group 2',this)">Group 2</button>
     <button class="grp-tab" onclick="showStandingsGroup('Group 3',this)">Group 3</button>
     <button class="grp-tab" onclick="showStandingsGroup('Group 4',this)">Group 4</button>
   </div>
-  <p style="font-size:12px;color:var(--muted);margin-bottom:12px;" id="standings-hint">📊 <strong style="color:var(--accent)">Overall Ranking</strong> = all 16 teams ranked by: Wins → Points Diff → Games Won ratio. R16 seeding draws from this table.</p>
+  <p style="font-size:12px;color:var(--muted);margin-bottom:12px;" id="standings-hint">📊 <strong style="color:var(--accent)">Overall Ranking</strong> = all 20 teams ranked by: Wins → Points Diff → Games Won ratio. Seeds 1–12 go direct to R16; seeds 13–20 play Pre-R16 knockouts.</p>
   <div id="standings-container"></div>
 
   <div class="org-only" style="margin-top:16px;text-align:right">
@@ -318,10 +320,55 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
   <div class="section-title">Knockout Draw</div>
 
   <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
+    <div style="padding:5px 14px;background:rgba(94,122,143,0.15);border:1px solid rgba(94,122,143,0.4);border-radius:20px;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:var(--muted);">⚡ Pre-R16: Seeds 13–20 (1 Set)</div>
     <div style="padding:5px 14px;background:rgba(255,77,109,0.1);border:1px solid rgba(255,77,109,0.3);border-radius:20px;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:#ff4d6d;">🎯 R16: 1 Set</div>
     <div style="padding:5px 14px;background:rgba(255,77,109,0.1);border:1px solid rgba(255,77,109,0.3);border-radius:20px;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:#ff4d6d;">🎯 QF: 1 Set</div>
     <div style="padding:5px 14px;background:rgba(247,201,72,0.1);border:1px solid rgba(247,201,72,0.3);border-radius:20px;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:var(--gold);">🏆 SF: Best of 3</div>
     <div style="padding:5px 14px;background:rgba(247,201,72,0.1);border:1px solid rgba(247,201,72,0.3);border-radius:20px;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:var(--gold);">🏆 Final: Best of 3</div>
+  </div>
+
+  <!-- PRE-ROUND OF 16 (Seeds 13–20) -->
+  <div style="margin-bottom:28px;">
+    <div style="font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:6px;">Pre-Round of 16 — Seeds 13–20</div>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">Winners join the corresponding seed (13–16) in the Round of 16. Seeds 1–12 advance directly.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+      <!-- Pre-Q1: 20 vs 13 → joins Seed 13 -->
+      <div>
+        <div style="font-family:'Rajdhani',sans-serif;font-size:11px;letter-spacing:1px;color:var(--muted);margin-bottom:5px;">PRE-Q1 · Winner joins Seed 13 in R16</div>
+        <div class="match-slot">
+          <div class="slot-header">Pre-Q1 — Seed 20 vs 13</div>
+          <div class="team-row"><div class="seed-badge rank-n">20</div><div class="team-slot-name" id="preq1-t1">Seed 20</div></div>
+          <div class="team-row"><div class="seed-badge rank-n">13</div><div class="team-slot-name" id="preq1-t2">Seed 13</div></div>
+        </div>
+      </div>
+      <!-- Pre-Q2: 19 vs 14 → joins Seed 14 -->
+      <div>
+        <div style="font-family:'Rajdhani',sans-serif;font-size:11px;letter-spacing:1px;color:var(--muted);margin-bottom:5px;">PRE-Q2 · Winner joins Seed 14 in R16</div>
+        <div class="match-slot">
+          <div class="slot-header">Pre-Q2 — Seed 19 vs 14</div>
+          <div class="team-row"><div class="seed-badge rank-n">19</div><div class="team-slot-name" id="preq2-t1">Seed 19</div></div>
+          <div class="team-row"><div class="seed-badge rank-n">14</div><div class="team-slot-name" id="preq2-t2">Seed 14</div></div>
+        </div>
+      </div>
+      <!-- Pre-Q3: 18 vs 15 → joins Seed 15 -->
+      <div>
+        <div style="font-family:'Rajdhani',sans-serif;font-size:11px;letter-spacing:1px;color:var(--muted);margin-bottom:5px;">PRE-Q3 · Winner joins Seed 15 in R16</div>
+        <div class="match-slot">
+          <div class="slot-header">Pre-Q3 — Seed 18 vs 15</div>
+          <div class="team-row"><div class="seed-badge rank-n">18</div><div class="team-slot-name" id="preq3-t1">Seed 18</div></div>
+          <div class="team-row"><div class="seed-badge rank-n">15</div><div class="team-slot-name" id="preq3-t2">Seed 15</div></div>
+        </div>
+      </div>
+      <!-- Pre-Q4: 17 vs 16 → joins Seed 16 -->
+      <div>
+        <div style="font-family:'Rajdhani',sans-serif;font-size:11px;letter-spacing:1px;color:var(--muted);margin-bottom:5px;">PRE-Q4 · Winner joins Seed 16 in R16</div>
+        <div class="match-slot">
+          <div class="slot-header">Pre-Q4 — Seed 17 vs 16</div>
+          <div class="team-row"><div class="seed-badge rank-n">17</div><div class="team-slot-name" id="preq4-t1">Seed 17</div></div>
+          <div class="team-row"><div class="seed-badge rank-n">16</div><div class="team-slot-name" id="preq4-t2">Seed 16</div></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- SIDE 1 -->
@@ -331,10 +378,10 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
       <div style="display:flex;flex-direction:column;flex-shrink:0;">
         <div style="text-align:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 6px;border-bottom:1px solid var(--border);margin-bottom:8px;color:var(--muted);">ROUND OF 16</div>
         <div style="display:flex;flex-direction:column;gap:10px;min-width:185px;padding:0 6px;">
-          <div class="match-slot"><div class="slot-header">M1 — Seed 1 vs 16</div><div class="team-row"><div class="seed-badge seed-1">1</div><div class="team-slot-name" id="r16-s1-t1">—</div></div><div class="team-row"><div class="seed-badge rank-n">16</div><div class="team-slot-name" id="r16-s1-t2">—</div></div></div>
+          <div class="match-slot"><div class="slot-header">M1 — Seed 1 vs Pre-Q4W</div><div class="team-row"><div class="seed-badge seed-1">1</div><div class="team-slot-name" id="r16-s1-t1">—</div></div><div class="team-row"><div class="seed-badge rank-n">16</div><div class="team-slot-name tbd" id="r16-s1-t2">Pre-Q4 Winner</div></div></div>
           <div class="match-slot"><div class="slot-header">M2 — Seed 7 vs 10</div><div class="team-row"><div class="seed-badge rank-n">7</div><div class="team-slot-name" id="r16-s1-t3">—</div></div><div class="team-row"><div class="seed-badge rank-n">10</div><div class="team-slot-name" id="r16-s1-t4">—</div></div></div>
           <div class="match-slot"><div class="slot-header">M3 — Seed 5 vs 12</div><div class="team-row"><div class="seed-badge rank-n">5</div><div class="team-slot-name" id="r16-s1-t5">—</div></div><div class="team-row"><div class="seed-badge rank-n">12</div><div class="team-slot-name" id="r16-s1-t6">—</div></div></div>
-          <div class="match-slot"><div class="slot-header">M4 — Seed 3 vs 14</div><div class="team-row"><div class="seed-badge seed-3">3</div><div class="team-slot-name" id="r16-s1-t7">—</div></div><div class="team-row"><div class="seed-badge rank-n">14</div><div class="team-slot-name" id="r16-s1-t8">—</div></div></div>
+          <div class="match-slot"><div class="slot-header">M4 — Seed 3 vs Pre-Q2W</div><div class="team-row"><div class="seed-badge seed-3">3</div><div class="team-slot-name" id="r16-s1-t7">—</div></div><div class="team-row"><div class="seed-badge rank-n">14</div><div class="team-slot-name tbd" id="r16-s1-t8">Pre-Q2 Winner</div></div></div>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:26px;flex-shrink:0;"><div style="width:2px;background:linear-gradient(180deg,transparent,#ff7c2a,transparent);opacity:0.25;flex:1;"></div><div style="color:#ff7c2a;font-size:14px;opacity:0.4;">›</div><div style="width:2px;background:linear-gradient(180deg,transparent,#ff7c2a,transparent);opacity:0.25;flex:1;"></div></div>
@@ -362,10 +409,10 @@ body:not(.organiser-mode) #ko-format-label { display: none; }
       <div style="display:flex;flex-direction:column;flex-shrink:0;">
         <div style="text-align:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 6px;border-bottom:1px solid var(--border);margin-bottom:8px;color:var(--muted);">ROUND OF 16</div>
         <div style="display:flex;flex-direction:column;gap:10px;min-width:185px;padding:0 6px;">
-          <div class="match-slot"><div class="slot-header">M5 — Seed 2 vs 15</div><div class="team-row"><div class="seed-badge seed-2">2</div><div class="team-slot-name" id="r16-s2-t1">—</div></div><div class="team-row"><div class="seed-badge rank-n">15</div><div class="team-slot-name" id="r16-s2-t2">—</div></div></div>
+          <div class="match-slot"><div class="slot-header">M5 — Seed 2 vs Pre-Q3W</div><div class="team-row"><div class="seed-badge seed-2">2</div><div class="team-slot-name" id="r16-s2-t1">—</div></div><div class="team-row"><div class="seed-badge rank-n">15</div><div class="team-slot-name tbd" id="r16-s2-t2">Pre-Q3 Winner</div></div></div>
           <div class="match-slot"><div class="slot-header">M6 — Seed 8 vs 9</div><div class="team-row"><div class="seed-badge rank-n">8</div><div class="team-slot-name" id="r16-s2-t3">—</div></div><div class="team-row"><div class="seed-badge rank-n">9</div><div class="team-slot-name" id="r16-s2-t4">—</div></div></div>
           <div class="match-slot"><div class="slot-header">M7 — Seed 6 vs 11</div><div class="team-row"><div class="seed-badge rank-n">6</div><div class="team-slot-name" id="r16-s2-t5">—</div></div><div class="team-row"><div class="seed-badge rank-n">11</div><div class="team-slot-name" id="r16-s2-t6">—</div></div></div>
-          <div class="match-slot"><div class="slot-header">M8 — Seed 4 vs 13</div><div class="team-row"><div class="seed-badge seed-4">4</div><div class="team-slot-name" id="r16-s2-t7">—</div></div><div class="team-row"><div class="seed-badge rank-n">13</div><div class="team-slot-name" id="r16-s2-t8">—</div></div></div>
+          <div class="match-slot"><div class="slot-header">M8 — Seed 4 vs Pre-Q1W</div><div class="team-row"><div class="seed-badge seed-4">4</div><div class="team-slot-name" id="r16-s2-t7">—</div></div><div class="team-row"><div class="seed-badge rank-n">13</div><div class="team-slot-name tbd" id="r16-s2-t8">Pre-Q1 Winner</div></div></div>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:26px;flex-shrink:0;"><div style="width:2px;background:linear-gradient(180deg,transparent,#ff7c2a,transparent);opacity:0.25;flex:1;"></div><div style="color:#ff7c2a;font-size:14px;opacity:0.4;">›</div><div style="width:2px;background:linear-gradient(180deg,transparent,#ff7c2a,transparent);opacity:0.25;flex:1;"></div></div>
@@ -409,10 +456,18 @@ const GROUPS = {
   'Group 1': ['Durbha Murthy & Rajanikanth','Vivek & Rajiv','Vanith & Prabakar','Lisa & April'],
   'Group 2': ['Welborn & Francis','Varun & Jeremy','Shari & Roz','Thiru & Vamshi'],
   'Group 3': ['Uma & Shankar','Moksh & Suraj','Adarsh & Sunil','Venkat & Immanuel'],
-  'Group 4': ['Xavier & David','Anish & Mandy','Kenny & Daniel','Sreeni NK & Chokalingam']
+  'Group 4': ['Xavier & David','Anish & Mandy','Kenny & Daniel','Sreeni NK & Chokalingam'],
+  'Group 5': ['Harshil & Parth','Aaryan & Krish','Tarth & Nandi','Sekar & Singha']
 };
 
 const SCHEDULE = [
+  // Group 5 — 7:30 AM–8:45 AM (Court 1 only, round-robin all 6 matches)
+  {time:'7:30 AM',court:1,group:'Group 5',t1:'Harshil & Parth',t2:'Aaryan & Krish'},
+  {time:'7:45 AM',court:1,group:'Group 5',t1:'Tarth & Nandi',t2:'Sekar & Singha'},
+  {time:'8:00 AM',court:1,group:'Group 5',t1:'Harshil & Parth',t2:'Tarth & Nandi'},
+  {time:'8:15 AM',court:1,group:'Group 5',t1:'Aaryan & Krish',t2:'Sekar & Singha'},
+  {time:'8:30 AM',court:1,group:'Group 5',t1:'Harshil & Parth',t2:'Sekar & Singha'},
+  {time:'8:45 AM',court:1,group:'Group 5',t1:'Aaryan & Krish',t2:'Tarth & Nandi'},
   // Round 1 — 9:00 AM (Courts 1-2: Group 1 | Court 3: Group 2 | Courts 4-5: Group 3 | Court 6: Group 4)
   {time:'9:00 AM',court:1,group:'Group 1',t1:'Durbha Murthy & Rajanikanth',t2:'Vivek & Rajiv'},
   {time:'9:00 AM',court:2,group:'Group 1',t1:'Vanith & Prabakar',t2:'Lisa & April'},
@@ -538,7 +593,7 @@ function buildStandings(filter) {
   const hint = document.getElementById('standings-hint');
 
   if (filter === 'overall') {
-    // Flat list of all 16 teams sorted overall
+    // Flat list of all 20 teams sorted overall
     const allTeams = Object.values(GROUPS).flat();
     const ranked = allTeams.map(t => {
       let s = null, grp = null;
@@ -568,7 +623,7 @@ function buildStandings(filter) {
           const dc = diff > 0 ? 'var(--green)' : diff < 0 ? 'var(--accent3)' : 'var(--muted)';
           const dom = (t.pf + t.pa) > 0 ? Math.round(t.pf/(t.pf+t.pa)*100) : 0;
           const seed = i + 1;
-          const seedBadge = seed <= 4 ? `<span style="font-size:10px;background:rgba(247,201,72,0.15);color:var(--gold);border:1px solid var(--gold);padding:1px 5px;border-radius:3px;margin-left:4px;font-family:'Rajdhani',sans-serif;font-weight:700;">#${seed}</span>` : seed <= 8 ? `<span style="font-size:10px;background:rgba(57,255,132,0.1);color:var(--green);border:1px solid rgba(57,255,132,0.4);padding:1px 5px;border-radius:3px;margin-left:4px;font-family:'Rajdhani',sans-serif;font-weight:700;">#${seed}</span>` : '';
+          const seedBadge = seed <= 4 ? `<span style="font-size:10px;background:rgba(247,201,72,0.15);color:var(--gold);border:1px solid var(--gold);padding:1px 5px;border-radius:3px;margin-left:4px;font-family:'Rajdhani',sans-serif;font-weight:700;">#${seed}</span>` : seed <= 12 ? `<span style="font-size:10px;background:rgba(57,255,132,0.1);color:var(--green);border:1px solid rgba(57,255,132,0.4);padding:1px 5px;border-radius:3px;margin-left:4px;font-family:'Rajdhani',sans-serif;font-weight:700;">#${seed}</span>` : `<span style="font-size:10px;background:rgba(94,122,143,0.15);color:var(--muted);border:1px solid rgba(94,122,143,0.4);padding:1px 5px;border-radius:3px;margin-left:4px;font-family:'Rajdhani',sans-serif;font-weight:700;">Pre-R16</span>`;
           const rc = i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'rank-n';
           const grpShort = t.grp ? t.grp.replace('Group ','G') : '?';
           return `<tr>
@@ -662,17 +717,26 @@ function showStandingsGroup(filter, el) {
 }
 
 function updateKOSeedings(ranked) {
-  // ranked is array of {name, w, pf, pa, ...} sorted #1 to #16
+  // ranked is array of {name, w, pf, pa, ...} sorted #1 to #20
   const seed = (n) => ranked[n-1] ? ranked[n-1].name : ('Seed ' + n);
-  const set = (id, v) => { const e = document.getElementById(id); if(e) { e.textContent = v; e.classList.toggle('tbd', v.startsWith('Seed')); }};
-  set('r16-s1-t1',seed(1));  set('r16-s1-t2',seed(16));
-  set('r16-s1-t3',seed(7));  set('r16-s1-t4',seed(10));
-  set('r16-s1-t5',seed(5));  set('r16-s1-t6',seed(12));
-  set('r16-s1-t7',seed(3));  set('r16-s1-t8',seed(14));
-  set('r16-s2-t1',seed(2));  set('r16-s2-t2',seed(15));
-  set('r16-s2-t3',seed(8));  set('r16-s2-t4',seed(9));
-  set('r16-s2-t5',seed(6));  set('r16-s2-t6',seed(11));
-  set('r16-s2-t7',seed(4));  set('r16-s2-t8',seed(13));
+  const set = (id, v) => {
+    const e = document.getElementById(id);
+    if(e) { e.textContent = v; e.classList.toggle('tbd', !ranked[parseInt(v.replace('Seed ',''))-1] && v.startsWith('Seed')); }
+  };
+  // Pre-R16 slots (seeds 13–20)
+  set('preq1-t1', seed(20)); set('preq1-t2', seed(13));
+  set('preq2-t1', seed(19)); set('preq2-t2', seed(14));
+  set('preq3-t1', seed(18)); set('preq3-t2', seed(15));
+  set('preq4-t1', seed(17)); set('preq4-t2', seed(16));
+  // R16 — seeds 1–12 direct; slots 13–16 show "Pre-Qx Winner" (updated after Pre-R16 scores)
+  set('r16-s1-t1', seed(1));
+  set('r16-s1-t3', seed(7));  set('r16-s1-t4', seed(10));
+  set('r16-s1-t5', seed(5));  set('r16-s1-t6', seed(12));
+  set('r16-s1-t7', seed(3));
+  set('r16-s2-t1', seed(2));
+  set('r16-s2-t3', seed(8));  set('r16-s2-t4', seed(9));
+  set('r16-s2-t5', seed(6));  set('r16-s2-t6', seed(11));
+  set('r16-s2-t7', seed(4));
 }
 
 
