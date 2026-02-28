@@ -204,6 +204,7 @@ body.organiser-mode .m-score-static{display:none!important;}
 
 <div class="org-bar">
   <span class="org-status" id="org-status">&#x1F441; View Only</span>
+  <span id="sync-status" style="font-size:11px;letter-spacing:0.5px;color:var(--muted);margin:0 12px">⏳ Connecting...</span>
   <button class="org-btn" id="org-btn">&#x1F512; Organiser Login</button>
 </div>
 
@@ -291,9 +292,9 @@ body.organiser-mode .m-score-static{display:none!important;}
               <div class="m-team"><div class="m-seed s-grey">6</div><div class="m-name" id="ko1-q1-t2">6th Place</div></div>
               <div class="m-score">
                 <span class="m-score-static" id="ko1-q1-sd"></span>
-                <input class="m-inp" data-match="ko1-q1" data-pos="1" type="number" min="0" max="99" placeholder="&ndash;" />
+                <input class="m-inp" data-match="ko1-q1" data-pos="1" type="text" inputmode="numeric" placeholder="&ndash;" />
                 <span class="m-sep">:</span>
-                <input class="m-inp" data-match="ko1-q1" data-pos="2" type="number" min="0" max="99" placeholder="&ndash;" />
+                <input class="m-inp" data-match="ko1-q1" data-pos="2" type="text" inputmode="numeric" placeholder="&ndash;" />
               </div>
             </div>
           </div>
@@ -305,9 +306,9 @@ body.organiser-mode .m-score-static{display:none!important;}
               <div class="m-team"><div class="m-seed s-grey">5</div><div class="m-name" id="ko1-q2-t2">5th Place</div></div>
               <div class="m-score">
                 <span class="m-score-static" id="ko1-q2-sd"></span>
-                <input class="m-inp" data-match="ko1-q2" data-pos="1" type="number" min="0" max="99" placeholder="&ndash;" />
+                <input class="m-inp" data-match="ko1-q2" data-pos="1" type="text" inputmode="numeric" placeholder="&ndash;" />
                 <span class="m-sep">:</span>
-                <input class="m-inp" data-match="ko1-q2" data-pos="2" type="number" min="0" max="99" placeholder="&ndash;" />
+                <input class="m-inp" data-match="ko1-q2" data-pos="2" type="text" inputmode="numeric" placeholder="&ndash;" />
               </div>
             </div>
           </div>
@@ -330,21 +331,21 @@ body.organiser-mode .m-score-static{display:none!important;}
   <div style="display:flex;flex-direction:column;gap:3px;">
     <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
       <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set1</span>
-      <input class="m-inp" data-match="ko1-sf1" data-set="1" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko1-sf1" data-set="1" data-pos="1" type="text" inputmode="numeric" placeholder="–" />
       <span style="color:var(--muted);font-size:10px;">:</span>
-      <input class="m-inp" data-match="ko1-sf1" data-set="1" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko1-sf1" data-set="1" data-pos="2" type="text" inputmode="numeric" placeholder="–" />
     </div>
     <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
       <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set2</span>
-      <input class="m-inp" data-match="ko1-sf1" data-set="2" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko1-sf1" data-set="2" data-pos="1" type="text" inputmode="numeric" placeholder="–" />
       <span style="color:var(--muted);font-size:10px;">:</span>
-      <input class="m-inp" data-match="ko1-sf1" data-set="2" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko1-sf1" data-set="2" data-pos="2" type="text" inputmode="numeric" placeholder="–" />
     </div>
     <div style="display:flex;align-items:center;gap:4px;justify-content:center;" id="ko1-sf1-s3row">
       <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;opacity:0.4;">Set3</span>
-      <input class="m-inp" data-match="ko1-sf1" data-set="3" data-pos="1" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+      <input class="m-inp" data-match="ko1-sf1" data-set="3" data-pos="1" type="text" inputmode="numeric" placeholder="–" style="opacity:0.4;" />
       <span style="color:var(--muted);font-size:10px;opacity:0.4;">:</span>
-      <input class="m-inp" data-match="ko1-sf1" data-set="3" data-pos="2" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+      <input class="m-inp" data-match="ko1-sf1" data-set="3" data-pos="2" type="text" inputmode="numeric" placeholder="–" style="opacity:0.4;" />
     </div>
   </div>
   <div id="ko1-sf1-sd" style="text-align:center;margin-top:4px;font-size:11px;font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--green);min-height:14px;"></div>
@@ -365,21 +366,21 @@ body.organiser-mode .m-score-static{display:none!important;}
   <div style="display:flex;flex-direction:column;gap:3px;">
     <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
       <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set1</span>
-      <input class="m-inp" data-match="ko1-sf2" data-set="1" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko1-sf2" data-set="1" data-pos="1" type="text" inputmode="numeric" placeholder="–" />
       <span style="color:var(--muted);font-size:10px;">:</span>
-      <input class="m-inp" data-match="ko1-sf2" data-set="1" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko1-sf2" data-set="1" data-pos="2" type="text" inputmode="numeric" placeholder="–" />
     </div>
     <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
       <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set2</span>
-      <input class="m-inp" data-match="ko1-sf2" data-set="2" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko1-sf2" data-set="2" data-pos="1" type="text" inputmode="numeric" placeholder="–" />
       <span style="color:var(--muted);font-size:10px;">:</span>
-      <input class="m-inp" data-match="ko1-sf2" data-set="2" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko1-sf2" data-set="2" data-pos="2" type="text" inputmode="numeric" placeholder="–" />
     </div>
     <div style="display:flex;align-items:center;gap:4px;justify-content:center;" id="ko1-sf2-s3row">
       <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;opacity:0.4;">Set3</span>
-      <input class="m-inp" data-match="ko1-sf2" data-set="3" data-pos="1" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+      <input class="m-inp" data-match="ko1-sf2" data-set="3" data-pos="1" type="text" inputmode="numeric" placeholder="–" style="opacity:0.4;" />
       <span style="color:var(--muted);font-size:10px;opacity:0.4;">:</span>
-      <input class="m-inp" data-match="ko1-sf2" data-set="3" data-pos="2" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+      <input class="m-inp" data-match="ko1-sf2" data-set="3" data-pos="2" type="text" inputmode="numeric" placeholder="–" style="opacity:0.4;" />
     </div>
   </div>
   <div id="ko1-sf2-sd" style="text-align:center;margin-top:4px;font-size:11px;font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--green);min-height:14px;"></div>
@@ -406,21 +407,21 @@ body.organiser-mode .m-score-static{display:none!important;}
   <div style="display:flex;flex-direction:column;gap:3px;">
     <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
       <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set1</span>
-      <input class="m-inp" data-match="ko1-f" data-set="1" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko1-f" data-set="1" data-pos="1" type="text" inputmode="numeric" placeholder="–" />
       <span style="color:var(--muted);font-size:10px;">:</span>
-      <input class="m-inp" data-match="ko1-f" data-set="1" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko1-f" data-set="1" data-pos="2" type="text" inputmode="numeric" placeholder="–" />
     </div>
     <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
       <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set2</span>
-      <input class="m-inp" data-match="ko1-f" data-set="2" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko1-f" data-set="2" data-pos="1" type="text" inputmode="numeric" placeholder="–" />
       <span style="color:var(--muted);font-size:10px;">:</span>
-      <input class="m-inp" data-match="ko1-f" data-set="2" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko1-f" data-set="2" data-pos="2" type="text" inputmode="numeric" placeholder="–" />
     </div>
     <div style="display:flex;align-items:center;gap:4px;justify-content:center;" id="ko1-f-s3row">
       <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;opacity:0.4;">Set3</span>
-      <input class="m-inp" data-match="ko1-f" data-set="3" data-pos="1" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+      <input class="m-inp" data-match="ko1-f" data-set="3" data-pos="1" type="text" inputmode="numeric" placeholder="–" style="opacity:0.4;" />
       <span style="color:var(--muted);font-size:10px;opacity:0.4;">:</span>
-      <input class="m-inp" data-match="ko1-f" data-set="3" data-pos="2" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+      <input class="m-inp" data-match="ko1-f" data-set="3" data-pos="2" type="text" inputmode="numeric" placeholder="–" style="opacity:0.4;" />
     </div>
   </div>
   <div id="ko1-f-sd" style="text-align:center;margin-top:4px;font-size:11px;font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--green);min-height:14px;"></div>
@@ -458,21 +459,21 @@ body.organiser-mode .m-score-static{display:none!important;}
   <div style="display:flex;flex-direction:column;gap:3px;">
     <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
       <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set1</span>
-      <input class="m-inp" data-match="ko2-sf1" data-set="1" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko2-sf1" data-set="1" data-pos="1" type="text" inputmode="numeric" placeholder="–" />
       <span style="color:var(--muted);font-size:10px;">:</span>
-      <input class="m-inp" data-match="ko2-sf1" data-set="1" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko2-sf1" data-set="1" data-pos="2" type="text" inputmode="numeric" placeholder="–" />
     </div>
     <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
       <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set2</span>
-      <input class="m-inp" data-match="ko2-sf1" data-set="2" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko2-sf1" data-set="2" data-pos="1" type="text" inputmode="numeric" placeholder="–" />
       <span style="color:var(--muted);font-size:10px;">:</span>
-      <input class="m-inp" data-match="ko2-sf1" data-set="2" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko2-sf1" data-set="2" data-pos="2" type="text" inputmode="numeric" placeholder="–" />
     </div>
     <div style="display:flex;align-items:center;gap:4px;justify-content:center;" id="ko2-sf1-s3row">
       <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;opacity:0.4;">Set3</span>
-      <input class="m-inp" data-match="ko2-sf1" data-set="3" data-pos="1" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+      <input class="m-inp" data-match="ko2-sf1" data-set="3" data-pos="1" type="text" inputmode="numeric" placeholder="–" style="opacity:0.4;" />
       <span style="color:var(--muted);font-size:10px;opacity:0.4;">:</span>
-      <input class="m-inp" data-match="ko2-sf1" data-set="3" data-pos="2" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+      <input class="m-inp" data-match="ko2-sf1" data-set="3" data-pos="2" type="text" inputmode="numeric" placeholder="–" style="opacity:0.4;" />
     </div>
   </div>
   <div id="ko2-sf1-sd" style="text-align:center;margin-top:4px;font-size:11px;font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--green);min-height:14px;"></div>
@@ -493,21 +494,21 @@ body.organiser-mode .m-score-static{display:none!important;}
   <div style="display:flex;flex-direction:column;gap:3px;">
     <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
       <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set1</span>
-      <input class="m-inp" data-match="ko2-sf2" data-set="1" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko2-sf2" data-set="1" data-pos="1" type="text" inputmode="numeric" placeholder="–" />
       <span style="color:var(--muted);font-size:10px;">:</span>
-      <input class="m-inp" data-match="ko2-sf2" data-set="1" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko2-sf2" data-set="1" data-pos="2" type="text" inputmode="numeric" placeholder="–" />
     </div>
     <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
       <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set2</span>
-      <input class="m-inp" data-match="ko2-sf2" data-set="2" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko2-sf2" data-set="2" data-pos="1" type="text" inputmode="numeric" placeholder="–" />
       <span style="color:var(--muted);font-size:10px;">:</span>
-      <input class="m-inp" data-match="ko2-sf2" data-set="2" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko2-sf2" data-set="2" data-pos="2" type="text" inputmode="numeric" placeholder="–" />
     </div>
     <div style="display:flex;align-items:center;gap:4px;justify-content:center;" id="ko2-sf2-s3row">
       <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;opacity:0.4;">Set3</span>
-      <input class="m-inp" data-match="ko2-sf2" data-set="3" data-pos="1" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+      <input class="m-inp" data-match="ko2-sf2" data-set="3" data-pos="1" type="text" inputmode="numeric" placeholder="–" style="opacity:0.4;" />
       <span style="color:var(--muted);font-size:10px;opacity:0.4;">:</span>
-      <input class="m-inp" data-match="ko2-sf2" data-set="3" data-pos="2" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+      <input class="m-inp" data-match="ko2-sf2" data-set="3" data-pos="2" type="text" inputmode="numeric" placeholder="–" style="opacity:0.4;" />
     </div>
   </div>
   <div id="ko2-sf2-sd" style="text-align:center;margin-top:4px;font-size:11px;font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--green);min-height:14px;"></div>
@@ -534,21 +535,21 @@ body.organiser-mode .m-score-static{display:none!important;}
   <div style="display:flex;flex-direction:column;gap:3px;">
     <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
       <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set1</span>
-      <input class="m-inp" data-match="ko2-f" data-set="1" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko2-f" data-set="1" data-pos="1" type="text" inputmode="numeric" placeholder="–" />
       <span style="color:var(--muted);font-size:10px;">:</span>
-      <input class="m-inp" data-match="ko2-f" data-set="1" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko2-f" data-set="1" data-pos="2" type="text" inputmode="numeric" placeholder="–" />
     </div>
     <div style="display:flex;align-items:center;gap:4px;justify-content:center;">
       <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;">Set2</span>
-      <input class="m-inp" data-match="ko2-f" data-set="2" data-pos="1" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko2-f" data-set="2" data-pos="1" type="text" inputmode="numeric" placeholder="–" />
       <span style="color:var(--muted);font-size:10px;">:</span>
-      <input class="m-inp" data-match="ko2-f" data-set="2" data-pos="2" type="number" min="0" max="99" placeholder="–" />
+      <input class="m-inp" data-match="ko2-f" data-set="2" data-pos="2" type="text" inputmode="numeric" placeholder="–" />
     </div>
     <div style="display:flex;align-items:center;gap:4px;justify-content:center;" id="ko2-f-s3row">
       <span style="font-size:10px;color:var(--muted);width:30px;text-align:right;opacity:0.4;">Set3</span>
-      <input class="m-inp" data-match="ko2-f" data-set="3" data-pos="1" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+      <input class="m-inp" data-match="ko2-f" data-set="3" data-pos="1" type="text" inputmode="numeric" placeholder="–" style="opacity:0.4;" />
       <span style="color:var(--muted);font-size:10px;opacity:0.4;">:</span>
-      <input class="m-inp" data-match="ko2-f" data-set="3" data-pos="2" type="number" min="0" max="99" placeholder="–" style="opacity:0.4;" />
+      <input class="m-inp" data-match="ko2-f" data-set="3" data-pos="2" type="text" inputmode="numeric" placeholder="–" style="opacity:0.4;" />
     </div>
   </div>
   <div id="ko2-f-sd" style="text-align:center;margin-top:4px;font-size:11px;font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--green);min-height:14px;"></div>
@@ -572,24 +573,24 @@ body.organiser-mode .m-score-static{display:none!important;}
 <script>
 var GROUPS = {
   "Group 1": ["Karthik & Shailandra","Syed & Sofi","Narashima & Sneha","Kenny & Amanda","Andrew & Kacie"],
-  "Group 2": ["Mandy & Honey","Suresh & Nirmala","Elango & Ramya","Arun & Divya","Abhishek & Aaryesh"]
+  "Group 2": ["Vinod & Nandhini","Suresh & Nirmala","Elango & Ramya","Arun & Divya","Abhishek & Aaryesh"]
 };
 
 var SCHEDULE = [
   {time:"1:45 PM",court:5,group:"Group 1",t1:"Karthik & Shailandra",t2:"Syed & Sofi"},
   {time:"1:45 PM",court:6,group:"Group 1",t1:"Narashima & Sneha",t2:"Kenny & Amanda"},
-  {time:"1:45 PM",court:5,group:"Group 2",t1:"Mandy & Honey",t2:"Suresh & Nirmala"},
+  {time:"1:45 PM",court:5,group:"Group 2",t1:"Vinod & Nandhini",t2:"Suresh & Nirmala"},
   {time:"1:45 PM",court:6,group:"Group 2",t1:"Elango & Ramya",t2:"Arun & Divya"},
   {time:"2:00 PM",court:5,group:"Group 1",t1:"Karthik & Shailandra",t2:"Narashima & Sneha"},
   {time:"2:00 PM",court:6,group:"Group 1",t1:"Syed & Sofi",t2:"Kenny & Amanda"},
-  {time:"2:00 PM",court:5,group:"Group 2",t1:"Mandy & Honey",t2:"Elango & Ramya"},
+  {time:"2:00 PM",court:5,group:"Group 2",t1:"Vinod & Nandhini",t2:"Elango & Ramya"},
   {time:"2:00 PM",court:6,group:"Group 2",t1:"Suresh & Nirmala",t2:"Arun & Divya"},
   {time:"2:15 PM",court:5,group:"Group 1",t1:"Karthik & Shailandra",t2:"Kenny & Amanda"},
   {time:"2:15 PM",court:6,group:"Group 1",t1:"Syed & Sofi",t2:"Narashima & Sneha"},
-  {time:"2:15 PM",court:5,group:"Group 2",t1:"Mandy & Honey",t2:"Arun & Divya"},
+  {time:"2:15 PM",court:5,group:"Group 2",t1:"Vinod & Nandhini",t2:"Arun & Divya"},
   {time:"2:15 PM",court:6,group:"Group 2",t1:"Suresh & Nirmala",t2:"Elango & Ramya"},
   {time:"2:30 PM",court:5,group:"Group 1",t1:"Karthik & Shailandra",t2:"Andrew & Kacie"},
-  {time:"2:30 PM",court:6,group:"Group 2",t1:"Mandy & Honey",t2:"Abhishek & Aaryesh"},
+  {time:"2:30 PM",court:6,group:"Group 2",t1:"Vinod & Nandhini",t2:"Abhishek & Aaryesh"},
   {time:"2:45 PM",court:5,group:"Group 1",t1:"Syed & Sofi",t2:"Andrew & Kacie"},
   {time:"2:45 PM",court:6,group:"Group 2",t1:"Suresh & Nirmala",t2:"Abhishek & Aaryesh"},
   {time:"3:00 PM",court:5,group:"Group 1",t1:"Narashima & Sneha",t2:"Andrew & Kacie"},
@@ -689,6 +690,7 @@ function getWinner(s1, s2, t1, t2) {
 function updateScore(key, pos, val) {
   if (!scores[key]) scores[key] = {s1:"", s2:""};
   if (pos === 1) scores[key].s1 = val; else scores[key].s2 = val;
+  if (typeof saveScoreToFirebase === 'function') saveScoreToFirebase(key, scores[key]);
   buildSchedule(currentSchedFilter);
   buildStandings(currentStandingsFilter);
   updateKOSeedings();
@@ -785,7 +787,16 @@ document.addEventListener("input", function(e) {
   } else {
     if (pos === "1") koScores[matchId].s1 = e.target.value;
     else koScores[matchId].s2 = e.target.value;
+    // Update lock-mode score display for single-set matches (Q1/Q2)
+    var sc = koScores[matchId];
+    var sd = document.getElementById(matchId + "-sd");
+    if (sd) {
+      if (sc.s1 !== undefined && sc.s1 !== "" && sc.s2 !== undefined && sc.s2 !== "") {
+        sd.textContent = sc.s1 + ":" + sc.s2; sd.classList.add("show");
+      } else { sd.textContent = ""; sd.classList.remove("show"); }
+    }
   }
+  if (typeof saveKOScoreToFirebase === 'function') saveKOScoreToFirebase(matchId);
   if (koMode === 1) refreshKO1(); else refreshKO2();
 });
 
@@ -897,6 +908,23 @@ function restoreBO3Inputs(matchId) {
 function refreshKO1() {
   // Restore BO3 inputs
   ["ko1-sf1","ko1-sf2","ko1-f"].forEach(restoreBO3Inputs);
+  // Restore Q1/Q2 single-set inputs from koScores (for Firebase load)
+  ["ko1-q1","ko1-q2"].forEach(function(matchId) {
+    var sc = koScores[matchId] || {};
+    if (sc.s1 !== undefined && sc.s1 !== "") {
+      var inp1 = document.querySelector(".m-inp[data-match='" + matchId + "'][data-pos='1']");
+      var inp2 = document.querySelector(".m-inp[data-match='" + matchId + "'][data-pos='2']");
+      if (inp1) inp1.value = sc.s1;
+      if (inp2 && sc.s2 !== undefined) inp2.value = sc.s2;
+    }
+    var sd = document.getElementById(matchId + "-sd");
+    if (sd) {
+      var sc2 = koScores[matchId] || {};
+      if (sc2.s1 !== undefined && sc2.s1 !== "" && sc2.s2 !== undefined && sc2.s2 !== "") {
+        sd.textContent = sc2.s1 + ":" + sc2.s2; sd.classList.add("show");
+      } else { sd.textContent = ""; sd.classList.remove("show"); }
+    }
+  });
   // Q1/Q2 → SF slots (single set)
   var q1w = koWinner("ko1-q1","ko1-q1-t1","ko1-q1-t2");
   var q2w = koWinner("ko1-q2","ko1-q2-t1","ko1-q2-t2");
@@ -1059,8 +1087,100 @@ document.addEventListener('input', function(e) {
     else if(w2t>=2){sd.textContent='🏆 '+(t2el?t2el.textContent.trim():'T2')+' wins '+w2t+'-'+w1t;sd.style.color='var(--green)';}
     else if(w1t+w2t>0){sd.textContent=w1t+'-'+w2t+' sets';sd.style.color='var(--accent2)';}
   }
+  if (typeof saveKOScoreToFirebase === 'function') saveKOScoreToFirebase(matchId);
   if (koMode===1) refreshKO1(); else refreshKO2();
 });
+
+</script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script>
+
+// ── Firebase Integration for Social Tournament ──────────────────────────────
+var FIREBASE_CONFIG_SOC = {
+  apiKey: "AIzaSyBvlflZt28TrZi-nZ6-L8YV1IBqrLiIvsc",
+  authDomain: "iag-pickleball.firebaseapp.com",
+  databaseURL: "https://iag-pickleball-default-rtdb.firebaseio.com",
+  projectId: "iag-pickleball",
+  storageBucket: "iag-pickleball.firebasestorage.app",
+  messagingSenderId: "1032967317528",
+  appId: "1:1032967317528:web:8742c451537507ca37fb6d",
+  measurementId: "G-1TWT6FF8FW"
+};
+var db_soc = null;
+var scoresRef_soc = null;
+
+function updateSyncStatus(msg, color) {
+  var el = document.getElementById('sync-status');
+  if (el) {
+    el.textContent = msg;
+    el.style.color = color === 'green' ? 'var(--green)' : color === 'orange' ? 'var(--accent2)' : color === 'muted' ? 'var(--muted)' : 'var(--accent3)';
+  }
+}
+
+function saveScoreToFirebase(key, scoreObj) {
+  if (db_soc && scoresRef_soc) {
+    scoresRef_soc.child(key).set(scoreObj).catch(function() {
+      try { localStorage.setItem('iag-social-scores', JSON.stringify(scores)); } catch(e) {}
+    });
+  } else {
+    try { localStorage.setItem('iag-social-scores', JSON.stringify(scores)); } catch(e) {}
+  }
+}
+
+function saveKOScoreToFirebase(matchId) {
+  if (db_soc && koScores[matchId] !== undefined) {
+    db_soc.ref('social-scores-ko/' + matchId).set(koScores[matchId]).catch(function(){});
+  } else {
+    try { localStorage.setItem('iag-social-scores-ko', JSON.stringify(koScores)); } catch(e) {}
+  }
+}
+
+function initKOScores() {
+  if (db_soc) {
+    db_soc.ref('social-scores-ko').on('value', function(snap) {
+      koScores = snap.val() || {};
+      if (koMode === 1) refreshKO1(); else refreshKO2();
+    });
+  } else {
+    try { var s = localStorage.getItem('iag-social-scores-ko'); if (s) koScores = JSON.parse(s); } catch(e) {}
+    if (koMode === 1) refreshKO1(); else refreshKO2();
+  }
+}
+
+(function initFirebase() {
+  try {
+    if (typeof firebase === 'undefined') {
+      try { var s = localStorage.getItem('iag-social-scores'); if (s) scores = JSON.parse(s); } catch(e) {}
+      updateSyncStatus('🟡 Local only', 'orange');
+      buildSchedule(currentSchedFilter); buildStandings(currentStandingsFilter);
+      initKOScores(); return;
+    }
+    if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG_SOC);
+    db_soc = firebase.database();
+    scoresRef_soc = db_soc.ref('social-scores');
+    updateSyncStatus('⏳ Connecting...', 'muted');
+    var tid = setTimeout(function() { updateSyncStatus('⚠️ Slow connection', 'orange'); }, 5000);
+    scoresRef_soc.on('value', function(snap) {
+      clearTimeout(tid);
+      scores = snap.val() || {};
+      buildSchedule(currentSchedFilter); buildStandings(currentStandingsFilter); updateKOSeedings();
+      updateSyncStatus('🟢 Live – synced', 'green');
+    }, function() {
+      clearTimeout(tid);
+      updateSyncStatus('🔴 Firebase error', 'red');
+      try { var s = localStorage.getItem('iag-social-scores'); if (s) scores = JSON.parse(s); } catch(e) {}
+      buildSchedule(currentSchedFilter); buildStandings(currentStandingsFilter);
+    });
+    initKOScores();
+  } catch(e) {
+    db_soc = null;
+    updateSyncStatus('🟡 Local only', 'orange');
+    try { var s = localStorage.getItem('iag-social-scores'); if (s) scores = JSON.parse(s); } catch(e2) {}
+    buildSchedule(currentSchedFilter); buildStandings(currentStandingsFilter);
+    initKOScores();
+  }
+})();
 
 </script>
 </body>
