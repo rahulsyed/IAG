@@ -1578,7 +1578,7 @@
         <div class="nav-container">
             <button class="tab-btn active" data-tab="overview">Overview</button>
             <button class="tab-btn" data-tab="scores">🏆 Live Score and Schedule</button>
-            <button class="tab-btn" data-tab="categories">Categories</button>
+            <button class="tab-btn" data-tab="categories">📺 Live Streaming</button>
             <button class="tab-btn tab-disabled" disabled title="Registration closed">Register</button>
             <button class="tab-btn tab-disabled" disabled title="Pricing info unavailable">Pricing</button>
         </div>
@@ -1962,158 +1962,106 @@
 
         <!-- Categories Tab -->
         <div id="categories" class="tab-content">
-            <div class="card">
-                <h2 class="card-title">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                    </svg>
-                    Skill Level Categories
+            <!-- Live Streaming Section -->
+            <div class="card" style="background: linear-gradient(135deg, rgba(255,153,51,0.1) 0%, rgba(19,136,8,0.05) 100%); border: 2px solid rgba(255,153,51,0.3); position: relative; overflow: hidden;">
+                <!-- Live Badge -->
+                <div style="position: absolute; top: 15px; right: 15px; background: linear-gradient(135deg, #FF1744, #F50057); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; letter-spacing: 1px; box-shadow: 0 4px 12px rgba(255, 23, 68, 0.4); animation: pulse 2s ease-in-out infinite;">
+                    ● LIVE STREAMING AVAILABLE
+                </div>
+
+                <h2 style="font-family: 'Archivo Black', sans-serif; font-size: 2rem; color: var(--white); margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem;">
+                    Watch Live on <span style="color: var(--primary);">PlaysightApp</span>
                 </h2>
-                <p style="margin-bottom: 2rem; line-height: 1.8;">We offer three competitive categories to ensure fair and exciting matches. Choose the category that best matches your skill level. Not sure? Contact us for a skill assessment!</p>
-            </div>
+                
+                <p style="color: rgba(255,255,255,0.85); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem;">
+                    Experience every match with professional HD court cameras. Watch from anywhere in the world — completely free streaming for all spectators, family, and friends.
+                </p>
 
-            <div class="card">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 1.8rem; color: var(--secondary); display: flex; align-items: center; gap: 1rem;">
-                        <span class="category-badge category-beginner">Beginner</span>
-                        Level 3.0 (Open Division)
+                <!-- Features Box -->
+                <div style="background: rgba(26, 26, 46, 0.6); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,153,51,0.2);">
+                    <h3 style="color: var(--primary); font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span>📺</span> PlaysightApp
                     </h3>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem; margin-bottom: 1rem;">
+                        Professional Sports Streaming
+                    </p>
+                    
+                    <!-- Feature List -->
+                    <div style="display: grid; gap: 0.75rem;">
+                        <div style="display: flex; align-items: start; gap: 0.75rem;">
+                            <span style="color: var(--success); font-size: 1.1rem; margin-top: 2px;">✓</span>
+                            <span style="color: rgba(255,255,255,0.85);">HD multi-court coverage</span>
+                        </div>
+                        <div style="display: flex; align-items: start; gap: 0.75rem;">
+                            <span style="color: var(--success); font-size: 1.1rem; margin-top: 2px;">✓</span>
+                            <span style="color: rgba(255,255,255,0.85);">Free for all viewers</span>
+                        </div>
+                        <div style="display: flex; align-items: start; gap: 0.75rem;">
+                            <span style="color: var(--success); font-size: 1.1rem; margin-top: 2px;">✓</span>
+                            <span style="color: rgba(255,255,255,0.85);">No registration required</span>
+                        </div>
+                        <div style="display: flex; align-items: start; gap: 0.75rem;">
+                            <span style="color: var(--success); font-size: 1.1rem; margin-top: 2px;">✓</span>
+                            <span style="color: rgba(255,255,255,0.85);">Mobile & desktop compatible</span>
+                        </div>
+                    </div>
                 </div>
-                <h4 style="color: var(--primary); margin-bottom: 1rem;">Who Should Register:</h4>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>New to pickleball or playing for less than 6 months</span>
-                    </li>
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Still learning basic strokes and rules</span>
-                    </li>
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Comfortable with dinking but still developing consistency</span>
-                    </li>
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Looking for fun, recreational competition</span>
-                    </li>
-                </ul>
-            </div>
 
-            <div class="card">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 1.8rem; color: var(--secondary); display: flex; align-items: center; gap: 1rem;">
-                        <span class="category-badge category-intermediate">Intermediate</span>
-                        Level 3.5 (Open Division)
+                <!-- How to Watch Box -->
+                <div style="background: rgba(19, 136, 8, 0.1); border-radius: 12px; padding: 1.5rem; border-left: 4px solid var(--secondary);">
+                    <h3 style="color: var(--secondary); font-size: 1.1rem; font-weight: 700; margin-bottom: 1.25rem;">
+                        HOW TO WATCH
                     </h3>
+                    
+                    <div style="display: grid; gap: 1rem;">
+                        <div style="display: flex; align-items: start; gap: 1rem;">
+                            <div style="background: var(--secondary); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">1</div>
+                            <div>
+                                <div style="color: var(--white); font-weight: 600; margin-bottom: 0.25rem;">Click the <strong>Watch Live Stream</strong> button</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: start; gap: 1rem;">
+                            <div style="background: var(--secondary); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">2</div>
+                            <div>
+                                <div style="color: var(--white); font-weight: 600; margin-bottom: 0.25rem;">Select the court you want to watch</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: start; gap: 1rem;">
+                            <div style="background: var(--secondary); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">3</div>
+                            <div>
+                                <div style="color: var(--white); font-weight: 600; margin-bottom: 0.25rem;">Share the link with friends & family to watch from anywhere in the world</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: start; gap: 1rem;">
+                            <div style="background: var(--secondary); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">4</div>
+                            <div>
+                                <div style="color: var(--white); font-weight: 600; margin-bottom: 0.25rem;">Check back here for live scores updated in real time as matches are scored</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <h4 style="color: var(--primary); margin-bottom: 1rem;">Who Should Register:</h4>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Playing regularly for 6+ months</span>
-                    </li>
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Comfortable with all basic shots (serve, return, dink, volley)</span>
-                    </li>
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Understanding of strategy and court positioning</span>
-                    </li>
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Can sustain rallies and play competitively</span>
-                    </li>
-                </ul>
-            </div>
 
-            <div class="card">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 1.8rem; color: var(--secondary); display: flex; align-items: center; gap: 1rem;">
-                        <span class="category-badge category-expert">Expert</span>
-                        Level 4.0 and Above (Open Division)
-                    </h3>
+                <!-- CTA Button -->
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="https://web.playsight.com/facility/the-pickle-yard/home" target="_blank" style="display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(--primary), #e07000); color: #000; font-weight: 700; padding: 16px 36px; border-radius: 8px; text-decoration: none; font-size: 1.1rem; letter-spacing: 0.5px; box-shadow: 0 4px 16px rgba(255, 153, 51, 0.4); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(255, 153, 51, 0.5)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 16px rgba(255, 153, 51, 0.4)';">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        WATCH LIVE STREAM →
+                    </a>
                 </div>
-                <h4 style="color: var(--primary); margin-bottom: 1rem;">Who Should Register:</h4>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Advanced player with tournament experience</span>
-                    </li>
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Excellent shot selection and placement</span>
-                    </li>
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Strong understanding of advanced strategies</span>
-                    </li>
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Looking for highly competitive play</span>
-                    </li>
-                </ul>
-            </div>
 
-            <div class="card">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 1.8rem; color: var(--primary); display: flex; align-items: center; gap: 1rem;">
-                        <span class="category-badge category-intermediate">Mixed Doubles</span>
-                        Competitive
-                    </h3>
-                </div>
-                <h4 style="color: var(--primary); margin-bottom: 1rem;">Who Should Register:</h4>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Experienced players looking for competitive mixed doubles play</span>
-                    </li>
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Partners of opposite genders (male/female teams)</span>
-                    </li>
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Comfortable with advanced strategies and shot-making</span>
-                    </li>
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Seeking serious, high-level competition</span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 1.8rem; color: var(--success); display: flex; align-items: center; gap: 1rem;">
-                        <span class="category-badge" style="background: var(--success); color: var(--dark);">Family Social</span>
-                        For Fun
-                    </h3>
-                </div>
-                <h4 style="color: var(--primary); margin-bottom: 1rem;">Who Should Register:</h4>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Families playing together (parents/kids, siblings, etc.)</span>
-                    </li>
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>All skill levels welcome - no experience required</span>
-                    </li>
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Fun, recreational, non-competitive atmosphere</span>
-                    </li>
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Perfect for bonding and making memories together</span>
-                    </li>
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem;">
-                        <span style="color: var(--success); font-size: 1.2rem;">✓</span>
-                        <span>Special $25 per player pricing</span>
-                    </li>
-                </ul>
+                <!-- Pulse Animation -->
+                <style>
+                    @keyframes pulse {
+                        0%, 100% { opacity: 1; }
+                        50% { opacity: 0.8; }
+                    }
+                </style>
             </div>
         </div>
 
